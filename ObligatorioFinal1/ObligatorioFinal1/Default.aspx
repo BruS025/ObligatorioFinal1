@@ -32,7 +32,7 @@
                 <asp:Button ID="entrar" CssClass="btn btn-lg btn-primary" runat="server" Text="Entrar" OnClick="entrar_Click" Width="100%"/>
 
                 <br/><br/>
-                <p>Queres comer ya pero no tenes usuario? <asp:LinkButton ID="register" OnClick="register_Click" runat="server">Registrarse</asp:LinkButton> </p>
+                <p>Queres comer ya pero no tenes usuario? <asp:LinkButton ID="register" runat="server" PostBackUrl="~/Register.aspx">Registrarse</asp:LinkButton> </p>
                 
 
             </form><!-- /form -->
