@@ -26,39 +26,44 @@
                 <span id="reauth-email" class="reauth-email"></span>
 
                 <p class="input_title">Nombre completo del usuario</p>
-                <input type="text" id="inputUsername" runat="server" class="login_box" placeholder="Ingrese nombre completo" required="required" autofocus="autofocus"/>
+                <input type="text" id="inputUsername" runat="server" class="login_box" placeholder="Ingrese nombre completo" required="required"/>
 
                 <p class="input_title">Nombre de usuario</p>
-                <input type="text" id="inputEmail" runat="server" class="login_box" placeholder="Ingrese nombre de usuario" required="required" autofocus="autofocus"/>
+                <input type="text" id="inputEmail" runat="server" class="login_box" placeholder="Ingrese nombre de usuario" required="required"/>
                 
                 <p class="input_title">Documento</p>
-                <input type="text" id="inputDocumento" runat="server" height="44px" class="login_box" placeholder="Ingrese documento del usuario" required="required" autofocus="autofocus"/>
+                <input type="text" id="inputDocumento" runat="server" height="44px" class="login_box" placeholder="Ingrese documento del usuario" required="required"/>
 
                 <p class="input_title">Tipo de usuario:</p>
-                <asp:DropDownList ID="ddlTipoUsuario" runat="server" AutoPostBack="True" Height="44px" Width="100%">
+                <asp:DropDownList ID="ddlTipoUsuario" runat="server" AutoPostBack="True" Height="44px" Width="100%" OnSelectedIndexChanged="ddlTipoUsuario_SelectedIndexChanged">
                     <asp:ListItem Value="0">Cliente</asp:ListItem>
                     <asp:ListItem Value="1">Administrador</asp:ListItem>
                 </asp:DropDownList>
                 <br/><br/>
 
-                <p runat="server" id="dirTitle" class="input_title">Direccion</p>
-                <input type="text" id="dirInput" runat="server" class="login_box" placeholder="Ingrese direccion" required="required" autofocus="autofocus"/>
+                <div id="usuarioDiv" runat="server">
+                    <p runat="server" id="P1" class="input_title">Numero de tarjeta de credito</p>
+                    <input type="text" id="inputTarjeta" runat="server" class="login_box" placeholder="Numero de tarjeta de credito" required="required"/>
 
-                <p id="cargoTitle" class="input_title">Cargo de empleado:</p>
-                <asp:DropDownList ID="ddlCargos" runat="server" AutoPostBack="True" Height="44px" Width="100%">
-                    <asp:ListItem Value="0">Gerente</asp:ListItem>
-                    <asp:ListItem Value="1">Administrador</asp:ListItem>
-                </asp:DropDownList>
-                <br/><br/>
+                    <p runat="server" id="dirTitle" class="input_title">Direccion</p>
+                    <input type="text" id="inputDire" runat="server" class="login_box" placeholder="Ingrese direccion" required="required"/>
+                </div>
+
+                <div id="cargoDiv" runat="server" visible="false">
+                    <p id="cargoTitle" class="input_title">Cargo de empleado:</p>
+                    <asp:DropDownList ID="ddlCargos" runat="server" AutoPostBack="false" Height="44px" Width="100%">
+                        <asp:ListItem Value="0">Gerente</asp:ListItem>
+                        <asp:ListItem Value="1">Administrador</asp:ListItem>
+                        <asp:ListItem Value="2">Empleado</asp:ListItem>
+                    </asp:DropDownList>
+                    <br/><br/>
+                </div>
 
                 <p class="input_title">Contraseña</p>
-                <input type="password" id="Password1" runat="server" class="login_box" placeholder="******" required="required" autofocus="autofocus" autocomplete="off"/>
-
-                <p class="input_title">Contraseña</p>
-                <input type="password" id="inputPassword" runat="server" class="login_box" placeholder="******" required="required" autofocus="autofocus" autocomplete="off"/>                                             
+                <input type="password" id="inputPassword" runat="server" class="login_box" placeholder="******" required="required" autocomplete="off"/>                                             
                 
                 <p class="input_title">Repetir contraseña</p>
-                <input type="password" id="inputPasswordRepeat" height="44px" runat="server" class="login_box" placeholder="******" required="required" autofocus="autofocus" autocomplete="off"/> 
+                <input type="password" id="inputPasswordRepeat" height="44px" runat="server" class="login_box" placeholder="******" required="required" autocomplete="off"/> 
               
                 <asp:Button ID="btRegister" CssClass="btn btn-lg btn-primary" runat="server" OnClick="btRegister_Click" Text="Crear cuenta" Width="100%"/>
 

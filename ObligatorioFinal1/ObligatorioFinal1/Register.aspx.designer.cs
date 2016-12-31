@@ -58,6 +58,33 @@ namespace ObligatorioFinal1 {
         protected global::System.Web.UI.WebControls.DropDownList ddlTipoUsuario;
         
         /// <summary>
+        /// usuarioDiv control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl usuarioDiv;
+        
+        /// <summary>
+        /// P1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl P1;
+        
+        /// <summary>
+        /// inputTarjeta control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlInputText inputTarjeta;
+        
+        /// <summary>
         /// dirTitle control.
         /// </summary>
         /// <remarks>
@@ -67,13 +94,22 @@ namespace ObligatorioFinal1 {
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl dirTitle;
         
         /// <summary>
-        /// dirInput control.
+        /// inputDire control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlInputText dirInput;
+        protected global::System.Web.UI.HtmlControls.HtmlInputText inputDire;
+        
+        /// <summary>
+        /// cargoDiv control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl cargoDiv;
         
         /// <summary>
         /// ddlCargos control.
@@ -83,15 +119,6 @@ namespace ObligatorioFinal1 {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.DropDownList ddlCargos;
-        
-        /// <summary>
-        /// Password1 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlInputPassword Password1;
         
         /// <summary>
         /// inputPassword control.

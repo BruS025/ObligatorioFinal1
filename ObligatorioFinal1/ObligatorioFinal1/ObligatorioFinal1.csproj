@@ -107,6 +107,12 @@
     <Content Include="css\bootstrap.css.map" />
     <Content Include="css\bootstrap.min.css.map" />
     <Content Include="MasterPage.Master" />
+    <Content Include="MantenimientoPedidos.aspx" />
+    <Content Include="MantenimientoCasas.aspx" />
+    <Content Include="MantenimientoPlatos.aspx" />
+    <Content Include="MantenimientoEntrega.aspx" />
+    <Content Include="MantenimientoCrearPedido.aspx" />
+    <Content Include="MantenimientoPedidosPendientes.aspx" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -159,6 +165,48 @@
     </Compile>
     <Compile Include="Register.aspx.designer.cs">
       <DependentUpon>Register.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="MantenimientoPedidos.aspx.cs">
+      <DependentUpon>MantenimientoPedidos.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="MantenimientoPedidos.aspx.designer.cs">
+      <DependentUpon>MantenimientoPedidos.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="MantenimientoCasas.aspx.cs">
+      <DependentUpon>MantenimientoCasas.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="MantenimientoCasas.aspx.designer.cs">
+      <DependentUpon>MantenimientoCasas.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="MantenimientoPlatos.aspx.cs">
+      <DependentUpon>MantenimientoPlatos.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="MantenimientoPlatos.aspx.designer.cs">
+      <DependentUpon>MantenimientoPlatos.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="MantenimientoEntrega.aspx.cs">
+      <DependentUpon>MantenimientoEntrega.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="MantenimientoEntrega.aspx.designer.cs">
+      <DependentUpon>MantenimientoEntrega.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="MantenimientoCrearPedido.aspx.cs">
+      <DependentUpon>MantenimientoCrearPedido.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="MantenimientoCrearPedido.aspx.designer.cs">
+      <DependentUpon>MantenimientoCrearPedido.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="MantenimientoPedidosPendientes.aspx.cs">
+      <DependentUpon>MantenimientoPedidosPendientes.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="MantenimientoPedidosPendientes.aspx.designer.cs">
+      <DependentUpon>MantenimientoPedidosPendientes.aspx</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
