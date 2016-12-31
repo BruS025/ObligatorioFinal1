@@ -16,7 +16,7 @@ namespace ObligatorioFinal1
 
         protected void entrar_Click(object sender, EventArgs e)
         {
-
+            Response.Redirect("Register.aspx");
         }
 
         protected void register_Click(object sender, EventArgs e)

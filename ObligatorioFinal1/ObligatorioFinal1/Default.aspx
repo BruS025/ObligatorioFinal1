@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="Default.aspx.cs" Inherits="ObligatorioFinal1.Default" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" enableEventValidation="false" CodeBehind="Default.aspx.cs" Inherits="ObligatorioFinal1.Default" %>
 
 <!DOCTYPE html>
 
@@ -12,7 +12,6 @@
 
 </head>
 <body>
-    <form id="form1" runat="server" class="form-signin">
 
 <div class="container">
 
@@ -22,12 +21,12 @@
         <h2 class='login_title text-center'>Login</h2>
         <hr/>
 
-            <form class="form-signin">
+            <form class="form-signin" runat="server">
                 <span id="reauth-email" class="reauth-email"></span>
                 <p class="input_title">Nombre de usuario</p>
-                <input type="text" id="inputEmail" class="login_box" placeholder="Ingrese nombre de usuario" required="required" autofocus="autofocus"/>
+                <input type="text" id="inputEmail" runat="server" class="login_box" placeholder="Ingrese nombre de usuario" required="required" autofocus="autofocus" height="44px" />
                 <p class="input_title">Contraseña</p>
-                <input type="password" id="inputPassword" class="login_box" placeholder="******" required="required"/>                                             
+                <input type="password" id="inputPassword" runat="server" class="login_box" placeholder="******" required="required" autofocus="autofocus" autocomplete="off"/>                                             
 
                 <asp:Button ID="entrar" CssClass="btn btn-lg btn-primary" runat="server" Text="Entrar" OnClick="entrar_Click" Width="100%"/>
 
@@ -40,7 +39,7 @@
     </div><!-- /container -->
     
     </div>
-    </form>
+
         <script src="js/jquery.min.js"></script>
         <script src="js/bootstrap.min.js"></script>
 </body>

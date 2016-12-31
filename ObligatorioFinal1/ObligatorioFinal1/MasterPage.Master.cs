@@ -7,16 +7,11 @@ using System.Web.UI.WebControls;
 
 namespace ObligatorioFinal1
 {
-    public partial class Register : System.Web.UI.Page
+    public partial class MasterPage : System.Web.UI.MasterPage
     {
         protected void Page_Load(object sender, EventArgs e)
         {
 
-        }
-
-        protected void btRegister_Click(object sender, EventArgs e)
-        {
-            Response.Redirect("Default.aspx");
         }
     }
 }
