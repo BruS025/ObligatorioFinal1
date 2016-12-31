@@ -46,6 +46,37 @@
 
     </div>
 
+    <div class="col-md-12" id="divCasa" runat="server">
+
+        <div class="col-md-2">
+            <asp:TextBox ID="rut" runat="server" Height="34px" Enabled="false" ></asp:TextBox>
+        </div>
+
+        <div class="col-md-2">
+            <asp:TextBox ID="nombre" runat="server" Height="34px"></asp:TextBox>
+        </div>
+
+        <div class="col-md-2">
+            <asp:DropDownList ID="ddlEspecializacion" runat="server" AutoPostBack="True" Height="34px">
+                <asp:ListItem Value="0">Cliente</asp:ListItem>
+                <asp:ListItem Value="1">Administrador</asp:ListItem>
+            </asp:DropDownList>
+        </div>
+                       
+        <div class="col-md-1">
+            <asp:Button ID="btAgregar" CssClass="btn btn-default" runat="server" Text="Agregar" Height="34px" />
+        </div>
+
+        <div class="col-md-1">
+            <asp:Button ID="btModificar" CssClass="btn btn-default" runat="server" Text="Modificar" Height="34px" />
+        </div>
+
+        <div class="col-md-1">
+            <asp:Button ID="btEliminar" CssClass="btn btn-default" runat="server" Text="Eliminar" Height="34px" />
+        </div>
+
+    </div>
+
 </div>
 </div>     
 
