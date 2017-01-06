@@ -46,20 +46,23 @@
 
     </div>
 
-    <div class="col-md-12" id="divCasa" runat="server">
+    <div class="col-md-12" id="divCasa" runat="server" height="34px">
 
         <div class="col-md-2">
-            <asp:TextBox ID="rut" runat="server" Height="34px" Enabled="false" ></asp:TextBox>
+            <asp:TextBox ID="rut" runat="server"  Height="34px" Enabled="false" Placeholder="RUT" ></asp:TextBox>
         </div>
 
         <div class="col-md-2">
-            <asp:TextBox ID="nombre" runat="server" Height="34px"></asp:TextBox>
+            <asp:TextBox ID="nombre" runat="server" Height="34px" Placeholder="Nombre"></asp:TextBox>
         </div>
 
         <div class="col-md-2">
             <asp:DropDownList ID="ddlEspecializacion" runat="server" AutoPostBack="True" Height="34px">
-                <asp:ListItem Value="0">Cliente</asp:ListItem>
-                <asp:ListItem Value="1">Administrador</asp:ListItem>
+                <asp:ListItem Value="0">Pizzeria</asp:ListItem>
+                <asp:ListItem Value="1">Parrillada</asp:ListItem>
+                <asp:ListItem Value="2">Minutas</asp:ListItem>
+                <asp:ListItem Value="3">Internacional</asp:ListItem>
+                <asp:ListItem Value="4">Vegetariano</asp:ListItem>
             </asp:DropDownList>
         </div>
                        
@@ -72,8 +75,41 @@
         </div>
 
         <div class="col-md-1">
+            <asp:Button ID="btCancelar" CssClass="btn btn-default" runat="server" Text="Cancelar" Height="34px" />
+        </div>
+
+        <div class="col-md-1">
             <asp:Button ID="btEliminar" CssClass="btn btn-default" runat="server" Text="Eliminar" Height="34px" />
         </div>
+
+        <div class="col-md-12">
+            <asp:GridView ID="GridCasas" runat="server" AllowPaging="true" OnPageIndexChanging="GridCasas_PageIndexChanging"        
+        AutoGenerateColumns="False" RowStyle-Height="34px" CellPadding="4" ForeColor="#333333" GridLines="None" HorizontalAlign="Center"
+        Visible="True" Width="98%" ShowFooter="False" ShowHeaderWhenEmpty="True" PageSize="10" Font-Size="Large" CaptionAlign="Top">
+
+        <AlternatingRowStyle BackColor="White" />
+
+          <Columns>
+
+              <asp:BoundField HeaderStyle-BorderWidth="2px" ItemStyle-Font-Size="Small" DataField="RUT" HeaderText="RUT"/>
+              <asp:BoundField HeaderStyle-BorderWidth="2px" ItemStyle-Font-Size="Small" DataField="Nombre" HeaderText="Nombre"/>
+              <asp:BoundField HeaderStyle-BorderWidth="2px" ItemStyle-Font-Size="Small" DataField="Especializacion" HeaderText="Especializacion" />                                      
+
+          </Columns>
+
+                    <FooterStyle BackColor="#990000" Font-Bold="True" ForeColor="White" />
+                    <HeaderStyle BackColor="Red" Font-Bold="True" ForeColor="White" />
+                    <PagerStyle BackColor="#FFCC66" ForeColor="#333333" HorizontalAlign="Center" />
+                    <RowStyle BackColor="#FFFBD6" ForeColor="#333333" />
+                    <SelectedRowStyle BackColor="#FFCC66" Font-Bold="True" ForeColor="Navy" />
+                    <SortedAscendingCellStyle BackColor="#FDF5AC" />
+                    <SortedAscendingHeaderStyle BackColor="#4D0000" />
+                    <SortedDescendingCellStyle BackColor="#FCF6C0" />
+                    <SortedDescendingHeaderStyle BackColor="#820000" />
+                    <PagerStyle BackColor="#B50000" ForeColor="White" />
+
+        </asp:GridView>
+       </div>
 
     </div>
 
