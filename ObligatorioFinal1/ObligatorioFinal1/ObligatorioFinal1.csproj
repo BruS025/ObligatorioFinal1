@@ -113,6 +113,7 @@
     <Content Include="MantenimientoEntrega.aspx" />
     <Content Include="MantenimientoCrearPedido.aspx" />
     <Content Include="MantenimientoPedidosPendientes.aspx" />
+    <Content Include="MantenimientoAdmins.aspx" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -207,6 +208,13 @@
     </Compile>
     <Compile Include="MantenimientoPedidosPendientes.aspx.designer.cs">
       <DependentUpon>MantenimientoPedidosPendientes.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="MantenimientoAdmins.aspx.cs">
+      <DependentUpon>MantenimientoAdmins.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="MantenimientoAdmins.aspx.designer.cs">
+      <DependentUpon>MantenimientoAdmins.aspx</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>

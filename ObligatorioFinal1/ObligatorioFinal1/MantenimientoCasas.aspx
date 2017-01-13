@@ -32,8 +32,8 @@
 
     <div class="col-md-12">
 
-        <div class="col-md-1">
-            <asp:Label ID="Label1" ForeColor="Black" runat="server" Height="34px" Text="RUT casa:" Font-Size="X-Large"></asp:Label>                      
+        <div class="col-md-2">
+            <asp:Label ID="Label1" ForeColor="Black" runat="server" Height="34px" Text="RUT casa:" Font-Size="Large"></asp:Label>                      
         </div>
 
         <div class="col-md-2">
