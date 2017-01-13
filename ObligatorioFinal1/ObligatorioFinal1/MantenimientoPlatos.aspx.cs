@@ -13,5 +13,23 @@ namespace ObligatorioFinal1
         {
 
         }
+
+        protected void btVerificar_Click(object sender, EventArgs e)
+        {
+            try
+                {
+
+                }
+
+            catch
+                {
+
+                }
+        }
+
+        protected void GridPlatos_PageIndexChanging(object sender, GridViewPageEventArgs e)
+        {
+
+        }
     }
 }

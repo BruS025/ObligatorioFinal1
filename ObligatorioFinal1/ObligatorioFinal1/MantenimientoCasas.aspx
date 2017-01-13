@@ -33,7 +33,7 @@
     <div class="col-md-12">
 
         <div class="col-md-1">
-            <asp:Label ID="Label1" ForeColor="Black" runat="server" Height="34px" Text="RUT:" Font-Size="X-Large"></asp:Label>                      
+            <asp:Label ID="Label1" ForeColor="Black" runat="server" Height="34px" Text="RUT casa:" Font-Size="X-Large"></asp:Label>                      
         </div>
 
         <div class="col-md-2">
@@ -53,11 +53,11 @@
         </div>
 
         <div class="col-md-2">
-            <asp:TextBox ID="nombre" runat="server" Height="34px" Placeholder="Nombre"></asp:TextBox>
+            <asp:TextBox ID="nombre" runat="server" Height="34px" Enabled="false" Placeholder="Nombre"></asp:TextBox>
         </div>
 
         <div class="col-md-2">
-            <asp:DropDownList ID="ddlEspecializacion" runat="server" AutoPostBack="True" Height="34px">
+            <asp:DropDownList ID="ddlEspecializacion" runat="server" Enabled="false" AutoPostBack="True" Height="34px">
                 <asp:ListItem Value="0">Pizzeria</asp:ListItem>
                 <asp:ListItem Value="1">Parrillada</asp:ListItem>
                 <asp:ListItem Value="2">Minutas</asp:ListItem>
