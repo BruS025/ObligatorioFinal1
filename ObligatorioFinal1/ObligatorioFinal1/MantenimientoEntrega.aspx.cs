@@ -13,5 +13,10 @@ namespace ObligatorioFinal1
         {
 
         }
+
+        protected void GridPedidos_PageIndexChanging(object sender, GridViewPageEventArgs e)
+        {
+
+        }
     }
 }
