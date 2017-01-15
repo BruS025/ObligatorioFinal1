@@ -34,29 +34,12 @@
                 <p class="input_title">Documento</p>
                 <input type="text" id="inputDocumento" runat="server" height="44px" class="login_box" placeholder="Ingrese documento del usuario" required="required"/>
 
-                <p class="input_title">Tipo de usuario:</p>
-                <asp:DropDownList ID="ddlTipoUsuario" runat="server" AutoPostBack="True" Height="44px" Width="100%" OnSelectedIndexChanged="ddlTipoUsuario_SelectedIndexChanged">
-                    <asp:ListItem Value="0">Cliente</asp:ListItem>
-                    <asp:ListItem Value="1">Administrador</asp:ListItem>
-                </asp:DropDownList>
-                <br/><br/>
-
-                <div id="usuarioDiv" runat="server">
+                <div>
                     <p runat="server" id="P1" class="input_title">Numero de tarjeta de credito</p>
                     <input type="text" id="inputTarjeta" runat="server" class="login_box" placeholder="Numero de tarjeta de credito" required="required"/>
 
                     <p runat="server" id="dirTitle" class="input_title">Direccion</p>
                     <input type="text" id="inputDire" runat="server" class="login_box" placeholder="Ingrese direccion" required="required"/>
-                </div>
-
-                <div id="cargoDiv" runat="server" visible="false">
-                    <p id="cargoTitle" class="input_title">Cargo de empleado:</p>
-                    <asp:DropDownList ID="ddlCargos" runat="server" AutoPostBack="false" Height="44px" Width="100%">
-                        <asp:ListItem Value="0">Gerente</asp:ListItem>
-                        <asp:ListItem Value="1">Administrador</asp:ListItem>
-                        <asp:ListItem Value="2">Empleado</asp:ListItem>
-                    </asp:DropDownList>
-                    <br/><br/>
                 </div>
 
                 <p class="input_title">Contraseña</p>

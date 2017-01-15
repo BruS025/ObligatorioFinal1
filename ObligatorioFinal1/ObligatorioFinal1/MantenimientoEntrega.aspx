@@ -41,7 +41,7 @@
 
               <asp:TemplateField HeaderStyle-BorderWidth="2px" ControlStyle-Font-Size="Small" ControlStyle-CssClass="btn btn-default" HeaderText="Actualizar">
                 <ItemTemplate>
-                    <asp:Button ID="btnModificar" runat="server" CommandName="update" Text="Actualizar" />
+                    <asp:Button ID="btnModificar" runat="server" CommandName="update" Text="Actualizar" OnClick="btnModificar_Click" />
                 </ItemTemplate>
               </asp:TemplateField>
 
@@ -71,7 +71,6 @@
 
     </div>
 
-</div>
-</div>     
+</div>    
 
 </asp:Content>

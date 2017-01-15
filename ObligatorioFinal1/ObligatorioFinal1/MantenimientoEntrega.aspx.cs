@@ -18,5 +18,10 @@ namespace ObligatorioFinal1
         {
 
         }
+
+        protected void btnModificar_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

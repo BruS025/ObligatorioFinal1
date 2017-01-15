@@ -11,6 +11,39 @@ namespace ObligatorioFinal1
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            try
+            {
+
+            }
+
+            catch
+            {
+
+            }
+        }
+
+        protected void btnSeleccionar_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        protected void btAgregar_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        protected void btVender_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        protected void btQuitar_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        protected void GridPlatos_PageIndexChanging(object sender, GridViewPageEventArgs e)
+        {
 
         }
     }

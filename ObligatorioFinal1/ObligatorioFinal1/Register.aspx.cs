@@ -15,15 +15,6 @@ namespace ObligatorioFinal1
             {
                 try
                 {
-                    if(ddlTipoUsuario.SelectedIndex == 0)
-                    {
-                        cargoDiv.Visible = false;
-                    }
-
-                    else
-                    {
-                        cargoDiv.Visible = true;
-                    }
                     
                 }
 
@@ -39,34 +30,5 @@ namespace ObligatorioFinal1
             Response.Redirect("Default.aspx");
         }
 
-        protected void ddlTipoUsuario_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            try
-            {
-                if (ddlTipoUsuario.SelectedIndex == 0)
-                {
-                    // Parte Admin
-                    cargoDiv.Visible = false;
-
-                    // Parte Usuario
-                    usuarioDiv.Visible = true;
-                }
-
-                else
-                {
-                    // Parte Admin
-                    cargoDiv.Visible = true;
-
-                    // Parte usuario
-                    usuarioDiv.Visible = false;
-                }
-
-            }
-
-            catch
-            {
-
-            }
-        }
     }
 }

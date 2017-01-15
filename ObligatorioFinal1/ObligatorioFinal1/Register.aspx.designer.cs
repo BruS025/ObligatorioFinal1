@@ -49,24 +49,6 @@ namespace ObligatorioFinal1 {
         protected global::System.Web.UI.HtmlControls.HtmlInputText inputDocumento;
         
         /// <summary>
-        /// ddlTipoUsuario control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlTipoUsuario;
-        
-        /// <summary>
-        /// usuarioDiv control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl usuarioDiv;
-        
-        /// <summary>
         /// P1 control.
         /// </summary>
         /// <remarks>
@@ -101,24 +83,6 @@ namespace ObligatorioFinal1 {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlInputText inputDire;
-        
-        /// <summary>
-        /// cargoDiv control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl cargoDiv;
-        
-        /// <summary>
-        /// ddlCargos control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlCargos;
         
         /// <summary>
         /// inputPassword control.
