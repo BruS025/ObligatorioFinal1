@@ -15,7 +15,12 @@ namespace ObligatorioFinal1
             {
                 try
                 {
-                    
+                    // Chequear que el usuario no tiene una session abierta, si la tiene redirigir a pantalla next dependiendo el tipo de usuario
+                    if (Session["Cliente"] == null)
+                    {
+                       
+                    }
+
                 }
 
                 catch
