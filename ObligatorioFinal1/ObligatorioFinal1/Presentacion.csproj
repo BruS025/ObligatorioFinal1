@@ -242,6 +242,10 @@
       <Project>{8e6a8fe3-d7de-4aeb-91d9-39e120eadb7b}</Project>
       <Name>EntidadesCompartidas</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Logica\Logica.csproj">
+      <Project>{6d6a3ea9-7fc9-4c2a-803f-fc8c9e40bb8d}</Project>
+      <Name>Logica</Name>
+    </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
