@@ -4,12 +4,12 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{8E6A8FE3-D7DE-4AEB-91D9-39E120EADB7B}</ProjectGuid>
+    <ProjectGuid>{52ED6482-5062-4723-B65B-175E8DDC282E}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>EntidadesCompartidas</RootNamespace>
-    <AssemblyName>EntidadesCompartidas</AssemblyName>
-    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
+    <RootNamespace>Persistencia</RootNamespace>
+    <AssemblyName>Persistencia</AssemblyName>
+    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
@@ -40,18 +40,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Administrador.cs" />
-    <Compile Include="Casa.cs" />
-    <Compile Include="Cliente.cs" />
-    <Compile Include="Plato.cs" />
+    <Compile Include="Conexion.cs" />
+    <Compile Include="PersistenciaCasa.cs" />
+    <Compile Include="PersistenciaPedidos.cs" />
+    <Compile Include="PersistenciaUsuarios.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Usuario.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\Logica\Logica.csproj">
-      <Project>{e5653c44-3ec1-48d9-9635-e241dec7f7a3}</Project>
-      <Name>Logica</Name>
-    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
