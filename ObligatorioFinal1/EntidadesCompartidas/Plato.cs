@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace EntidadesCompartidas
 {
-    class Plato
+    public class Plato
     {
     }
 }
