@@ -84,8 +84,7 @@ namespace ObligatorioFinal1
                 nuevaCasa.RUT = Convert.ToInt32(nuevaCasa.ToString());
                 nuevaCasa.Nombre = nombre.Text;
                 
-
-               
+        
 
 
                 int resultado = LogicaCasa.Agregar(nuevaCasa);

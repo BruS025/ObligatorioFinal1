@@ -11,18 +11,18 @@ namespace EntidadesCompartidas
         // Atributos
         public long _RUT;
         public string _Nombre;
-        //public string _Especializacion;
+        public int _IdEspecializacion;
 
         // Constructor simple
         public Casa() { }
 
         // Constructor completo
-        public Casa(long RUT, string Nombre)
+        public Casa(long RUT, string Nombre, int IdEspecializacion)
             {
 
                 _RUT = RUT;
                 _Nombre = Nombre;
-             //   _Especializacion = Especializacion;
+                _IdEspecializacion = IdEspecializacion;
 
             }
 
@@ -58,11 +58,11 @@ namespace EntidadesCompartidas
                 }
             }
 
-    /*    public string Especializacion
+        public int Especializacion
         {
-            get { return _Especializacion; }
-            set { _Especializacion = value; }                                
-        }    */   
+            get { return _IdEspecializacion; }
+            set { _IdEspecializacion = value; }                                
+        }       
     }
 
 }
