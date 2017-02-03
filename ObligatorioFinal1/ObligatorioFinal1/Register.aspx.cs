@@ -48,6 +48,9 @@ namespace ObligatorioFinal1
         {
             try
             {
+                // Excepciones verificar
+                // Agregar nuevo cliente (verificaciones bd) , si ya existe error
+
                 Response.Redirect("MantenimientoCrearPedido.aspx");
             }
             catch (Exception ex)
