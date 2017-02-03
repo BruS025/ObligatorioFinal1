@@ -41,7 +41,7 @@
         </div>
 
         <div class="col-md-2">
-            <asp:Button ID="btVerificar" CssClass="btn btn-default" runat="server" Text="Verificar" Height="34px" />
+            <asp:Button ID="btVerificar" CssClass="btn btn-default" runat="server" Text="Verificar" Height="34px" OnClick="btVerificar_Click" />
         </div>
 
     </div>

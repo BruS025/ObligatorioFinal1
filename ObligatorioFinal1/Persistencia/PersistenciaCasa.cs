@@ -17,5 +17,9 @@ namespace Persistencia
             return null; 
 
         }
-    }
+
+        public static int Agregar(Casa casa)
+        {
+            return 0;
+        }
 }

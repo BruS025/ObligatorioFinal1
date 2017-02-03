@@ -16,5 +16,10 @@ namespace Logica
         {
             return PersistenciaCasa.Listar();
         }
+
+        public static int Agregar(Casa casa)
+        {
+            return PersistenciaCasa.Agregar(casa);
+        }
     }
 }

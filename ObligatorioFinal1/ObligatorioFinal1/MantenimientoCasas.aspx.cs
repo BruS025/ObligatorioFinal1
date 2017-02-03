@@ -68,5 +68,56 @@ namespace ObligatorioFinal1
             }
         }
 
+        protected void btVerificar_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (rutVerificar.Text == "")
+                {
+                    throw new Exception("ERROR: Ingrese un Rut.");
+                }
+
+
+
+                Casa nuevaCasa = new Casa();
+
+                nuevaCasa.RUT = Convert.ToInt32(nuevaCasa.ToString());
+                nuevaCasa.Nombre = nombre.Text;
+                
+
+               
+
+
+                int resultado = LogicaCasa.Agregar(nuevaCasa);
+
+                if (resultado == 1)
+                {
+                    //lbResultado.Text = "Casa agregada..";
+                    CargarGrilla();
+
+                    // Resetear campos
+                    
+
+                }
+
+                else if (resultado == -1)
+                {
+                   // lbResultado.Text = " Poner mensaje";
+                }
+
+                else
+                {
+                   // lbResultado.Text = "Poner mensaje..";
+
+                }
+
+            }
+
+            catch (Exception ex)
+            {
+                //lbResultado.Text = ex.Message;
+            }
+        }
+
     }
 }
