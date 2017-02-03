@@ -11,8 +11,8 @@ namespace Logica
     {
         public static Casa Buscar(long rut)
         {
-            throw new NotImplementedException();
-            
+            return PersistenciaCasa.Buscar(rut);
+
         }
 
         public static int Agregar(Casa casa)

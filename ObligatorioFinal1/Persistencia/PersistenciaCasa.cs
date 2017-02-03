@@ -22,4 +22,10 @@ namespace Persistencia
         {
             return 0;
         }
-}
+
+        public static Cliente Buscar(int cedula)
+        {
+            return null;
+            
+        }
+    }
