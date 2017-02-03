@@ -126,6 +126,8 @@
 
     </div>
 
+        <p class="text-center"><asp:Label ID="lbError" runat="server" Text="" ForeColor="Red"></asp:Label></p> 
+
 </div>
 </div>     
 
