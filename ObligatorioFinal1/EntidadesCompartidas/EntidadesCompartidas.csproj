@@ -47,12 +47,6 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Usuario.cs" />
   </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\Logica\Logica.csproj">
-      <Project>{e5653c44-3ec1-48d9-9635-e241dec7f7a3}</Project>
-      <Name>Logica</Name>
-    </ProjectReference>
-  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

@@ -3,10 +3,19 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Data.SqlClient;
+using System.Data;
+using EntidadesCompartidas;
+ 
 
 namespace Persistencia
 {
-    class PersistenciaCasa
+    public class PersistenciaCasa
     {
+        public static List<Casa> Listar()
+        {
+            return null; 
+
+        }
     }
 }
