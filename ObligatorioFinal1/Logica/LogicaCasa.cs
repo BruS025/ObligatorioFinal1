@@ -10,7 +10,7 @@ namespace Logica
 {
     public class LogicaCasa
     {
-        public static Casa Buscar(long rut)
+        public static Casa Buscar(int rut)
         {
             return PersistenciaCasa.Buscar(rut);
 
@@ -26,7 +26,7 @@ namespace Logica
             throw new NotImplementedException();
         }
 
-        public static int Eliminar(long rut)
+        public static int Eliminar(int rut)
         {
             throw new NotImplementedException();
         }

@@ -22,12 +22,10 @@ namespace ObligatorioFinal1
 
                 catch (Exception ex)
                 {
-                   // lbResultado.Text = ex.Message;  RO FALTARIA DONDE PONER MENSAJES Y SI HAY NO LO ENCONTRE!!
+                     lbError.Text = ex.Message;  
                 }
-
             }
         }
-
         // Index Grilla
         protected void GridCasas_PageIndexChanging(object sender, GridViewPageEventArgs e)
         {
@@ -59,12 +57,12 @@ namespace ObligatorioFinal1
                 else
                 {
                     GridCasas.Visible = false;
-                   // lbResultado.Text = "No existen casas registradas";
+                    lbError.Text = "No existen casas registradas";
                 }
             }
             catch (Exception)
             {
-               // lbResultado.Text = "Ha ocurrido un error";
+                 lbError.Text = "Ha ocurrido un error";
             }
         }
 
@@ -102,7 +100,7 @@ namespace ObligatorioFinal1
                     else
                     {
                         GridCasas.Visible = false;
-                        //lbResultado.Text = "No existen casas registradas.";
+                        lbError.Text = "No existen casas registradas.";
                     }
                 }
                 else
@@ -113,7 +111,7 @@ namespace ObligatorioFinal1
             }
             catch (Exception ex)
             {
-                //lbResultado.Text = ex.Message;
+                lbError.Text = ex.Message;
             }
         }
 
@@ -140,22 +138,22 @@ namespace ObligatorioFinal1
 
                 if (resultado == 1)
                 {
-                    //lbResultado.Text = "Casa agregada..";
+                    lbError.Text = "Casa agregada..";
                     CargarGrilla();
 
                     // Resetear campos
-
+                        //FALTA HACER
 
                 }
 
                 else if (resultado == -1)
                 {
-                    // lbResultado.Text = " Poner mensaje";
+                     lbError.Text = " Poner mensaje";
                 }
 
                 else
                 {
-                    // lbResultado.Text = "Poner mensaje..";
+                    lbError.Text = "Poner mensaje..";
 
                 }
 
@@ -163,7 +161,7 @@ namespace ObligatorioFinal1
 
             catch (Exception ex)
             {
-                //lbResultado.Text = ex.Message;
+                lbError.Text = ex.Message;
             }
         }
 
@@ -189,7 +187,7 @@ namespace ObligatorioFinal1
 
                 if (resultado == 1)
                 {
-                    //lbResultado.Text = "Casa Modificada";
+                    lbError.Text = "Casa Modificada";
                     CargarGrilla();
 
                     btAgregar.Visible = true;
@@ -204,16 +202,20 @@ namespace ObligatorioFinal1
                 }
                 else
                 {
-                   // lbResultado.Text = "No se pudo modificar";
+                    lbError.Text = "No se pudo modificar";
                 }
             }
 
             catch (Exception ex)
             {
-               // lbResultado.Text = ex.Message;
+                 lbError.Text = ex.Message;
             }
         }
 
+        protected void btEliminar_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
-}
+

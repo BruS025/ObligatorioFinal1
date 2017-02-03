@@ -79,7 +79,7 @@
         </div>
 
         <div class="col-md-1">
-            <asp:Button ID="btEliminar" CssClass="btn btn-default" runat="server" Text="Eliminar" Height="34px" />
+            <asp:Button ID="btEliminar" CssClass="btn btn-default" runat="server" Text="Eliminar" Height="34px" OnClick="btEliminar_Click" />
         </div>
 
         <div class="col-md-12">
