@@ -166,5 +166,54 @@ namespace ObligatorioFinal1
                 //lbResultado.Text = ex.Message;
             }
         }
+
+        protected void btModificar_Click(object sender, EventArgs e)
+        {
+            try
+            {
+
+                Casa casa = new Casa();
+                casa.RUT = Convert.ToInt32(Convert.ToInt32(rut.Text));
+                casa.Nombre = nombre.Text;
+                
+                if (rut.Text == "")
+                {
+                    throw new Exception("ERROR: Ingrese un Rut.");
+                }
+
+                casa.RUT = Convert.ToInt32(rut.Text);
+
+
+
+                int resultado = LogicaCasa.Modificar(casa);
+
+                if (resultado == 1)
+                {
+                    //lbResultado.Text = "Casa Modificada";
+                    CargarGrilla();
+
+                    btAgregar.Visible = true;
+                    btModificar.Visible = false;
+                    btVerificar.Visible = false;
+                    btModificar.Visible = false;
+
+                    // Reseteamos campos
+                    rut.Text = "";
+                    nombre.Text = "";
+                    
+                }
+                else
+                {
+                   // lbResultado.Text = "No se pudo modificar";
+                }
+            }
+
+            catch (Exception ex)
+            {
+               // lbResultado.Text = ex.Message;
+            }
+        }
+
     }
+}
 }

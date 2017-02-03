@@ -71,7 +71,7 @@
         </div>
 
         <div class="col-md-1">
-            <asp:Button ID="btModificar" CssClass="btn btn-default" runat="server" Text="Modificar" Height="34px" />
+            <asp:Button ID="btModificar" CssClass="btn btn-default" runat="server" Text="Modificar" Height="34px" OnClick="btModificar_Click" />
         </div>
 
         <div class="col-md-1">
