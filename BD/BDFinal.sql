@@ -53,7 +53,7 @@ GO
 CREATE TABLE Casa   
 (
 	Rut BIGINT NOT NULL PRIMARY KEY,
-	IdEspe INT NOT NULL FOREIGN KEY REFERENCES Especializacion(IdEspe) ON DELETE CASCADE,
+	IdEspe INT NOT NULL,
 	Nombre VARCHAR (20) NOT NULL
 )
 GO
@@ -92,14 +92,14 @@ GO
 --Creo la tabla Realizan
 CREATE TABLE Realizan
 (
-	IdPlato INT FOREIGN KEY REFERENCES Plato(IdPlato),
+	IdPlato INT FOREIGN KEY REFERENCES Plato(IdPlato) ON DELETE CASCADE,
 	IdLogueo INT FOREIGN KEY REFERENCES Usuario(IdLogueo),
 	IdPedido INT NOT NULL PRIMARY KEY IDENTITY (1,1)
 )
 GO
 
 --Creo SP Necesarios Clientes
-ALTER PROCEDURE SP_AgregarCliente
+CREATE PROCEDURE SP_AgregarCliente
 @NombreN VARCHAR(20) ,
 @ApellidoN VARCHAR (20),
 @ContraseniaN VARCHAR(20),
@@ -115,7 +115,7 @@ BEGIN
 		BEGIN
 			RETURN -1
 		END
-			IF EXISTS (SELECT U.NombreLogueo FROM Usuario U WHERE U.NombreLogueo = @NombreLogueoN)
+	IF EXISTS (SELECT U.NombreLogueo FROM Usuario U WHERE U.NombreLogueo = @NombreLogueoN)
 		BEGIN
 			RETURN -2
 		END
@@ -148,11 +148,8 @@ GO
 DECLARE @RETORNO INT
 EXEC @RETORNO = SP_AgregarCliente pruebacliente,pruebacliente,pass1,123456,pruebacliente,123456789000,calle1,1414
 PRINT @retorno
+go
 -- -1 documento existente -2 nombrelogueo existente 
-
-select * from Cliente
-select * from Usuario
-select * from Administrador
 
 --SP Necesarios para administradores
 CREATE PROCEDURE SP_AgregarAdministrador
@@ -203,7 +200,7 @@ DECLARE @RETORNO INT
 EXEC @RETORNO = SP_AgregarAdministrador pruebaAdmin,pruebaAdmin,pass1,123456789,uadminn1,pruebaadmin
 PRINT @retorno
 -- -1 documento existente -2 nombrelogueo existente 
-
+GO
 CREATE PROCEDURE SP_ModificarAdministrador
 @NombreM VARCHAR(20),
 @ApellidoM VARCHAR (20),
@@ -253,8 +250,100 @@ BEGIN
 			END
 END
 GO
-
 DECLARE @RETORNO INT
 EXEC @RETORNO = SP_ModificarAdministrador pruebaAdminMOD,pruebaAdminMOD,pass1,123456789,uadminn1,pruebaadminMOD
 PRINT @retorno
+go
+--Creo sp para casas
+CREATE PROCEDURE SP_AgregarCasa
+@RutN BIGINT,
+@IdEspeN INT,
+@NombreN VARCHAR (20)
+AS
+BEGIN
+	IF EXISTS (SELECT C.Rut FROM Casa C WHERE C.Rut=@RutN)
+		BEGIN
+			RETURN -1
+		END
+	ELSE
+		BEGIN TRANSACTION
 
+			INSERT INTO Casa (Rut,IdEspe,Nombre)
+			VALUES (@RutN,@IdEspeN,@NombreN)
+
+			IF @@ERROR <> 0
+					BEGIN
+						ROLLBACK TRANSACTION
+						RETURN @@ERROR
+					END
+				ELSE 
+					BEGIN
+						COMMIT TRANSACTION
+						RETURN 1
+					END
+END
+go
+DECLARE @RETORNO INT
+EXEC @RETORNO = SP_AgregarCasa 123456789,1,pruebapizze
+PRINT @retorno
+go
+--insert Especializaciones Basicos
+INSERT INTO Especializacion VALUES('Pizzeria')
+INSERT INTO Especializacion VALUES('Parrillada')
+INSERT INTO Especializacion VALUES('Minutas')
+INSERT INTO Especializacion VALUES('Internacional')
+INSERT INTO Especializacion VALUES('Vegetariano')
+go
+select * from Cliente
+select * from Usuario
+select * from Administrador
+select * from Especializacion
+select distinct * from Casa c join Especializacion e on c.IdEspe=e.IdEspe
+go
+
+CREATE PROCEDURE SP_ModificarCasa
+@RutM BIGINT,
+@IdEspeM INT,
+@NombreM VARCHAR (20)
+AS
+BEGIN
+	IF NOT EXISTS (SELECT C.Rut FROM Casa C WHERE C.Rut=@RutM)
+		BEGIN
+			RETURN -1
+		END
+	ELSE
+		BEGIN TRANSACTION
+			UPDATE Casa
+			SET Rut=@RutM,
+				IdEspe=@IdEspeM,
+				Nombre=@NombreM
+		IF @@ERROR <> 0
+			BEGIN
+				ROLLBACK TRANSACTION
+				RETURN @@ERROR
+			END
+       ELSE
+			BEGIN
+				COMMIT TRANSACTION
+				RETURN 1	
+			END
+END
+GO
+DECLARE @RETORNO INT
+EXEC @RETORNO = SP_ModificarCasa 123456789,4,pruebapizzeMOD
+PRINT @retorno
+GO
+
+/*CREATE PROCEDURE SP_BorrarCasa
+@RutM BIGINT,
+@IdEspeM INT,
+@NombreM VARCHAR (20)
+AS
+BEGIN
+	IF NOT EXISTS (SELECT C.Rut FROM Casa C WHERE C.Rut=@RutM)
+		BEGIN
+			RETURN -1
+		END
+	ELSE*/
+		
+				
