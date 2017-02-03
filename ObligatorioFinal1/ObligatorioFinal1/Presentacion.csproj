@@ -239,7 +239,7 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\EntidadesCompartidas\EntidadesCompartidas.csproj">
-      <Project>{8e6a8fe3-d7de-4aeb-91d9-39e120eadb7b}</Project>
+      <Project>{44028431-f613-4d0b-b678-45be4128cab2}</Project>
       <Name>EntidadesCompartidas</Name>
     </ProjectReference>
     <ProjectReference Include="..\Logica\Logica.csproj">

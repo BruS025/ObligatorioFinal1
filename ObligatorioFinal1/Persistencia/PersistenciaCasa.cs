@@ -23,7 +23,7 @@ namespace Persistencia
             return 0;
         }
 
-        public static Casa Buscar(int rut)
+        public static Casa Buscar(long rut)
         {
             return null;
             

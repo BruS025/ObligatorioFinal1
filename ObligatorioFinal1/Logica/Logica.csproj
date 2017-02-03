@@ -47,11 +47,11 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\EntidadesCompartidas\EntidadesCompartidas.csproj">
-      <Project>{8e6a8fe3-d7de-4aeb-91d9-39e120eadb7b}</Project>
+      <Project>{44028431-f613-4d0b-b678-45be4128cab2}</Project>
       <Name>EntidadesCompartidas</Name>
     </ProjectReference>
     <ProjectReference Include="..\Persistencia\Persistencia.csproj">
-      <Project>{52ed6482-5062-4723-b65b-175e8ddc282e}</Project>
+      <Project>{1d7deeaa-9de8-4d3e-bd29-8f829e2450fa}</Project>
       <Name>Persistencia</Name>
     </ProjectReference>
   </ItemGroup>
