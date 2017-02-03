@@ -114,6 +114,7 @@
     <Content Include="MantenimientoCrearPedido.aspx" />
     <Content Include="MantenimientoPedidosPendientes.aspx" />
     <Content Include="MantenimientoAdmins.aspx" />
+    <Content Include="BienvenidaAdministrador.aspx" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -224,10 +225,23 @@
     <Compile Include="MantenimientoAdmins.aspx.designer.cs">
       <DependentUpon>MantenimientoAdmins.aspx</DependentUpon>
     </Compile>
+    <Compile Include="BienvenidaAdministrador.aspx.cs">
+      <DependentUpon>BienvenidaAdministrador.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="BienvenidaAdministrador.aspx.designer.cs">
+      <DependentUpon>BienvenidaAdministrador.aspx</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Models\" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\EntidadesCompartidas\EntidadesCompartidas.csproj">
+      <Project>{8e6a8fe3-d7de-4aeb-91d9-39e120eadb7b}</Project>
+      <Name>EntidadesCompartidas</Name>
+    </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

@@ -33,6 +33,7 @@
                 <br/><br/>
                 <p>Queres comer ya pero no tenes usuario? <asp:LinkButton ID="register" runat="server" PostBackUrl="~/Register.aspx">Registrarse</asp:LinkButton> </p>
                 
+                <p class="text-center"><asp:Label ID="lbError" runat="server" Text="" ForeColor="Red"></asp:Label></p> 
 
             </form><!-- /form -->
         </div><!-- /card-container -->

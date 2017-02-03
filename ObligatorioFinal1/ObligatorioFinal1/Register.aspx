@@ -53,6 +53,7 @@
                 <br/><br/>
                 <p>Ya tenes usuario? <asp:LinkButton ID="login" runat="server" PostBackUrl="~/Default.aspx">Entrar!</asp:LinkButton> </p>
                 
+                <p class="text-center"><asp:Label ID="lbError" runat="server" Text="" ForeColor="Red"></asp:Label></p> 
 
             </form><!-- /form -->
         </div><!-- /card-container -->
