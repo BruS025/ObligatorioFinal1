@@ -12,6 +12,7 @@ namespace Logica
         public static Casa Buscar(long rut)
         {
             throw new NotImplementedException();
+            
         }
 
         public static int Agregar(Casa casa)

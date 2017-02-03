@@ -72,7 +72,56 @@ namespace ObligatorioFinal1
         {
             try
             {
-                if (rutVerificar.Text == "")
+                List<Casa> listadoCasa = new List<Casa>();
+
+                if (rutVerificar.Text != "")
+                {
+
+                    Casa casa = LogicaCasa.Buscar(Convert.ToInt32(rutVerificar.Text));
+
+                    if (casa.RUT == 0)
+                    {
+                        CargarGrilla();
+                        throw new Exception("ERROR: No se encontraron coinciencias");
+                    }
+
+                    listadoCasa.Add(casa);
+
+                    GridCasas.DataSource = null;
+
+                    if (listadoCasa != null)
+                    {
+                        if (listadoCasa.Count > 0)
+                        {
+                            GridCasas.Visible = true;
+                            GridCasas.DataSource = listadoCasa;
+                            GridCasas.DataBind();
+                        }
+                    }
+
+                    else
+                    {
+                        GridCasas.Visible = false;
+                        //lbResultado.Text = "No existen casas registradas.";
+                    }
+                }
+                else
+                {
+                    CargarGrilla();
+                }
+
+            }
+            catch (Exception ex)
+            {
+                //lbResultado.Text = ex.Message;
+            }
+        }
+
+        protected void btAgregar_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (rut.Text == "")
                 {
                     throw new Exception("ERROR: Ingrese un Rut.");
                 }
@@ -83,8 +132,8 @@ namespace ObligatorioFinal1
 
                 nuevaCasa.RUT = Convert.ToInt32(nuevaCasa.ToString());
                 nuevaCasa.Nombre = nombre.Text;
-                
-        
+
+
 
 
                 int resultado = LogicaCasa.Agregar(nuevaCasa);
@@ -95,18 +144,18 @@ namespace ObligatorioFinal1
                     CargarGrilla();
 
                     // Resetear campos
-                    
+
 
                 }
 
                 else if (resultado == -1)
                 {
-                   // lbResultado.Text = " Poner mensaje";
+                    // lbResultado.Text = " Poner mensaje";
                 }
 
                 else
                 {
-                   // lbResultado.Text = "Poner mensaje..";
+                    // lbResultado.Text = "Poner mensaje..";
 
                 }
 
@@ -117,6 +166,5 @@ namespace ObligatorioFinal1
                 //lbResultado.Text = ex.Message;
             }
         }
-
     }
 }

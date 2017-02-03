@@ -67,7 +67,7 @@
         </div>
                        
         <div class="col-md-1">
-            <asp:Button ID="btAgregar" CssClass="btn btn-default" runat="server" Text="Agregar" Height="34px" />
+            <asp:Button ID="btAgregar" CssClass="btn btn-default" runat="server" Text="Agregar" Height="34px" OnClick="btAgregar_Click" />
         </div>
 
         <div class="col-md-1">
