@@ -85,7 +85,7 @@ namespace ObligatorioFinal1
                 if (rutVerificar.Text != "")
                 {
 
-                    Casa casa = LogicaCasa.Buscar(Convert.ToInt32(rutVerificar.Text));
+                    Casa casa = LogicaCasa.Buscar(Convert.ToInt64(rutVerificar.Text));
 
                     if (casa.RUT == 0)
                     {
@@ -133,20 +133,17 @@ namespace ObligatorioFinal1
                 {
                     throw new Exception("ERROR: Ingrese un Rut.");
                 }
-
-
-
+                
                 Casa nuevaCasa = new Casa();
 
-                nuevaCasa.RUT = Convert.ToInt32(nuevaCasa.ToString());
+                nuevaCasa.RUT = Convert.ToInt64(rut.Text);
                 nuevaCasa.Nombre = nombre.Text;
-
-
-
+                nuevaCasa.Especializacion = Convert.ToInt32(ddlEspecializacion.SelectedValue);
+                //nuevaCasa.Especialidad = ddlEspecializacion.SelectedItem.ToString();
 
                 int resultado = LogicaCasa.Agregar(nuevaCasa);
 
-                if (resultado == 1)
+                if (resultado == -1)
                 {
                     lbError.Text = "Casa agregada..";
                     CargarGrilla();
@@ -156,7 +153,7 @@ namespace ObligatorioFinal1
 
                 }
 
-                else if (resultado == -1)
+                else if (resultado == 1)
                 {
                      lbError.Text = " Poner mensaje";
                 }

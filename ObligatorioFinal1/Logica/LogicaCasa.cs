@@ -18,7 +18,7 @@ namespace Logica
 
         public static int Agregar(Casa casa)
         {
-            throw new NotImplementedException();
+            return PersistenciaCasa.Agregar(casa);
         }
 
         public static int Modificar(Casa casa)
