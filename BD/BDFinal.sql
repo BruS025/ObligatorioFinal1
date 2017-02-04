@@ -298,7 +298,7 @@ select * from Cliente
 select * from Usuario
 select * from Administrador
 select * from Especializacion
-select distinct * from Casa c join Especializacion e on c.IdEspe=e.IdEspe
+select * from Casa c join Especializacion e on c.IdEspe=e.IdEspe
 go
 
 CREATE PROCEDURE SP_ModificarCasa
@@ -346,4 +346,25 @@ BEGIN
 		END
 	ELSE*/
 		
-				
+CREATE PROCEDURE SP_BuscarCasa
+@RutB BIGINT,
+@IdEspe INT
+AS
+BEGIN
+	IF NOT EXISTS (SELECT C.Rut FROM Casa C WHERE C.Rut=@RutB)
+		BEGIN
+			RETURN -1
+		END
+	ELSE
+		 SELECT C.Nombre,
+			    C.Rut,
+				E.Tipo
+		 FROM Casa C ,Especializacion E 
+		 WHERE
+			  C.Rut=@RutB AND E.IdEspe=@IdEspe
+END
+
+DECLARE @RETORNO INT
+EXEC @RETORNO = SP_BuscarCasa 123456789,4
+PRINT @retorno
+GO			
