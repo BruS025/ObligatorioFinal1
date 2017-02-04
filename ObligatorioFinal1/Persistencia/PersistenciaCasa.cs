@@ -60,7 +60,8 @@ namespace Persistencia
             SqlCommand comando = new SqlCommand("SP_BuscarCasa", conexion);
             comando.CommandType = CommandType.StoredProcedure;
             // parametros del sp
-            SqlParameter parametroRut = new SqlParameter("@Rut", rut);
+            SqlParameter parametroRut = new SqlParameter("@RutB", rut);
+            
 
 
             //agrega los parametros
@@ -75,7 +76,8 @@ namespace Persistencia
                 {
                     casa.RUT = Convert.ToInt32(lector["Rut"].ToString());
                     casa.Nombre = lector["nombre"].ToString();
-                    
+                    casa.Especializacion= Convert.ToInt32(lector["IdEspe"].ToString());
+
                 }
                 return casa;
             }
