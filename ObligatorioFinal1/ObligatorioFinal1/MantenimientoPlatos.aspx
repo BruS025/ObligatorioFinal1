@@ -37,6 +37,13 @@
         </div>
 
         <div class="col-md-2">
+            <asp:DropDownList ID="ddlPlatoBuscar" runat="server" AutoPostBack="True" Width="100%" Height="34px">
+            <asp:ListItem Value="0">Casa0</asp:ListItem>
+            <asp:ListItem Value="1">Casa1</asp:ListItem>
+            </asp:DropDownList>
+        </div>
+
+        <div class="col-md-2">
             <asp:TextBox ID="id" runat="server"  Height="34px" Enabled="true" Placeholder=" Plato" ></asp:TextBox>
         </div>
 
@@ -66,7 +73,15 @@
         <div class="col-md-2">
             <asp:TextBox ID="precioPlato" runat="server" Height="34px" Placeholder=" Precio"></asp:TextBox>
         </div>
-                       
+
+        <div class="col-md-2">
+            <asp:Button ID="btFoto" CssClass="btn btn-md btn-primary" Width="100%" runat="server" Text="Subir foto.." Height="34px" />
+        </div>
+
+        <div class="col-md-1">
+            <a href="remote.html" role="button" class="btn-success btn-success" data-toggle="modal" data-target="#myModal">Poner gliphyIcon</a>
+        </div>
+                              
         <div class="col-md-1">
             <asp:Button ID="btAgregar" CssClass="btn btn-md btn-primary" runat="server" Text="Agregar" Height="34px" />
         </div>
@@ -106,9 +121,9 @@
             <asp:BoundField HeaderStyle-BorderWidth="2px" ItemStyle-Font-Size="Medium" DataField="Nombre" HeaderText="Nombre" />     
             <asp:BoundField HeaderStyle-BorderWidth="2px" ItemStyle-Font-Size="Medium" DataField="Precio" HeaderText="Precio" />                                   
 
-            <asp:TemplateField HeaderStyle-BorderWidth="2px" ItemStyle-HorizontalAlign="Center" ControlStyle-Font-Size="Medium" ControlStyle-CssClass="btn-primary btn-md" HeaderText="Acciones">
+            <asp:TemplateField HeaderStyle-BorderWidth="2px" ItemStyle-HorizontalAlign="Center" ControlStyle-Font-Size="Medium" ControlStyle-CssClass="btn-primary btn-md" HeaderText="Ver foto">
                 <ItemTemplate>
-                    <asp:Button ID="btnFoto" CssClass="btn btn-md btn-primary" runat="server" Text="Foto" />
+                    <a href="remote.html" role="button" class="btn-success btn-success btn-block" data-toggle="modal" data-target="#myModal">Foto</a>                  
                 </ItemTemplate>
             </asp:TemplateField>
 
@@ -139,5 +154,32 @@
 
 </div>
 </div>     
+ 
+<!-- Modal HTML -->
+<div class="modal fade" tabindex="-1" role="dialog" id="myModal" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close" onclick="return deactivateModal()" ><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title">Foto</h4>
+      </div>
+      <div class="modal-body">
+        <p>Poner foto aqui</p>
+        <img class="card-img-top" src="..." alt="Card image cap"/>
+      </div>
+      <div class="modal-footer">
+      </div>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
+ <script>
+
+     function verFoto() {
+         $('#verFoto').modal({ backdrop: 'static', keyboard: false })
+         $("#verFoto").modal('show');
+     }
+
+ </script>
 
 </asp:Content>
