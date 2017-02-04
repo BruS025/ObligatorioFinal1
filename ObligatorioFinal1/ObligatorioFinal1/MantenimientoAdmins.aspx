@@ -37,7 +37,7 @@
         </div>
 
         <div class="col-md-2">
-            <asp:TextBox ID="id" runat="server"  Height="34px" Enabled="true" Placeholder="Documento" ></asp:TextBox>
+            <asp:TextBox ID="id" runat="server"  Height="34px" Enabled="true" Placeholder=" Documento" ></asp:TextBox>
         </div>
 
         <div class="col-md-2">
@@ -49,19 +49,19 @@
     <div class="col-md-12" id="divAdmin" runat="server" height="34px">
 
         <div class="col-md-2">
-            <asp:TextBox ID="docAdmin" runat="server"  Height="34px" Enabled="false" Placeholder="Documento" ></asp:TextBox>
+            <asp:TextBox ID="docAdmin" runat="server"  Height="34px" Enabled="false" Placeholder=" Documento" ></asp:TextBox>
         </div>
 
         <div class="col-md-2">
-            <asp:TextBox ID="userAdmin" runat="server" Height="34px" Enabled="false" Placeholder="Usuario"></asp:TextBox>
+            <asp:TextBox ID="userAdmin" runat="server" Height="34px" Enabled="false" Placeholder=" Usuario"></asp:TextBox>
         </div>
 
         <div class="col-md-2">
-            <asp:TextBox ID="nombreAdmin" runat="server" Height="34px" Enabled="false" Placeholder="Nombre"></asp:TextBox>
+            <asp:TextBox ID="nombreAdmin" runat="server" Height="34px" Enabled="false" Placeholder=" Nombre"></asp:TextBox>
         </div>
 
         <div class="col-md-2">
-            <asp:TextBox ID="apellidoAdmin" runat="server" Height="34px" Enabled="false" Placeholder="Apellido"></asp:TextBox>
+            <asp:TextBox ID="apellidoAdmin" runat="server" Height="34px" Enabled="false" Placeholder=" Apellido"></asp:TextBox>
         </div>
 
         <div class="col-md-2">
@@ -96,8 +96,8 @@
 
           <Columns>
 
-              <asp:BoundField HeaderStyle-BorderWidth="2px" ItemStyle-Font-Size="Small" DataField="DOC" HeaderText="Documento"/>
-              <asp:BoundField HeaderStyle-BorderWidth="2px" ItemStyle-Font-Size="Small" DataField="USERNAME" HeaderText="Usuario"/>
+              <asp:BoundField HeaderStyle-BorderWidth="2px" ItemStyle-Font-Size="Small" DataField="Documento" HeaderText="Documento"/>
+              <asp:BoundField HeaderStyle-BorderWidth="2px" ItemStyle-Font-Size="Small" DataField="UsuarioNombre" HeaderText="Usuario"/>
               <asp:BoundField HeaderStyle-BorderWidth="2px" ItemStyle-Font-Size="Small" DataField="NOMBRE" HeaderText="Nombre" />     
               <asp:BoundField HeaderStyle-BorderWidth="2px" ItemStyle-Font-Size="Small" DataField="APELLIDO" HeaderText="Apellido" />   
               <asp:BoundField HeaderStyle-BorderWidth="2px" ItemStyle-Font-Size="Small" DataField="CARGO" HeaderText="Cargo" />                                 
@@ -105,7 +105,7 @@
           </Columns>
 
                     <FooterStyle BackColor="#990000" Font-Bold="True" ForeColor="White" />
-                    <HeaderStyle BackColor="Red" Font-Bold="True" ForeColor="White" />
+                    <HeaderStyle BackColor="LightBlue" Font-Bold="True" ForeColor="White" />
                     <PagerStyle BackColor="#FFCC66" ForeColor="#333333" HorizontalAlign="Center" />
                     <RowStyle BackColor="#FFFBD6" ForeColor="#333333" />
                     <SelectedRowStyle BackColor="#FFCC66" Font-Bold="True" ForeColor="Navy" />

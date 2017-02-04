@@ -31,15 +31,6 @@ namespace ObligatorioFinal1 {
         protected global::System.Web.UI.WebControls.TextBox id;
         
         /// <summary>
-        /// ddlCasasV control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlCasasV;
-        
-        /// <summary>
         /// btVerificar control.
         /// </summary>
         /// <remarks>
@@ -58,15 +49,6 @@ namespace ObligatorioFinal1 {
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl divPlato;
         
         /// <summary>
-        /// idPlato control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox idPlato;
-        
-        /// <summary>
         /// ddlCasasPlato control.
         /// </summary>
         /// <remarks>
@@ -74,6 +56,15 @@ namespace ObligatorioFinal1 {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.DropDownList ddlCasasPlato;
+        
+        /// <summary>
+        /// idPlato control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox idPlato;
         
         /// <summary>
         /// nombrePlato control.
@@ -119,15 +110,6 @@ namespace ObligatorioFinal1 {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button btCancelar;
-        
-        /// <summary>
-        /// btEliminar control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btEliminar;
         
         /// <summary>
         /// imgPlato control.

@@ -17,7 +17,17 @@ namespace ObligatorioFinal1
             {
                 try
                 {
-                    CargarGrilla();
+                    List<Casa> listadoAdmin = new List<Casa>();
+                    Casa cliente = new Casa(1234,"La comilona", 500);
+                    Casa cliente2 = new Casa(1555, "La come", 1500);
+
+                    listadoAdmin.Add(cliente);
+                    listadoAdmin.Add(cliente2);
+
+                    GridCasas.DataSource = listadoAdmin;
+                    GridCasas.DataBind();
+
+                    //CargarGrilla();
                 }
 
                 catch (Exception ex)
@@ -216,6 +226,17 @@ namespace ObligatorioFinal1
         {
 
         }
+
+        protected void btGuardar_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        protected void btCancelar_Click(object sender, EventArgs e)
+        {
+
+        }
+
     }
 }
 
