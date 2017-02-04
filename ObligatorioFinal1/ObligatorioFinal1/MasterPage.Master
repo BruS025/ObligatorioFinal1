@@ -52,8 +52,6 @@
         <li><a href="/MantenimientoPedidosPendientes.aspx">Pedidos pendientes</a></li>
       </ul>
 
-
-
       <ul class="nav navbar-nav navbar-right">
         <li><a><asp:Label ID="masterNombreUsuario" runat="server" Text="Nombre Usuario"></asp:Label></a></li>
         <li><a><asp:Button ID="btSalir" runat="server" Text="Salir" BackColor="White" BorderStyle="None" ForeColor="Black" Height="100%" OnClick="btSalir_Click" /></a></li>       

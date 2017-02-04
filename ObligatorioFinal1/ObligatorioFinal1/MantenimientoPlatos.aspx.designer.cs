@@ -94,13 +94,31 @@ namespace ObligatorioFinal1 {
         protected global::System.Web.UI.WebControls.TextBox precioPlato;
         
         /// <summary>
-        /// btFoto control.
+        /// Form1 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btFoto;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl Form1;
+        
+        /// <summary>
+        /// File1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlInputFile File1;
+        
+        /// <summary>
+        /// Submit1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlInputSubmit Submit1;
         
         /// <summary>
         /// btAgregar control.

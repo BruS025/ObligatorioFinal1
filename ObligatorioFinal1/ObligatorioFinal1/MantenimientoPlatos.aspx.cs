@@ -6,6 +6,8 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using EntidadesCompartidas;
 using Logica;
+using System.Web.UI.HtmlControls;
+using System.IO;
 
 namespace ObligatorioFinal1
 {
@@ -54,5 +56,47 @@ namespace ObligatorioFinal1
         {
 
         }
-    }
+
+        // TEST
+
+        override protected void OnInit(EventArgs e)
+        {
+            InitializeComponent();
+            base.OnInit(e);
+        }
+
+        private void InitializeComponent()
+        {
+            this.Submit1.ServerClick += new System.EventHandler(this.Submit1_ServerClick);
+            this.Load += new System.EventHandler(this.Page_Load);
+
+        }
+
+        private void Submit1_ServerClick(object sender, System.EventArgs e)
+        {
+
+            if ((File1.PostedFile != null) && (File1.PostedFile.ContentLength > 0))
+            {
+                string fn = Path.GetFileName(File1.PostedFile.FileName);
+                string SaveLocation = Server.MapPath("Imagenes") + "\\" + fn;
+                try
+                {
+                    File1.PostedFile.SaveAs(SaveLocation);
+                    lbError.Text = ("The file has been uploaded.");
+                }
+                catch (Exception ex)
+                {
+                    lbError.Text = ("Error: " + ex.Message); 
+                }
+            }
+            else
+            {
+                Response.Write("Please select a file to upload.");
+            }
+        }
+
+    // TEST
+
+
+}
 }

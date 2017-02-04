@@ -74,12 +74,22 @@
             <asp:TextBox ID="precioPlato" runat="server" Height="34px" Placeholder=" Precio"></asp:TextBox>
         </div>
 
-        <div class="col-md-2">
-            <asp:Button ID="btFoto" CssClass="btn btn-md btn-primary" Width="100%" runat="server" Text="Subir foto.." Height="34px" />
+        <div class="col-md-4" id="Form1" method="post" enctype="multipart/form-data" runat="server">
+            <input type="file" id="File1" name="File1" runat="server" class="" />
         </div>
-                              
-        <div class="col-md-1">
-            <asp:Button ID="btAgregar" CssClass="btn btn-md btn-primary" runat="server" Text="Agregar" Height="34px" />
+
+                    <div class="col-md-1">
+            <input type="submit" id="Submit1" class="btn btn-md btn-primary" value="Upload" runat="server" name="Submit1"/>
+            </div>
+            
+        <br />
+        <br />
+        <br />
+                          
+        <div class="col-md-12">
+            <div class="col-md-1">
+                <asp:Button ID="btAgregar" CssClass="btn btn-md btn-primary" runat="server" Text="Agregar" Height="34px" />
+            </div>
         </div>
 
         <div class="col-md-1">
@@ -88,6 +98,7 @@
 
         <div class="col-md-1">
             <asp:Button ID="btCancelar" CssClass="btn btn-md btn-primary" runat="server" Visible="false" Text="Cancelar" Height="34px" />
+        </div>
         </div>
 
         <br />
