@@ -53,7 +53,7 @@
 
     </div>
 
-    <div class="col-md-12" id="divPlato" runat="server" height="34px">
+    <div class="col-md-12" id="divPlato" runat="server">
 
         <div class="col-md-2">
             <asp:DropDownList ID="ddlCasasPlato" runat="server" AutoPostBack="True" Width="100%" Height="34px">
@@ -77,10 +77,6 @@
         <div class="col-md-2">
             <asp:Button ID="btFoto" CssClass="btn btn-md btn-primary" Width="100%" runat="server" Text="Subir foto.." Height="34px" />
         </div>
-
-        <div class="col-md-1">
-            <a href="remote.html" role="button" class="btn-success btn-success" data-toggle="modal" data-target="#myModal">Poner gliphyIcon</a>
-        </div>
                               
         <div class="col-md-1">
             <asp:Button ID="btAgregar" CssClass="btn btn-md btn-primary" runat="server" Text="Agregar" Height="34px" />
@@ -96,7 +92,6 @@
 
         <br />
         <br />
-        <br />
 
         <div class="col-md-4">
             <asp:Image ID="imgPlato" runat="server" />
@@ -105,7 +100,7 @@
         <div class="col-md-12">
             <asp:GridView ID="GridPlatos" runat="server" AllowPaging="true" OnPageIndexChanging="GridPlatos_PageIndexChanging"        
         AutoGenerateColumns="False" RowStyle-Height="34px" CellPadding="4" ForeColor="#333333" GridLines="None" HorizontalAlign="Center"
-        Visible="True" Width="98%" ShowFooter="true" ShowHeaderWhenEmpty="True" PageSize="10" Font-Size="Large" CaptionAlign="Top">
+        Visible="True" Width="100%" ShowFooter="true" ShowHeaderWhenEmpty="True" PageSize="10" Font-Size="Large" CaptionAlign="Top">
 
         <AlternatingRowStyle BackColor="White" />
 
@@ -123,7 +118,9 @@
 
             <asp:TemplateField HeaderStyle-BorderWidth="2px" ItemStyle-HorizontalAlign="Center" ControlStyle-Font-Size="Medium" ControlStyle-CssClass="btn-primary btn-md" HeaderText="Ver foto">
                 <ItemTemplate>
-                    <a href="remote.html" role="button" class="btn-success btn-success btn-block" data-toggle="modal" data-target="#myModal">Foto</a>                  
+                    <a href="remote.html" role="button"  aria-hidden="true" data-toggle="modal" data-target="#myModal">
+                        <span class="glyphicon glyphicon-camera" aria-hidden="true"></span>
+                    </a>                
                 </ItemTemplate>
             </asp:TemplateField>
 
@@ -161,11 +158,10 @@
     <div class="modal-content">
       <div class="modal-header">
           <button type="button" class="close" data-dismiss="modal" aria-label="Close" onclick="return deactivateModal()" ><span aria-hidden="true">&times;</span></button>
-        <h4 class="modal-title">Foto</h4>
+        <h4 class="modal-title"><asp:Label ID="modalNombrePlato" runat="server" Text="PlatoNombre"></asp:Label></h4>         
       </div>
       <div class="modal-body">
-        <p>Poner foto aqui</p>
-        <img class="card-img-top" src="..." alt="Card image cap"/>
+          <img class="card-img-center" src="/ImagenesPlato/1.jpg" width="100%" height="100%" alt="Card image cap" />
       </div>
       <div class="modal-footer">
       </div>
