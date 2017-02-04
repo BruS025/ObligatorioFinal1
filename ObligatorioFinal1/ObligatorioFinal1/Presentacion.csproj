@@ -95,6 +95,8 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="ImagenesPlato\1.jpg" />
+    <Content Include="Imagenes\logo.png" />
+    <Content Include="Imagenes\favicon.ico" />
     <Content Include="packages.config" />
     <Content Include="ApplicationInsights.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
