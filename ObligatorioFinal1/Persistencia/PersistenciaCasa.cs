@@ -54,8 +54,46 @@ namespace Persistencia
 
         public static Casa Buscar(long rut)
         {
-            return null;
-            
+            Casa casa = new Casa();
+
+            SqlConnection conexion = new SqlConnection(Conexion.CnnString);
+            SqlCommand comando = new SqlCommand("SP_BuscarCasa", conexion);
+            comando.CommandType = CommandType.StoredProcedure;
+            // parametros del sp
+            SqlParameter parametroRut = new SqlParameter("@Rut", rut);
+
+
+            //agrega los parametros
+            comando.Parameters.Add(parametroRut);
+
+            try
+            {
+                conexion.Open();
+                SqlDataReader lector = comando.ExecuteReader();
+
+                while (lector.Read())
+                {
+                    casa.RUT = Convert.ToInt32(lector["Rut"].ToString());
+                    casa.Nombre = lector["nombre"].ToString();
+                    
+                }
+                return casa;
+            }
+            catch (SqlException)
+            {
+                throw new Exception();
+            }
+            catch (Exception)
+            {
+                throw new Exception();
+
+            }
+            finally
+            {
+                conexion.Close();
+            }
+
+
         }
 
         public static int Modificar(Casa casa)
