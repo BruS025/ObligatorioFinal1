@@ -77,31 +77,25 @@
         <div class="col-md-4" id="Form1" method="post" enctype="multipart/form-data" runat="server">
             <input type="file" id="File1" name="File1" runat="server" class="" />
         </div>
-
-                    <div class="col-md-1">
-            <input type="submit" id="Submit1" class="btn btn-md btn-primary" value="Upload" runat="server" name="Submit1"/>
-            </div>
             
         <br />
         <br />
         <br />
                           
         <div class="col-md-12">
-            <div class="col-md-1">
-                <asp:Button ID="btAgregar" CssClass="btn btn-md btn-primary" runat="server" Text="Agregar" Height="34px" />
-            </div>
+        <div class="col-md-1">
+            <input type="submit" id="btAgregar" runat="server" name="btAgregar" value ="Agregar" class="btn-md btn-primary" visible ="true"/>                      
         </div>
 
         <div class="col-md-1">
-            <asp:Button ID="btModificar" CssClass="btn btn-md btn-primary" runat="server" Visible="false" Text="Modificar" Height="34px" />
+            <input type="submit" id="btGuardar" runat="server" name="btGuardar" value ="Guardar" class="btn-md btn-success" visible ="false"/>
         </div>
 
         <div class="col-md-1">
-            <asp:Button ID="btCancelar" CssClass="btn btn-md btn-primary" runat="server" Visible="false" Text="Cancelar" Height="34px" />
+            <input type="submit" id="btCancelar" runat="server" name="btCancelar" value ="Cancelar" class="btn-md btn-danger" visible ="false"/>
         </div>
         </div>
 
-        <br />
         <br />
 
         <div class="col-md-4">
@@ -117,10 +111,15 @@
 
           <Columns>
 
-            <asp:TemplateField HeaderStyle-BorderWidth="2px" ItemStyle-HorizontalAlign="Center" ControlStyle-Font-Size="Medium" ControlStyle-CssClass="btn-primary btn-md" HeaderText="Acciones">
+            <asp:TemplateField HeaderStyle-BorderWidth="2px" ItemStyle-HorizontalAlign="Center" ControlStyle-Font-Size="Medium" ControlStyle-CssClass="btn-primary btn-md" HeaderText="Editar">
                 <ItemTemplate>
-                    <asp:Button ID="btnModificar" CssClass="btn btn-md btn-primary" runat="server" CommandName="select" Text="Editar" />
+
+                <asp:LinkButton ID="btnModificar" runat="server" CommandName="select" CssClass="btn btn-md btn-danger" ForeColor="Black" BackColor="Transparent">
+                    <span aria-hidden="true" class="glyphicon glyphicon-pencil"></span>
+                </asp:LinkButton>
+
                 </ItemTemplate>
+
             </asp:TemplateField>
 
             <asp:BoundField HeaderStyle-BorderWidth="2px" ItemStyle-Font-Size="Medium" DataField="Id" HeaderText="Id"/>
@@ -129,15 +128,19 @@
 
             <asp:TemplateField HeaderStyle-BorderWidth="2px" ItemStyle-HorizontalAlign="Center" ControlStyle-Font-Size="Medium" ControlStyle-CssClass="btn-primary btn-md" HeaderText="Ver foto">
                 <ItemTemplate>
-                    <a href="remote.html" role="button"  aria-hidden="true" data-toggle="modal" data-target="#myModal">
+                    <a href="remote.html" role="button" aria-hidden="true" data-toggle="modal" data-target="#myModal">
                         <span class="glyphicon glyphicon-camera" aria-hidden="true"></span>
-                    </a>                
+                    </a>                                                      
                 </ItemTemplate>
             </asp:TemplateField>
 
-            <asp:TemplateField HeaderStyle-BorderWidth="2px" ItemStyle-HorizontalAlign="Center" ControlStyle-Font-Size="Medium" ControlStyle-CssClass="btn-danger btn-danger btn-md" HeaderText="Acciones">
+            <asp:TemplateField HeaderStyle-BorderWidth="2px" ItemStyle-HorizontalAlign="Center" ControlStyle-Font-Size="Medium" ControlStyle-CssClass="btn-danger btn-danger btn-md" HeaderText="Eliminar">
                 <ItemTemplate>
-                    <asp:Button ID="btnEliminar" runat="server" CommandName="delete" Text="Eliminar" />
+
+                    <asp:LinkButton ID="btEliminar" runat="server" CommandName="delete" CssClass="btn btn-md btn-danger" ForeColor="Black" BackColor="Transparent">
+                        <span aria-hidden="true" class="glyphicon glyphicon-remove-circle"></span>
+                    </asp:LinkButton>
+
                 </ItemTemplate>
             </asp:TemplateField> 
 

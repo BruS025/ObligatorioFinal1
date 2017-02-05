@@ -67,22 +67,25 @@ namespace ObligatorioFinal1
 
         private void InitializeComponent()
         {
-            this.Submit1.ServerClick += new System.EventHandler(this.Submit1_ServerClick);
+            this.btAgregar.ServerClick += new System.EventHandler(this.btAgregar_ServerClick);
             this.Load += new System.EventHandler(this.Page_Load);
 
         }
 
-        private void Submit1_ServerClick(object sender, System.EventArgs e)
+        private void btAgregar_ServerClick(object sender, System.EventArgs e)
         {
 
             if ((File1.PostedFile != null) && (File1.PostedFile.ContentLength > 0))
             {
-                string fn = Path.GetFileName(File1.PostedFile.FileName);
-                string SaveLocation = Server.MapPath("Imagenes") + "\\" + fn;
+                String nombreOriginal = Path.GetFileName(File1.PostedFile.FileName);
+                String[] extensionFoto = nombreOriginal.Split('.');
+                string nombreFoto = "1" + "." + extensionFoto[1]; // Sacar ultimo ID de foto en la bd para colocar como nombre del archivo
+
+                string SaveLocation = Server.MapPath("Imagenes") + "\\" + nombreFoto;
                 try
                 {
                     File1.PostedFile.SaveAs(SaveLocation);
-                    lbError.Text = ("The file has been uploaded.");
+                    lbError.Text = ("Foto subida.");
                 }
                 catch (Exception ex)
                 {
@@ -91,7 +94,7 @@ namespace ObligatorioFinal1
             }
             else
             {
-                Response.Write("Please select a file to upload.");
+                lbError.Text = ("Seleccione una foto.");
             }
         }
 
