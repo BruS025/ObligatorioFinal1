@@ -139,15 +139,6 @@ namespace ObligatorioFinal1 {
         protected global::System.Web.UI.HtmlControls.HtmlInputSubmit btCancelar;
         
         /// <summary>
-        /// imgPlato control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Image imgPlato;
-        
-        /// <summary>
         /// GridPlatos control.
         /// </summary>
         /// <remarks>

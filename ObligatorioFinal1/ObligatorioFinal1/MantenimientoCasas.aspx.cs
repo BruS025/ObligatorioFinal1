@@ -6,6 +6,7 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using EntidadesCompartidas;
 using Logica;
+using System.Web.UI.HtmlControls;
 
 namespace ObligatorioFinal1
 {
@@ -17,8 +18,9 @@ namespace ObligatorioFinal1
             {
                 try
                 {
+                    // TEST
                     List<Casa> listadoAdmin = new List<Casa>();
-                    Casa cliente = new Casa(1234,"La comilona", 500);
+                    Casa cliente = new Casa(1234, "La comilona", 500);
                     Casa cliente2 = new Casa(1555, "La come", 1500);
 
                     listadoAdmin.Add(cliente);
@@ -26,6 +28,7 @@ namespace ObligatorioFinal1
 
                     GridCasas.DataSource = listadoAdmin;
                     GridCasas.DataBind();
+                    // TEST
 
                     //CargarGrilla();
                 }
@@ -198,9 +201,8 @@ namespace ObligatorioFinal1
                     CargarGrilla();
 
                     btAgregar.Visible = true;
-                    btModificar.Visible = false;
+                    btGuardar.Visible = false;
                     btVerificar.Visible = false;
-                    btModificar.Visible = false;
 
                     // Reseteamos campos
                     rut.Text = "";

@@ -97,15 +97,12 @@
         </div>
 
         <br />
-
-        <div class="col-md-4">
-            <asp:Image ID="imgPlato" runat="server" />
-        </div>
+        <br />
 
         <div class="col-md-12">
             <asp:GridView ID="GridPlatos" runat="server" AllowPaging="true" OnPageIndexChanging="GridPlatos_PageIndexChanging"        
         AutoGenerateColumns="False" RowStyle-Height="34px" CellPadding="4" ForeColor="#333333" GridLines="None" HorizontalAlign="Center"
-        Visible="True" Width="100%" ShowFooter="true" ShowHeaderWhenEmpty="True" PageSize="10" Font-Size="Large" CaptionAlign="Top">
+        Visible="True" Width="100%" ShowFooter="false" ShowHeaderWhenEmpty="True" PageSize="10" Font-Size="Large" CaptionAlign="Top" HeaderStyle-HorizontalAlign="Center" HeaderStyle-VerticalAlign="Middle" PagerSettings-Mode="NextPrevious">
 
         <AlternatingRowStyle BackColor="White" />
 
@@ -161,6 +158,7 @@
     <div class="col-md-12">
         <br />
         <p class="text-center"><asp:Label ID="lbError" runat="server" Text="" ForeColor="Red"></asp:Label></p> 
+        <br />
     </div>
 
 </div>
