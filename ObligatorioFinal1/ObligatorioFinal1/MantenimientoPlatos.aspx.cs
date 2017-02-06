@@ -57,19 +57,6 @@ namespace ObligatorioFinal1
             }
         }
 
-        protected void btVerificar_Click(object sender, EventArgs e)
-        {
-            try
-                {
-
-                }
-
-            catch
-                {
-
-                }
-        }
-
         protected void GridPlatos_PageIndexChanging(object sender, GridViewPageEventArgs e)
         {
 
@@ -79,45 +66,74 @@ namespace ObligatorioFinal1
 
         override protected void OnInit(EventArgs e)
         {
-            InitializeComponent();
-            base.OnInit(e);
+            try
+            {
+                InitializeComponent();
+                base.OnInit(e);
+            }
+            catch (Exception ex)
+            {
+
+                lbError.Text = ex.Message;
+            }
+
         }
 
         private void InitializeComponent()
         {
-            this.btAgregar.ServerClick += new System.EventHandler(this.btAgregar_ServerClick);
-            this.Load += new System.EventHandler(this.Page_Load);
+            try
+            {
+                this.btAgregar2.ServerClick += new System.EventHandler(this.btAgregar_ServerClick);
+                this.Load += new System.EventHandler(this.Page_Load);
+            }
+            catch (Exception ex)
+            {
 
+                lbError.Text = ex.Message;
+            }
         }
 
         private void btAgregar_ServerClick(object sender, System.EventArgs e)
         {
-
-            if ((File1.PostedFile != null) && (File1.PostedFile.ContentLength > 0))
+            try
             {
-                String nombreOriginal = Path.GetFileName(File1.PostedFile.FileName);
-                String[] extensionFoto = nombreOriginal.Split('.');
-                string nombreFoto = "1" + "." + extensionFoto[1]; // Sacar ultimo ID de foto en la bd para colocar como nombre del archivo
+                if ((File1.PostedFile != null) && (File1.PostedFile.ContentLength > 0))
+                {
+                    String nombreOriginal = Path.GetFileName(File1.PostedFile.FileName);
+                    String[] extensionFoto = nombreOriginal.Split('.');
+                    string nombreFoto = "1" + "." + extensionFoto[1]; // Sacar ultimo ID de foto en la bd para colocar como nombre del archivo
 
-                string SaveLocation = Server.MapPath("Imagenes") + "\\" + nombreFoto;
-                try
-                {
-                    File1.PostedFile.SaveAs(SaveLocation);
-                    lbError.Text = ("Foto subida.");
+                    string SaveLocation = Server.MapPath("Imagenes") + "\\" + nombreFoto;
+                    try
+                    {
+                        File1.PostedFile.SaveAs(SaveLocation);
+                        lbError.Text = ("Foto subida.");
+                    }
+                    catch (Exception ex)
+                    {
+                        lbError.Text = ("Error: " + ex.Message);
+                    }
                 }
-                catch (Exception ex)
+                else
                 {
-                    lbError.Text = ("Error: " + ex.Message); 
+                    lbError.Text = ("Seleccione una foto.");
                 }
             }
-            else
+            catch (Exception ex)
             {
-                lbError.Text = ("Seleccione una foto.");
+
+                lbError.Text = (ex.Message);
             }
         }
 
-    // TEST
+        protected void btVerificar_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        // TEST
 
 
-}
+
+    }
 }

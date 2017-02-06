@@ -58,13 +58,40 @@ namespace ObligatorioFinal1 {
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl divPlato;
         
         /// <summary>
-        /// ddlCasasPlato control.
+        /// GridPlatos control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlCasasPlato;
+        protected global::System.Web.UI.WebControls.GridView GridPlatos;
+        
+        /// <summary>
+        /// lbError control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbError;
+        
+        /// <summary>
+        /// modalNombrePlato control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label modalNombrePlato;
+        
+        /// <summary>
+        /// idPlatoDiv control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl idPlatoDiv;
         
         /// <summary>
         /// idPlato control.
@@ -74,6 +101,15 @@ namespace ObligatorioFinal1 {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox idPlato;
+        
+        /// <summary>
+        /// ddlCasasPlato control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList ddlCasasPlato;
         
         /// <summary>
         /// nombrePlato control.
@@ -112,57 +148,12 @@ namespace ObligatorioFinal1 {
         protected global::System.Web.UI.HtmlControls.HtmlInputFile File1;
         
         /// <summary>
-        /// btAgregar control.
+        /// btAgregar23 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlInputSubmit btAgregar;
-        
-        /// <summary>
-        /// btGuardar control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlInputSubmit btGuardar;
-        
-        /// <summary>
-        /// btCancelar control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlInputSubmit btCancelar;
-        
-        /// <summary>
-        /// GridPlatos control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView GridPlatos;
-        
-        /// <summary>
-        /// lbError control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lbError;
-        
-        /// <summary>
-        /// modalNombrePlato control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label modalNombrePlato;
+        protected global::System.Web.UI.HtmlControls.HtmlButton btAgregar23;
     }
 }

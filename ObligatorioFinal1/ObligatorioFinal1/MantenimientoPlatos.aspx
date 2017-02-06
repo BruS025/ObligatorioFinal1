@@ -54,45 +54,11 @@
     </div>
 
     <div class="col-md-12" id="divPlato" runat="server">
-
-        <div class="col-md-2">
-            <asp:DropDownList ID="ddlCasasPlato" runat="server" AutoPostBack="True" Width="100%" Height="34px">
-            <asp:ListItem Value="0">Casa0</asp:ListItem>
-            <asp:ListItem Value="1">Casa1</asp:ListItem>
-            </asp:DropDownList>
-        </div>
-
-        <div class="col-md-1">
-            <asp:TextBox ID="idPlato" runat="server" Enabled="false"  Height="34px" Placeholder=" Id" Width="100%"></asp:TextBox>
-        </div>
-
-        <div class="col-md-2">
-            <asp:TextBox ID="nombrePlato" runat="server" Height="34px" Placeholder=" Nombre"></asp:TextBox>
-        </div>
-
-        <div class="col-md-2">
-            <asp:TextBox ID="precioPlato" runat="server" Height="34px" Placeholder=" Precio"></asp:TextBox>
-        </div>
-
-        <div class="col-md-4" id="Form1" method="post" enctype="multipart/form-data" runat="server">
-            <input type="file" id="File1" name="File1" runat="server" class="" />
-        </div>
-            
-        <br />
-        <br />
-        <br />
                           
         <div class="col-md-12">
-        <div class="col-md-1">
-            <input type="submit" id="btAgregar" runat="server" name="btAgregar" value ="Agregar" class="btn-md btn-primary" visible ="true"/>                      
-        </div>
 
-        <div class="col-md-1">
-            <input type="submit" id="btGuardar" runat="server" name="btGuardar" value ="Guardar" class="btn-md btn-success" visible ="false"/>
-        </div>
-
-        <div class="col-md-1">
-            <input type="submit" id="btCancelar" runat="server" name="btCancelar" value ="Cancelar" class="btn-md btn-danger" visible ="false"/>
+        <div class="col-md-2">
+            <button type="button" class="btn-md btn-primary" data-toggle="modal" data-target="#agregarModal" data-whatever="Agregar un nuevo plato"><span aria-hidden="true" class="glyphicon glyphicon-plus"></span> Agregar</button>
         </div>
         </div>
 
@@ -181,6 +147,94 @@
   </div><!-- /.modal-dialog -->
 </div><!-- /.modal -->
 
+
+<div class="modal fade" id="agregarModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Cerrar"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="exampleModalLabel">Cerrar</h4>
+      </div>
+      <div class="modal-body">
+        <form>
+          <div class="form-group" >
+
+              <div class="col-md-12" runat="server" id="idPlatoDiv">
+                <div class="col-md-4">
+                    <label for="message-text" class="control-label">ID del plato:</label>
+                </div>
+                <div class="col-md-4">
+                    <asp:TextBox ID="idPlato" runat="server" Enabled="false" Height="34px" Placeholder=" Id"></asp:TextBox>
+                </div>
+              </div>
+
+              <br />
+              <br />
+              <br />
+
+              <div class="col-md-12">
+                <div class="col-md-4">                  
+                    <label for="message-text" class="control-label">Casa del plato:</label>
+                </div>
+                <div class="col-md-4">
+                    <asp:DropDownList ID="ddlCasasPlato" runat="server" Height="34px">
+                        <asp:ListItem Value="0">Casa0</asp:ListItem>
+                        <asp:ListItem Value="1">Casa1</asp:ListItem>
+                    </asp:DropDownList>
+                </div>
+               </div>
+
+              <br />
+              <br />
+              <br />
+
+            <div class="col-md-12">
+                <div class="col-md-4">                  
+                    <label for="message-text" class="control-label">Nombre del plato:</label>
+                </div>
+                <div class="col-md-4">
+                    <asp:TextBox ID="nombrePlato" runat="server" Height="34px" Placeholder=" Nombre"></asp:TextBox>
+                </div>
+            </div>
+
+              <br />
+              <br />
+              <br />
+
+             <div class="col-md-12">
+                <div class="col-md-4">                  
+                    <label for="message-text" class="control-label">Precio del plato:</label>
+                </div>
+                <div class="col-md-4">
+                    <asp:TextBox ID="precioPlato" runat="server" Height="34px" Placeholder=" Precio"></asp:TextBox>
+                </div>
+            </div>
+
+              <br />
+              <br />
+              <br />
+
+            <div class="col-md-12">
+                <div class="col-md-12" id="Form1" method="post" enctype="multipart/form-data" runat="server">
+                    <input type="file" id="File1" name="File1" runat="server" class="" />
+                </div>
+            </div>
+
+              <br />
+
+            </div>
+
+        </form>
+      </div>
+      <div class="modal-footer">
+              <button type="reset" class="btn-lg btn-danger" data-dismiss="modal" runat="server"><span aria-hidden="true" class="glyphicon glyphicon-floppy-remove"></span></button>          
+              <button type="submit" id="btAgregar23" name="btAgregar2" class="btn-lg btn-success" runat="server"><span aria-hidden="true" class="glyphicon glyphicon-floppy-saved"></span></button>    
+      </div>
+    </div>
+  </div>
+</div>
+
+
  <script>
 
      function verFoto() {
@@ -188,6 +242,19 @@
          $("#verFoto").modal('show');
      }
 
+     $('#agregarModal').on('show.bs.modal', function (event) {
+         var button = $(event.relatedTarget) // Button that triggered the modal
+         var recipient = button.data('whatever')
+         var modal = $(this)
+         modal.find('.modal-title').text(recipient)
+     })
+
+     function ocultarModalAgregar() {
+         $('#agregarModal').modal({ backdrop: 'static', keyboard: false })
+         $("#agregarModal").modal('hidden.bs.modal');
+     }
+         
+   
  </script>
 
 </asp:Content>
