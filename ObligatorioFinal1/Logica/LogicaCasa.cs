@@ -33,7 +33,7 @@ namespace Logica
 
         public static List<Casa> Listar()
         {
-            throw new NotImplementedException();
+            return PersistenciaCasa.Listar();
         }
     }
 }

@@ -146,7 +146,7 @@ namespace ObligatorioFinal1
 
                 int resultado = LogicaCasa.Agregar(nuevaCasa);
 
-                if (resultado == 0)
+                if (resultado == 1)
                 {
                     lbError.Text = "Casa agregada..";
                     CargarGrilla();
