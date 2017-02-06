@@ -6,7 +6,6 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using EntidadesCompartidas;
 using Logica;
-using System.Web.UI.HtmlControls;
 using System.IO;
 
 namespace ObligatorioFinal1
@@ -62,51 +61,25 @@ namespace ObligatorioFinal1
 
         }
 
-        // TEST
-
-        override protected void OnInit(EventArgs e)
+        protected void btVerificar_Click(object sender, EventArgs e)
         {
-            try
-            {
-                InitializeComponent();
-                base.OnInit(e);
-            }
-            catch (Exception ex)
-            {
-
-                lbError.Text = ex.Message;
-            }
 
         }
 
-        private void InitializeComponent()
+        protected void Button1_Click(object sender, EventArgs e)
         {
             try
             {
-                this.btAgregar2.ServerClick += new System.EventHandler(this.btAgregar_ServerClick);
-                this.Load += new System.EventHandler(this.Page_Load);
-            }
-            catch (Exception ex)
-            {
-
-                lbError.Text = ex.Message;
-            }
-        }
-
-        private void btAgregar_ServerClick(object sender, System.EventArgs e)
-        {
-            try
-            {
-                if ((File1.PostedFile != null) && (File1.PostedFile.ContentLength > 0))
+                if ((FileUpload1.PostedFile != null) && (FileUpload1.PostedFile.ContentLength > 0))
                 {
-                    String nombreOriginal = Path.GetFileName(File1.PostedFile.FileName);
+                    String nombreOriginal = Path.GetFileName(FileUpload1.PostedFile.FileName);
                     String[] extensionFoto = nombreOriginal.Split('.');
                     string nombreFoto = "1" + "." + extensionFoto[1]; // Sacar ultimo ID de foto en la bd para colocar como nombre del archivo
 
                     string SaveLocation = Server.MapPath("Imagenes") + "\\" + nombreFoto;
                     try
                     {
-                        File1.PostedFile.SaveAs(SaveLocation);
+                        FileUpload1.PostedFile.SaveAs(SaveLocation);
                         lbError2.Text = ("Foto subida.");
                     }
                     catch (Exception ex)
@@ -125,15 +98,5 @@ namespace ObligatorioFinal1
                 lbError2.Text = (ex.Message);
             }
         }
-
-        protected void btVerificar_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        // TEST
-
-
-
     }
 }

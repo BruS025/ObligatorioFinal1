@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/MasterPage.Master" AutoEventWireup="true" CodeBehind="MantenimientoPlatos.aspx.cs" Inherits="ObligatorioFinal1.WebForm3" %>
+﻿<%@ Page Title="" EnableEventValidation="true"  Language="C#" MasterPageFile="~/MasterPage.Master" AutoEventWireup="true" CodeBehind="MantenimientoPlatos.aspx.cs" Inherits="ObligatorioFinal1.WebForm3" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 
@@ -91,7 +91,7 @@
 
             <asp:TemplateField HeaderStyle-BorderWidth="2px" ItemStyle-HorizontalAlign="Center" ControlStyle-Font-Size="Medium" ControlStyle-CssClass="btn-primary btn-md" HeaderText="Ver foto">
                 <ItemTemplate>
-                    <a href="remote.html" role="button" aria-hidden="true" data-toggle="modal" data-target="#myModal">
+                    <a role="button" aria-hidden="true" data-toggle="modal" data-target="#myModal">
                         <span class="glyphicon glyphicon-camera" aria-hidden="true"></span>
                     </a>                                                      
                 </ItemTemplate>
@@ -215,8 +215,8 @@
               <br />
 
             <div class="col-md-12">
-                <div class="col-md-12" id="Form1" method="post" enctype="multipart/form-data" runat="server">
-                    <input type="file" id="File1" name="File1" runat="server" class="" />
+                <div class="col-md-12" id="Form1">
+                    <asp:FileUpload ID="FileUpload1" runat="server" />
                 </div>
             </div>
 
@@ -233,8 +233,8 @@
         </form>
       </div>
       <div class="modal-footer">
-              <button type="reset" class="btn-lg btn-danger" data-dismiss="modal" runat="server"><span aria-hidden="true" class="glyphicon glyphicon-floppy-remove"></span></button>          
-              <input type="submit" id="btAgregar2" name="btAgregar2" class="btn-lg btn-success" runat="server"/><span aria-hidden="true" class="glyphicon glyphicon-floppy-saved"></span>    
+              <button type="button" class="btn-lg btn-danger" data-dismiss="modal" runat="server"><span aria-hidden="true" class="glyphicon glyphicon-floppy-remove"></span></button>          
+              <asp:Button ID="Button1" runat="server" OnClick="Button1_Click" Text="Button" />   
       </div>
     </div>
   </div>
