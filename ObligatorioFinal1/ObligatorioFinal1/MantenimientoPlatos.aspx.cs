@@ -107,22 +107,22 @@ namespace ObligatorioFinal1
                     try
                     {
                         File1.PostedFile.SaveAs(SaveLocation);
-                        lbError.Text = ("Foto subida.");
+                        lbError2.Text = ("Foto subida.");
                     }
                     catch (Exception ex)
                     {
-                        lbError.Text = ("Error: " + ex.Message);
+                        lbError2.Text = ("Error: " + ex.Message);
                     }
                 }
                 else
                 {
-                    lbError.Text = ("Seleccione una foto.");
+                    lbError2.Text = ("Seleccione una foto.");
                 }
             }
             catch (Exception ex)
             {
 
-                lbError.Text = (ex.Message);
+                lbError2.Text = (ex.Message);
             }
         }
 

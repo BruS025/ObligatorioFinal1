@@ -222,13 +222,19 @@
 
               <br />
 
+        <div class="col-md-12">
+        <br />
+        <p class="text-center"><asp:Label ID="lbError2" runat="server" Text="" ForeColor="Red"></asp:Label></p> 
+        <br />
+        </div>
+
             </div>
 
         </form>
       </div>
       <div class="modal-footer">
               <button type="reset" class="btn-lg btn-danger" data-dismiss="modal" runat="server"><span aria-hidden="true" class="glyphicon glyphicon-floppy-remove"></span></button>          
-              <button type="submit" id="btAgregar23" name="btAgregar2" class="btn-lg btn-success" runat="server"><span aria-hidden="true" class="glyphicon glyphicon-floppy-saved"></span></button>    
+              <input type="submit" id="btAgregar2" name="btAgregar2" class="btn-lg btn-success" runat="server"/><span aria-hidden="true" class="glyphicon glyphicon-floppy-saved"></span>    
       </div>
     </div>
   </div>
