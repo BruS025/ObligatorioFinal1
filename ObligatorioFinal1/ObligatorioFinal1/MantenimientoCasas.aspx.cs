@@ -146,7 +146,7 @@ namespace ObligatorioFinal1
 
                 int resultado = LogicaCasa.Agregar(nuevaCasa);
 
-                if (resultado == -1)
+                if (resultado == 1)
                 {
                     lbError.Text = "Casa agregada..";
                     CargarGrilla();
@@ -158,12 +158,12 @@ namespace ObligatorioFinal1
 
                 else if (resultado == 1)
                 {
-                     lbError.Text = " Poner mensaje";
+                     lbError.Text = " El Rut ingresado ya se encuentra registrado.";
                 }
 
                 else
                 {
-                    lbError.Text = "Poner mensaje..";
+                    lbError.Text = "No se ha agregado la Casa..";
 
                 }
 

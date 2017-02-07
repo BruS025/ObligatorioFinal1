@@ -284,7 +284,7 @@ BEGIN
 END
 go
 DECLARE @RETORNO INT
-EXEC @RETORNO = SP_AgregarCasa 123456789,1,pruebapizze
+EXEC @RETORNO = SP_AgregarCasa 12345,1,pruebaparri
 PRINT @retorno
 go
 --insert Especializaciones Basicos
@@ -294,12 +294,7 @@ INSERT INTO Especializacion VALUES('Minutas')
 INSERT INTO Especializacion VALUES('Internacional')
 INSERT INTO Especializacion VALUES('Vegetariano')
 go
-select * from Cliente
-select * from Usuario
-select * from Administrador
-select * from Especializacion
-select * from Casa c join Especializacion e on c.IdEspe=e.IdEspe
-go
+
 
 CREATE PROCEDURE SP_ModificarCasa
 @RutM BIGINT,
@@ -334,18 +329,6 @@ EXEC @RETORNO = SP_ModificarCasa 123456789,4,pruebapizzeMOD
 PRINT @retorno
 GO
 
-/*CREATE PROCEDURE SP_BorrarCasa
-@RutM BIGINT,
-@IdEspeM INT,
-@NombreM VARCHAR (20)
-AS
-BEGIN
-	IF NOT EXISTS (SELECT C.Rut FROM Casa C WHERE C.Rut=@RutM)
-		BEGIN
-			RETURN -1
-		END
-	ELSE*/
-		
 CREATE PROCEDURE SP_BuscarCasa
 @RutB BIGINT,
 @IdEspe INT
@@ -367,4 +350,64 @@ END
 DECLARE @RETORNO INT
 EXEC @RETORNO = SP_BuscarCasa 123456789,4
 PRINT @retorno
-GO			
+GO	
+@RutB INT
+AS
+BEGIN
+	IF EXISTS (SELECT T.Rut FROM Tienen T WHERE T.Rut =@RutB)
+		BEGIN TRANSACTION
+
+		DELETE Tienen
+		WHERE Tienen.Rut = @RutB
+
+		IF @@ERROR <> 0
+			BEGIN
+				ROLLBACK TRANSACTION
+				RETURN @@ERROR
+			END
+	ELSE
+			BEGIN
+				COMMIT TRANSACTION
+				RETURN 1
+			END
+END
+DECLARE @RETORNO INT
+EXEC @RETORNO = SP_BorrarCasa 123456789
+PRINT @retorno
+
+CREATE PROCEDURE SP_ListarTodasLasCasas
+AS
+BEGIN
+	SELECT C.Nombre,
+		   C.Rut,
+		   E.Tipo
+    FROM Casa C JOIN Especializacion E ON C.IdEspe=E.IdEspe
+END
+
+CREATE PROCEDURE SP_ListarCasa
+@RutMostrar BIGINT
+AS
+BEGIN
+	SELECT C.Nombre,
+		   C.Rut,
+		   E.Tipo
+    FROM Casa C JOIN Especializacion E ON C.IdEspe=E.IdEspe
+	WHERE C.Rut=@RutMostrar
+END
+
+
+select * from Usuario
+select * from Cliente
+select * from Administrador
+select * from Especializacion 
+select * from Casa 
+select * from Plato 
+select * from Tienen 
+select * from Pedido 
+select * from Compran 
+select * from Realizan 
+select * from Casa c join Especializacion e on c.IdEspe=e.IdEspe
+go
+
+insert into Plato VALUES(1234,'PRUEBABORRAR',123)
+INSERT INTO Tienen VALUES (123456789,1234)
