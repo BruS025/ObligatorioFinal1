@@ -7,6 +7,7 @@ using System.Web.UI.WebControls;
 using EntidadesCompartidas;
 using Logica;
 using System.Web.UI.HtmlControls;
+using System.IO;
 
 namespace ObligatorioFinal1
 {
@@ -132,16 +133,16 @@ namespace ObligatorioFinal1
         {
             try
             {
-                if (rut.Text == "")
+                if (rutCasa.Text == "")
                 {
                     throw new Exception("ERROR: Ingrese un Rut.");
                 }
                 
                 Casa nuevaCasa = new Casa();
 
-                nuevaCasa.RUT = Convert.ToInt64(rut.Text);
-                nuevaCasa.Nombre = nombre.Text;
-                nuevaCasa.Especializacion = Convert.ToInt32(ddlEspecializacion.SelectedValue);
+                nuevaCasa.RUT = Convert.ToInt64(rutCasa.Text);
+                nuevaCasa.Nombre = nombreCasa.Text;
+                nuevaCasa.Especializacion = Convert.ToInt32(ddlEspecializacionAdd.SelectedValue);
                 //nuevaCasa.Especialidad = ddlEspecializacion.SelectedItem.ToString();
 
                 int resultado = LogicaCasa.Agregar(nuevaCasa);
@@ -181,15 +182,15 @@ namespace ObligatorioFinal1
             {
 
                 Casa casa = new Casa();
-                casa.RUT = Convert.ToInt32(Convert.ToInt32(rut.Text));
-                casa.Nombre = nombre.Text;
+                casa.RUT = Convert.ToInt32(Convert.ToInt32(modRut.Text));
+                casa.Nombre = modNombre.Text;
                 
-                if (rut.Text == "")
+                if (modRut.Text == "")
                 {
                     throw new Exception("ERROR: Ingrese un Rut.");
                 }
 
-                casa.RUT = Convert.ToInt32(rut.Text);
+                casa.RUT = Convert.ToInt32(modRut.Text);
 
 
 
@@ -200,13 +201,13 @@ namespace ObligatorioFinal1
                     lbError.Text = "Casa Modificada";
                     CargarGrilla();
 
-                    btAgregar.Visible = true;
-                    btGuardar.Visible = false;
+                    btAgregarModal.Visible = true;
+                    btGuardarModal.Visible = false;
                     btVerificar.Visible = false;
 
                     // Reseteamos campos
-                    rut.Text = "";
-                    nombre.Text = "";
+                    modRut.Text = "";
+                    modNombre.Text = "";
                     
                 }
                 else
@@ -231,11 +232,20 @@ namespace ObligatorioFinal1
 
         }
 
-        protected void btCancelar_Click(object sender, EventArgs e)
+        protected void btnSeleccionar_Click(object sender, EventArgs e)
         {
+            try
+            {
+                btModificar.Visible = true;
 
+            }
+
+            catch (Exception ex)
+            {
+
+                lbError.Text = (ex.Message);
+            }
         }
-
     }
 }
 
