@@ -63,10 +63,36 @@ namespace ObligatorioFinal1
 
         protected void btVerificar_Click(object sender, EventArgs e)
         {
+            try
+            {
 
+            }
+            catch (Exception ex)
+            {
+
+                lbError.Text = ex.Message;
+            }
         }
 
-        protected void Button1_Click(object sender, EventArgs e)
+        // Boton seleccionar
+        protected void btnSeleccionar_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                btModificar.Visible = true;
+                foto.Visible = true;
+
+            }
+
+            catch (Exception ex)
+            {
+
+                lbError.Text = (ex.Message);
+            }
+        }
+
+        // Agregar un plato
+        protected void btAgregar_Click(object sender, EventArgs e)
         {
             try
             {
@@ -80,22 +106,56 @@ namespace ObligatorioFinal1
                     try
                     {
                         FileUpload1.PostedFile.SaveAs(SaveLocation);
-                        lbError2.Text = ("Foto subida.");
+                        lbError.Text = ("Foto subida.");
                     }
                     catch (Exception ex)
                     {
-                        lbError2.Text = ("Error: " + ex.Message);
+                        lbError.Text = ("Error: " + ex.Message);
                     }
                 }
                 else
                 {
-                    lbError2.Text = ("Seleccione una foto.");
+                    lbError.Text = ("Seleccione una foto.");
                 }
             }
             catch (Exception ex)
             {
 
-                lbError2.Text = (ex.Message);
+                lbError.Text = (ex.Message);
+            }
+        }
+
+        // Editar un plato
+        protected void btGuardar_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if ((FileUpload1.PostedFile != null) && (FileUpload1.PostedFile.ContentLength > 0))
+                {
+                    String nombreOriginal = Path.GetFileName(FileUpload1.PostedFile.FileName);
+                    String[] extensionFoto = nombreOriginal.Split('.');
+                    string nombreFoto = "1" + "." + extensionFoto[1]; // Sacar ultimo ID de foto en la bd para colocar como nombre del archivo
+
+                    string SaveLocation = Server.MapPath("Imagenes") + "\\" + nombreFoto;
+                    try
+                    {
+                        FileUpload1.PostedFile.SaveAs(SaveLocation);
+                        lbError.Text = ("Foto subida.");
+                    }
+                    catch (Exception ex)
+                    {
+                        lbError.Text = ("Error: " + ex.Message);
+                    }
+                }
+                else
+                {
+                    lbError.Text = ("Seleccione una foto.");
+                }
+            }
+            catch (Exception ex)
+            {
+
+                lbError.Text = (ex.Message);
             }
         }
     }
