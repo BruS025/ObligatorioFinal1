@@ -229,7 +229,7 @@
                     <label for="message-text" class="control-label">ID del plato:</label>
                 </div>
                 <div class="col-md-4">
-                    <asp:TextBox ID="TextBox1" runat="server" Enabled="false" Height="34px" Placeholder=" Id"></asp:TextBox>
+                    <asp:TextBox ID="idModificar" runat="server" Enabled="false" Height="34px" Placeholder=" Id"></asp:TextBox>
                 </div>
               </div>
 
@@ -242,7 +242,7 @@
                     <label for="message-text" class="control-label">Casa del plato:</label>
                 </div>
                 <div class="col-md-4">
-                    <asp:DropDownList ID="DropDownList1" runat="server" Height="34px">
+                    <asp:DropDownList ID="casaModificar" runat="server" Height="34px">
                         <asp:ListItem Value="0">Casa0</asp:ListItem>
                         <asp:ListItem Value="1">Casa1</asp:ListItem>
                     </asp:DropDownList>
@@ -258,7 +258,7 @@
                     <label for="message-text" class="control-label">Nombre del plato:</label>
                 </div>
                 <div class="col-md-4">
-                    <asp:TextBox ID="TextBox2" runat="server" Height="34px" Placeholder=" Nombre"></asp:TextBox>
+                    <asp:TextBox ID="nombreModificar" runat="server" Height="34px" Placeholder=" Nombre"></asp:TextBox>
                 </div>
             </div>
 
@@ -271,7 +271,7 @@
                     <label for="message-text" class="control-label">Precio del plato:</label>
                 </div>
                 <div class="col-md-4">
-                    <asp:TextBox ID="TextBox3" runat="server" Height="34px" Placeholder=" Precio"></asp:TextBox>
+                    <asp:TextBox ID="precioModificar" runat="server" Height="34px" Placeholder=" Precio"></asp:TextBox>
                 </div>
             </div>
 

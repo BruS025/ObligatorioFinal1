@@ -130,16 +130,16 @@ namespace ObligatorioFinal1
         {
             try
             {
-                if ((FileUpload1.PostedFile != null) && (FileUpload1.PostedFile.ContentLength > 0))
+                if ((FileUpload2.PostedFile != null) && (FileUpload2.PostedFile.ContentLength > 0))
                 {
-                    String nombreOriginal = Path.GetFileName(FileUpload1.PostedFile.FileName);
+                    String nombreOriginal = Path.GetFileName(FileUpload2.PostedFile.FileName);
                     String[] extensionFoto = nombreOriginal.Split('.');
                     string nombreFoto = "1" + "." + extensionFoto[1]; // Sacar ultimo ID de foto en la bd para colocar como nombre del archivo
 
                     string SaveLocation = Server.MapPath("Imagenes") + "\\" + nombreFoto;
                     try
                     {
-                        FileUpload1.PostedFile.SaveAs(SaveLocation);
+                        FileUpload2.PostedFile.SaveAs(SaveLocation);
                         lbError.Text = ("Foto subida.");
                     }
                     catch (Exception ex)
