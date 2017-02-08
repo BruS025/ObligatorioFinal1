@@ -46,7 +46,7 @@ GO
 CREATE TABLE Especializacion
 (
 	Tipo VARCHAR(20) NOT NULL,
-	IdEspe INT PRIMARY KEY IDENTITY(1,1),
+	IdEspe INT PRIMARY KEY IDENTITY(1,1)
 )
 GO
 --Creo la tabla Casa
@@ -286,7 +286,7 @@ go
 DECLARE @RETORNO INT
 EXEC @RETORNO = SP_AgregarCasa 12345,1,pruebaparri
 PRINT @retorno
-go
+GO
 --insert Especializaciones Basicos
 INSERT INTO Especializacion VALUES('Pizzeria')
 INSERT INTO Especializacion VALUES('Parrillada')
@@ -348,10 +348,9 @@ BEGIN
 END
 
 DECLARE @RETORNO INT
-EXEC @RETORNO = SP_BuscarCasa 12345,4
+EXEC @RETORNO = SP_BuscarCasa 123456789,4
 PRINT @retorno
 GO	
-/*CREATE PROCEDURE SP_BorrarCasa
 @RutB INT
 AS
 BEGIN
@@ -375,7 +374,6 @@ END
 DECLARE @RETORNO INT
 EXEC @RETORNO = SP_BorrarCasa 123456789
 PRINT @retorno
-GO*/
 
 CREATE PROCEDURE SP_ListarTodasLasCasas
 AS
@@ -385,10 +383,7 @@ BEGIN
 		   E.Tipo
     FROM Casa C JOIN Especializacion E ON C.IdEspe=E.IdEspe
 END
-DECLARE @RETORNO INT
-EXEC @RETORNO = SP_ListarTodasLasCasas
-PRINT @retorno
-GO	
+
 CREATE PROCEDURE SP_ListarCasa
 @RutMostrar BIGINT
 AS
@@ -399,10 +394,19 @@ BEGIN
     FROM Casa C JOIN Especializacion E ON C.IdEspe=E.IdEspe
 	WHERE C.Rut=@RutMostrar
 END
+
+-- Listar especializaciones
+CREATE PROCEDURE SP_ListarEspecializaciones
+AS
+BEGIN
+	SELECT * FROM Especializacion;
+END
+
+
 DECLARE @RETORNO INT
-EXEC @RETORNO = SP_ListarCasa 12345
+EXEC @RETORNO = SP_ListarEspecializaciones
 PRINT @retorno
-GO	
+
 
 select * from Usuario
 select * from Cliente
