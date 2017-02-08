@@ -125,7 +125,7 @@
     <div class="modal-content">
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-label="Cerrar"><span aria-hidden="true">&times;</span></button>
-        <h4 class="modal-title" id="exampleModalLabel" runat="server"><asp:Label ID="Label2" runat="server" Text="PlatoNombre"></asp:Label></h4>
+        <h4 class="modal-title" id="exampleModalLabel" runat="server"><asp:Label ID="Label2" runat="server" Text="CasaNombre"></asp:Label></h4>
       </div>
              <div class="form-group" >
             <br />
