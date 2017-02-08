@@ -219,7 +219,10 @@
                     <label for="message-text" class="control-label">Especializacion de la casa:</label>
                 </div>
                 <div class="col-md-4">
-                    <asp:Label ID="modEspecializacion" runat="server" Text="Especializacion"></asp:Label>
+                    <asp:DropDownList ID="modDdl" runat="server" Height="34px">
+                        <asp:ListItem Value="0">Especializacion</asp:ListItem>
+                        <asp:ListItem Value="1">Casa1</asp:ListItem>
+                    </asp:DropDownList>
                 </div>
                </div>
 
