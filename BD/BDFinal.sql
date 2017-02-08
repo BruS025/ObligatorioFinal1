@@ -84,7 +84,6 @@ GO
 CREATE TABLE Pedido
 (
 	IdPedido INT PRIMARY KEY NOT NULL,
-	Cantidad INT NOT NULL,
 	Fecha DATETIME NOT NULL,
 	Entregado BIT NOT NULL
 )
@@ -102,6 +101,7 @@ CREATE TABLE Realizan
 	IdPlato INT FOREIGN KEY REFERENCES Plato(IdPlato) ON DELETE CASCADE,
 	IdLogueo INT FOREIGN KEY REFERENCES Usuario(IdLogueo),
 	IdPedido INT NOT NULL PRIMARY KEY IDENTITY (1,1)
+	Cantidad INT NOT NULL
 )
 GO
 
@@ -395,14 +395,14 @@ BEGIN
 END
 
 CREATE PROCEDURE SP_ListarCasa
-@RutMostrar BIGINT
+@IdEspeMostrar INT
 AS
 BEGIN
 	SELECT C.Nombre,
 		   C.Rut,
-		   E.Tipo
+		   E.IdEspe
     FROM Casa C JOIN Especializacion E ON C.IdEspe=E.IdEspe
-	WHERE C.Rut=@RutMostrar
+	WHERE E.IdEspe=@IdEspeMostrar
 END
 
 -- Listar especializaciones
@@ -419,8 +419,6 @@ BEGIN
 	SELECT * FROM Cargo;
 END
 
-
-cd
 
 
 select * from Usuario
