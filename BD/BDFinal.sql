@@ -49,6 +49,13 @@ CREATE TABLE Especializacion
 	IdEspe INT PRIMARY KEY IDENTITY(1,1)
 )
 GO
+--Creo la tabla Cargo
+CREATE TABLE Cargo
+(
+	Tipo VARCHAR(20) NOT NULL,
+	IdCargo INT PRIMARY KEY IDENTITY(1,1)
+)
+GO
 --Creo la tabla Casa
 CREATE TABLE Casa   
 (
@@ -295,6 +302,9 @@ INSERT INTO Especializacion VALUES('Internacional')
 INSERT INTO Especializacion VALUES('Vegetariano')
 go
 
+INSERT INTO Cargo VALUES ('ADMIN')
+INSERT INTO Cargo VALUES ('GERENTE')
+
 
 CREATE PROCEDURE SP_ModificarCasa
 @RutM BIGINT,
@@ -402,10 +412,15 @@ BEGIN
 	SELECT * FROM Especializacion;
 END
 
+-- Listar cargos
+CREATE PROCEDURE SP_ListarCargos
+AS
+BEGIN
+	SELECT * FROM Cargo;
+END
 
-DECLARE @RETORNO INT
-EXEC @RETORNO = SP_ListarEspecializaciones
-PRINT @retorno
+
+cd
 
 
 select * from Usuario

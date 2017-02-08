@@ -43,6 +43,7 @@
     <Compile Include="Administrador.cs" />
     <Compile Include="Casa.cs" />
     <Compile Include="Cliente.cs" />
+    <Compile Include="Cargo.cs" />
     <Compile Include="Especializacion.cs" />
     <Compile Include="Plato.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

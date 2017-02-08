@@ -42,6 +42,7 @@
   <ItemGroup>
     <Compile Include="Conexion.cs" />
     <Compile Include="PersistenciaCasa.cs" />
+    <Compile Include="PersistenciaCargo.cs" />
     <Compile Include="PersistenciaEspecializacion.cs" />
     <Compile Include="PersistenciaPedidos.cs" />
     <Compile Include="PersistenciaUsuarios.cs" />
