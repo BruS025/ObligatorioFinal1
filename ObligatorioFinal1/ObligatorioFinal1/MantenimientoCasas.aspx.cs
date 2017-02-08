@@ -29,6 +29,12 @@ namespace ObligatorioFinal1
 
                     GridCasas.DataSource = listadoAdmin;
                     GridCasas.DataBind();
+
+                    ddlEspecializacionAdd.DataTextField = "Tipo";
+                    ddlEspecializacionAdd.DataValueField = "IdEspe";
+                    ddlEspecializacionAdd.DataSource = LogicaEspecializacion.Listar();
+                    ddlEspecializacionAdd.DataBind();
+
                     // TEST
 
                     //CargarGrilla();
@@ -180,6 +186,11 @@ namespace ObligatorioFinal1
         {
             try
             {
+                modDdl.DataTextField = "Tipo";
+                modDdl.DataValueField = "IdEspe";
+                modDdl.DataSource = LogicaEspecializacion.Listar();
+                // modDdl.SelectedValue = TOMAR VALOR DE LA CASA SELECCIONADA
+                modDdl.DataBind();
 
                 Casa casa = new Casa();
                 casa.RUT = Convert.ToInt32(Convert.ToInt32(modRut.Text));

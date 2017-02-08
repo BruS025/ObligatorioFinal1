@@ -161,9 +161,7 @@
                     <label for="message-text" class="control-label">Especializacion de la casa:</label>
                 </div>
                 <div class="col-md-4">
-                    <asp:DropDownList ID="ddlEspecializacionAdd" runat="server" Height="34px">
-                        <asp:ListItem Value="0">Especializacion</asp:ListItem>
-                        <asp:ListItem Value="1">Casa1</asp:ListItem>
+                    <asp:DropDownList ID="ddlEspecializacionAdd" AutoPostBack="true" runat="server" Height="34px">
                     </asp:DropDownList>
                 </div>
                </div>
@@ -220,8 +218,6 @@
                 </div>
                 <div class="col-md-4">
                     <asp:DropDownList ID="modDdl" runat="server" Height="34px">
-                        <asp:ListItem Value="0">Especializacion</asp:ListItem>
-                        <asp:ListItem Value="1">Casa1</asp:ListItem>
                     </asp:DropDownList>
                 </div>
                </div>
