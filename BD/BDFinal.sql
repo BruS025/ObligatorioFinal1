@@ -351,12 +351,13 @@ BEGIN
 END
 GO
 
-CREATE PROCEDURE SP_ListarTodasLasCasas
+ALTER PROCEDURE SP_ListarTodasLasCasas
 AS
 BEGIN
 	SELECT C.Nombre,
 		   C.Rut,
-		   E.Tipo
+		   E.Tipo,
+		   e.IdEspe
     FROM Casa C JOIN Especializacion E ON C.IdEspe=E.IdEspe
 END
 GO
