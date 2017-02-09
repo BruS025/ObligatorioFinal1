@@ -19,7 +19,7 @@ namespace ObligatorioFinal1
             {
                 try
                 {
-                    // TEST
+                    /*// TEST
                     List<Casa> listadoAdmin = new List<Casa>();
                     Casa cliente = new Casa(1234, "La comilona", 500);
                     Casa cliente2 = new Casa(1555, "La come", 1500);
@@ -29,15 +29,22 @@ namespace ObligatorioFinal1
 
                     GridCasas.DataSource = listadoAdmin;
                     GridCasas.DataBind();
+                    */
 
-                    ddlEspecializacionAdd.DataTextField = "Tipo";
-                    ddlEspecializacionAdd.DataValueField = "IdEspe";
-                    ddlEspecializacionAdd.DataSource = LogicaEspecializacion.Listar();
+                    List <Especializacion> listadoEspecializaciones = new List<Especializacion>(LogicaEspecializacion.Listar());
+
+                    ddlEspecializacionAdd.DataSource = listadoEspecializaciones;
                     ddlEspecializacionAdd.DataBind();
+
+                    ddlBuscar.DataSource = listadoEspecializaciones;
+                    ddlBuscar.DataBind();
+
+                    modDdl.DataSource = listadoEspecializaciones;
+                    modDdl.DataBind();
 
                     // TEST
 
-                    //CargarGrilla();
+                    CargarGrilla();
                 }
 
                 catch (Exception ex)
@@ -80,9 +87,9 @@ namespace ObligatorioFinal1
                     lbError.Text = "No existen casas registradas";
                 }
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-                 lbError.Text = "Ha ocurrido un error";
+                lbError.Text = ex.Message; //"Ha ocurrido un error";
             }
         }
 
@@ -140,8 +147,10 @@ namespace ObligatorioFinal1
             try
             {
                 if (rutCasa.Text == "")
-                {
-                    throw new Exception("ERROR: Ingrese un Rut.");
+                {                  
+                    lbError2.Text = ("ERROR: Ingrese un Rut.");
+                    ClientScript.RegisterStartupScript(this.GetType(), "myScript", "<script>javascript: vpi();</script>");
+
                 }
                 
                 Casa nuevaCasa = new Casa();
@@ -165,12 +174,14 @@ namespace ObligatorioFinal1
 
                 else if (resultado == 1)
                 {
-                     lbError.Text = " El Rut ingresado ya se encuentra registrado.";
+                     lbError2.Text = " El Rut ingresado ya se encuentra registrado.";
+                     ClientScript.RegisterStartupScript(this.GetType(), "myScript", "<script>javascript: vpi();</script>");
                 }
 
                 else
                 {
-                    lbError.Text = "No se ha agregado la Casa..";
+                    lbError2.Text = "No se ha agregado la Casa..";
+                    ClientScript.RegisterStartupScript(this.GetType(), "myScript", "<script>javascript: vpi();</script>");
 
                 }
 
@@ -178,7 +189,8 @@ namespace ObligatorioFinal1
 
             catch (Exception ex)
             {
-                lbError.Text = ex.Message;
+                lbError2.Text = ex.Message;
+                ClientScript.RegisterStartupScript(this.GetType(), "myScript", "<script>javascript: vpi();</script>");
             }
         }
 
@@ -186,24 +198,18 @@ namespace ObligatorioFinal1
         {
             try
             {
-                modDdl.DataTextField = "Tipo";
-                modDdl.DataValueField = "IdEspe";
-                modDdl.DataSource = LogicaEspecializacion.Listar();
-                // modDdl.SelectedValue = TOMAR VALOR DE LA CASA SELECCIONADA
-                modDdl.DataBind();
 
                 Casa casa = new Casa();
-                casa.RUT = Convert.ToInt32(Convert.ToInt32(modRut.Text));
+                casa.RUT = Convert.ToInt64(modRut.Text);
                 casa.Nombre = modNombre.Text;
                 
                 if (modRut.Text == "")
                 {
-                    throw new Exception("ERROR: Ingrese un Rut.");
+                    lbError3.Text = ("ERROR: Ingrese un Rut.");
+                    ClientScript.RegisterStartupScript(this.GetType(), "myScript", "<script>javascript: vpi2();</script>");
                 }
 
-                casa.RUT = Convert.ToInt32(modRut.Text);
-
-
+                casa.RUT = Convert.ToInt64(modRut.Text);
 
                 int resultado = LogicaCasa.Modificar(casa);
 
@@ -223,13 +229,15 @@ namespace ObligatorioFinal1
                 }
                 else
                 {
-                    lbError.Text = "No se pudo modificar";
+                    lbError3.Text = "No se pudo modificar";
+                    ClientScript.RegisterStartupScript(this.GetType(), "myScript", "<script>javascript: vpi2();</script>");
                 }
             }
 
             catch (Exception ex)
             {
-                 lbError.Text = ex.Message;
+                 lbError3.Text = ex.Message;
+                ClientScript.RegisterStartupScript(this.GetType(), "myScript", "<script>javascript: vpi2();</script>");
             }
         }
 
@@ -256,6 +264,16 @@ namespace ObligatorioFinal1
 
                 lbError.Text = (ex.Message);
             }
+        }
+
+        protected void modDdl_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            ClientScript.RegisterStartupScript(this.GetType(), "myScript", "<script>javascript: vpi2();</script>");
+        }
+
+        protected void ddlEspecializacionAdd_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            ClientScript.RegisterStartupScript(this.GetType(), "myScript", "<script>javascript: vpi();</script>");
         }
     }
 }

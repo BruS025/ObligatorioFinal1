@@ -17,7 +17,7 @@ namespace Persistencia
             List<Casa> lista = new List<Casa>();
             
             SqlConnection conexion = new SqlConnection(Conexion.CnnString);
-            SqlCommand comando = new SqlCommand("SP_ListarCasa", conexion);
+            SqlCommand comando = new SqlCommand("SP_ListarTodasLasCasas", conexion);
             comando.CommandType = CommandType.StoredProcedure;
 
             
@@ -34,7 +34,7 @@ namespace Persistencia
 
                     casa.RUT = Convert.ToInt64(lector["Rut"].ToString());
                     casa.Especializacion = Convert.ToInt32(lector["IdEspe"].ToString());
-                    casa.Nombre = lector["Tipo"].ToString();
+                    casa.Nombre = lector["Nombre"].ToString();
 
                     lista.Add(casa);
                 }
