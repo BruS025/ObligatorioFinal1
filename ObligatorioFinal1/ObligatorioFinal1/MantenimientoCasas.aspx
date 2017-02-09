@@ -69,7 +69,7 @@
             <asp:GridView ID="GridCasas" runat="server" AllowPaging="true" OnPageIndexChanging="GridCasas_PageIndexChanging"        
                           AutoGenerateColumns="False" RowStyle-Height="34px" CellPadding="4" ForeColor="#333333" GridLines="None" HorizontalAlign="Center"
                           Visible="True" Width="100%" ShowFooter="false" ShowHeaderWhenEmpty="True" PageSize="10" Font-Size="Large" CaptionAlign="Top" 
-                          HeaderStyle-HorizontalAlign="Center" HeaderStyle-VerticalAlign="Middle" PagerSettings-Mode="NextPrevious">
+                          HeaderStyle-HorizontalAlign="Center" HeaderStyle-VerticalAlign="Middle" PagerSettings-Mode="NextPrevious" OnRowDeleting="GridCasas_RowDeleting" OnSelectedIndexChanging="GridCasas_SelectedIndexChanging">
 
         <AlternatingRowStyle BackColor="White" />
 

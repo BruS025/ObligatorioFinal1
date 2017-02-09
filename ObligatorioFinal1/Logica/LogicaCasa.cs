@@ -28,7 +28,7 @@ namespace Logica
 
         public static int Eliminar(long rut)
         {
-            throw new NotImplementedException();
+            return PersistenciaCasa.Eliminar(rut);
         }
 
         public static List<Casa> Listar()

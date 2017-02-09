@@ -15,6 +15,44 @@ GO
 USE OBLIGATORIOFINAL
 GO
 
+--Creo la tabla Especializacion
+CREATE TABLE Especializacion
+(
+	Tipo VARCHAR(20) NOT NULL,
+	IdEspe INT PRIMARY KEY IDENTITY(1,1)
+)
+GO
+
+--Especializaciones Basicos
+INSERT INTO Especializacion VALUES('Pizzeria')
+INSERT INTO Especializacion VALUES('Parrillada')
+INSERT INTO Especializacion VALUES('Minutas')
+INSERT INTO Especializacion VALUES('Internacional')
+INSERT INTO Especializacion VALUES('Vegetariano')
+GO
+
+--Creo la tabla Cargo
+CREATE TABLE Cargo
+(
+	Tipo VARCHAR(20) NOT NULL,
+	IdCargo INT PRIMARY KEY IDENTITY(1,1)
+)
+GO
+
+-- Cargos Basicos
+INSERT INTO Cargo VALUES ('ADMIN')
+INSERT INTO Cargo VALUES ('GERENTE')
+GO
+
+--Creo la tabla Casa
+CREATE TABLE Casa   
+(
+	Rut BIGINT NOT NULL PRIMARY KEY,
+	IdEspe INT NOT NULL,
+	Nombre VARCHAR (20) NOT NULL
+)
+GO
+
 --Creo la tabla Usuarios
 CREATE TABLE Usuario
 (
@@ -42,28 +80,7 @@ CREATE TABLE Administrador
 	Cargo VARCHAR(20)
 )
 GO
---Creo la tabla Especializacion
-CREATE TABLE Especializacion
-(
-	Tipo VARCHAR(20) NOT NULL,
-	IdEspe INT PRIMARY KEY IDENTITY(1,1)
-)
-GO
---Creo la tabla Cargo
-CREATE TABLE Cargo
-(
-	Tipo VARCHAR(20) NOT NULL,
-	IdCargo INT PRIMARY KEY IDENTITY(1,1)
-)
-GO
---Creo la tabla Casa
-CREATE TABLE Casa   
-(
-	Rut BIGINT NOT NULL PRIMARY KEY,
-	IdEspe INT NOT NULL,
-	Nombre VARCHAR (20) NOT NULL
-)
-GO
+
 --Creo la tabla Plato
 CREATE TABLE Plato 
 (
@@ -351,7 +368,7 @@ BEGIN
 END
 GO
 
-ALTER PROCEDURE SP_ListarTodasLasCasas
+CREATE PROCEDURE SP_ListarTodasLasCasas
 AS
 BEGIN
 	SELECT C.Nombre,
@@ -391,7 +408,7 @@ END
 
 
 -- Consultas basicas
-
+/*
 select * from Usuario
 select * from Cliente
 select * from Administrador
@@ -403,20 +420,21 @@ select * from Pedido
 select * from Compran 
 select * from Realizan 
 select * from Casa c join Especializacion e on c.IdEspe=e.IdEspe
+*/
 
 -- DATOS DE PRUEBA
---Especializaciones Basicos
-INSERT INTO Especializacion VALUES('Pizzeria')
-INSERT INTO Especializacion VALUES('Parrillada')
-INSERT INTO Especializacion VALUES('Minutas')
-INSERT INTO Especializacion VALUES('Internacional')
-INSERT INTO Especializacion VALUES('Vegetariano')
+INSERT INTO casa VALUES(1234123412341234,1,'ComidaRica')
 
--- Cargos Basicos
-INSERT INTO Cargo VALUES ('ADMIN')
-INSERT INTO Cargo VALUES ('GERENTE')
 
+
+
+
+
+/*
 -- TEST SP
 DECLARE @RETORNO INT
 EXEC @RETORNO = SP_AgregarCasa 12345,1,pruebaparri
 PRINT @retorno
+
+
+*/

@@ -165,5 +165,35 @@ namespace Persistencia
                 conexion.Close();
             }
         }
+
+        public static int Eliminar(long rut)
+        {
+            SqlConnection conexion = new SqlConnection(Conexion.CnnString);
+            SqlCommand comando = new SqlCommand("SP_EliminarCasa", conexion);
+            comando.CommandType = CommandType.StoredProcedure;
+
+            SqlParameter parametroRut = new SqlParameter("@RutCasa ", rut);
+            comando.Parameters.Add(parametroRut);
+
+            try
+            {
+                conexion.Open();
+                int resultado = comando.ExecuteNonQuery();
+                return resultado;
+            }
+            catch (SqlException sqlex)
+            {
+                throw sqlex;
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+            finally
+            {
+                conexion.Close();
+            }
+        }
     }
 }

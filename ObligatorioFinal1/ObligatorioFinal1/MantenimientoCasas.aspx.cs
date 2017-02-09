@@ -275,6 +275,51 @@ namespace ObligatorioFinal1
         {
             ClientScript.RegisterStartupScript(this.GetType(), "myScript", "<script>javascript: vpi();</script>");
         }
+
+        // Borrar una casa
+        protected void GridCasas_RowDeleting(object sender, GridViewDeleteEventArgs e)
+        {
+            try
+            {
+                lbError.Text = "Eliminar";
+                lbError.Text = GridCasas.Rows[e.RowIndex].Cells[1].Text;
+
+                int resultado = 0;
+
+                resultado = LogicaCasa.Eliminar(Convert.ToInt64(GridCasas.Rows[e.RowIndex].Cells[1].Text));
+
+                if (resultado == 1) // ok
+                {
+                    lbError.Text = "Se ha eliminado cliente.";
+                    CargarGrilla();
+                }
+
+                else if (resultado == -1)
+                {
+                    lbError.Text = "No es posible eliminar un cliente con ventas asociadas.";
+                }
+
+                else
+                {
+                    GridCasas.Visible = false;
+                    lbError.Text = "No existen clientes registrados.";
+                }
+
+            }
+
+            catch (Exception ex)
+            {
+                lbError.Text = ex.Message;
+            }
+        }
+
+        // Cargar datos en editar
+        protected void GridCasas_SelectedIndexChanging(object sender, GridViewSelectEventArgs e)
+        {
+            modRut.Text = this.GridCasas.Rows[e.NewSelectedIndex].Cells[1].Text;
+            modNombre.Text = this.GridCasas.Rows[e.NewSelectedIndex].Cells[2].Text;
+            modDdl.SelectedIndex = ddlBuscar.SelectedIndex;
+        }
     }
 }
 
