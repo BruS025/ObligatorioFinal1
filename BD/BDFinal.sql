@@ -100,7 +100,7 @@ CREATE TABLE Realizan
 (
 	IdPlato INT FOREIGN KEY REFERENCES Plato(IdPlato) ON DELETE CASCADE,
 	IdLogueo INT FOREIGN KEY REFERENCES Usuario(IdLogueo),
-	IdPedido INT NOT NULL PRIMARY KEY IDENTITY (1,1)
+	IdPedido INT NOT NULL PRIMARY KEY IDENTITY (1,1),
 	Cantidad INT NOT NULL
 )
 GO
@@ -152,11 +152,6 @@ BEGIN
 					END
 		END	
 GO
-DECLARE @RETORNO INT
-EXEC @RETORNO = SP_AgregarCliente pruebacliente,pruebacliente,pass1,123456,pruebacliente,123456789000,calle1,1414
-PRINT @retorno
-go
--- -1 documento existente -2 nombrelogueo existente 
 
 --SP Necesarios para administradores
 CREATE PROCEDURE SP_AgregarAdministrador
@@ -203,11 +198,8 @@ BEGIN
 					END
 		END	
 GO
-DECLARE @RETORNO INT
-EXEC @RETORNO = SP_AgregarAdministrador pruebaAdmin,pruebaAdmin,pass1,123456789,uadminn1,pruebaadmin
-PRINT @retorno
+
 -- -1 documento existente -2 nombrelogueo existente 
-GO
 CREATE PROCEDURE SP_ModificarAdministrador
 @NombreM VARCHAR(20),
 @ApellidoM VARCHAR (20),
@@ -257,10 +249,7 @@ BEGIN
 			END
 END
 GO
-DECLARE @RETORNO INT
-EXEC @RETORNO = SP_ModificarAdministrador pruebaAdminMOD,pruebaAdminMOD,pass1,123456789,uadminn1,pruebaadminMOD
-PRINT @retorno
-go
+
 --Creo sp para casas
 CREATE PROCEDURE SP_AgregarCasa
 @RutN BIGINT,
@@ -289,22 +278,7 @@ BEGIN
 						RETURN 1
 					END
 END
-go
-DECLARE @RETORNO INT
-EXEC @RETORNO = SP_AgregarCasa 12345,1,pruebaparri
-PRINT @retorno
 GO
---insert Especializaciones Basicos
-INSERT INTO Especializacion VALUES('Pizzeria')
-INSERT INTO Especializacion VALUES('Parrillada')
-INSERT INTO Especializacion VALUES('Minutas')
-INSERT INTO Especializacion VALUES('Internacional')
-INSERT INTO Especializacion VALUES('Vegetariano')
-go
-
-INSERT INTO Cargo VALUES ('ADMIN')
-INSERT INTO Cargo VALUES ('GERENTE')
-
 
 CREATE PROCEDURE SP_ModificarCasa
 @RutM BIGINT,
@@ -334,10 +308,6 @@ BEGIN
 			END
 END
 GO
-DECLARE @RETORNO INT
-EXEC @RETORNO = SP_ModificarCasa 123456789,4,pruebapizzeMOD
-PRINT @retorno
-GO
 
 CREATE PROCEDURE SP_BuscarCasa
 @RutB BIGINT,
@@ -356,11 +326,9 @@ BEGIN
 		 WHERE
 			  C.Rut=@RutB AND E.IdEspe=@IdEspe
 END
-
-DECLARE @RETORNO INT
-EXEC @RETORNO = SP_BuscarCasa 123456789,4
-PRINT @retorno
 GO	
+
+CREATE PROCEDURE SP_BorrarCasa
 @RutB INT
 AS
 BEGIN
@@ -381,9 +349,7 @@ BEGIN
 				RETURN 1
 			END
 END
-DECLARE @RETORNO INT
-EXEC @RETORNO = SP_BorrarCasa 123456789
-PRINT @retorno
+GO
 
 CREATE PROCEDURE SP_ListarTodasLasCasas
 AS
@@ -393,6 +359,7 @@ BEGIN
 		   E.Tipo
     FROM Casa C JOIN Especializacion E ON C.IdEspe=E.IdEspe
 END
+GO
 
 CREATE PROCEDURE SP_ListarCasa
 @IdEspeMostrar INT
@@ -404,6 +371,7 @@ BEGIN
     FROM Casa C JOIN Especializacion E ON C.IdEspe=E.IdEspe
 	WHERE E.IdEspe=@IdEspeMostrar
 END
+GO
 
 -- Listar especializaciones
 CREATE PROCEDURE SP_ListarEspecializaciones
@@ -411,6 +379,7 @@ AS
 BEGIN
 	SELECT * FROM Especializacion;
 END
+GO
 
 -- Listar cargos
 CREATE PROCEDURE SP_ListarCargos
@@ -420,6 +389,7 @@ BEGIN
 END
 
 
+-- Consultas basicas
 
 select * from Usuario
 select * from Cliente
@@ -432,7 +402,20 @@ select * from Pedido
 select * from Compran 
 select * from Realizan 
 select * from Casa c join Especializacion e on c.IdEspe=e.IdEspe
-go
 
-insert into Plato VALUES(1234,'PRUEBABORRAR',123)
-INSERT INTO Tienen VALUES (123456789,1234)
+-- DATOS DE PRUEBA
+--Especializaciones Basicos
+INSERT INTO Especializacion VALUES('Pizzeria')
+INSERT INTO Especializacion VALUES('Parrillada')
+INSERT INTO Especializacion VALUES('Minutas')
+INSERT INTO Especializacion VALUES('Internacional')
+INSERT INTO Especializacion VALUES('Vegetariano')
+
+-- Cargos Basicos
+INSERT INTO Cargo VALUES ('ADMIN')
+INSERT INTO Cargo VALUES ('GERENTE')
+
+-- TEST SP
+DECLARE @RETORNO INT
+EXEC @RETORNO = SP_AgregarCasa 12345,1,pruebaparri
+PRINT @retorno
