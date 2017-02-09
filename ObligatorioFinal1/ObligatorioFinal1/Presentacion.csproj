@@ -94,6 +94,9 @@
     <Reference Include="System.EnterpriseServices" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="ImagenesPlato\1.jpg" />
+    <Content Include="Imagenes\logo.png" />
+    <Content Include="Imagenes\favicon.ico" />
     <Content Include="packages.config" />
     <Content Include="ApplicationInsights.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
@@ -114,6 +117,7 @@
     <Content Include="MantenimientoCrearPedido.aspx" />
     <Content Include="MantenimientoPedidosPendientes.aspx" />
     <Content Include="MantenimientoAdmins.aspx" />
+    <Content Include="BienvenidaAdministrador.aspx" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -136,7 +140,6 @@
     <Content Include="js\bootstrap.min.js" />
     <Content Include="js\jquery.min.js" />
     <Content Include="js\npm.js" />
-    <Content Include="Plato.ascx" />
     <Content Include="Register.aspx" />
     <Content Include="scripts\ai.0.15.0-build58334.js" />
     <Content Include="scripts\ai.0.15.0-build58334.min.js" />
@@ -159,13 +162,6 @@
     </Compile>
     <Compile Include="MasterPage.Master.designer.cs">
       <DependentUpon>MasterPage.Master</DependentUpon>
-    </Compile>
-    <Compile Include="Plato.ascx.cs">
-      <DependentUpon>Plato.ascx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Plato.ascx.designer.cs">
-      <DependentUpon>Plato.ascx</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Register.aspx.cs">
@@ -224,10 +220,27 @@
     <Compile Include="MantenimientoAdmins.aspx.designer.cs">
       <DependentUpon>MantenimientoAdmins.aspx</DependentUpon>
     </Compile>
+    <Compile Include="BienvenidaAdministrador.aspx.cs">
+      <DependentUpon>BienvenidaAdministrador.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="BienvenidaAdministrador.aspx.designer.cs">
+      <DependentUpon>BienvenidaAdministrador.aspx</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Models\" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\EntidadesCompartidas\EntidadesCompartidas.csproj">
+      <Project>{44028431-f613-4d0b-b678-45be4128cab2}</Project>
+      <Name>EntidadesCompartidas</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Logica\Logica.csproj">
+      <Project>{6d6a3ea9-7fc9-4c2a-803f-fc8c9e40bb8d}</Project>
+      <Name>Logica</Name>
+    </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

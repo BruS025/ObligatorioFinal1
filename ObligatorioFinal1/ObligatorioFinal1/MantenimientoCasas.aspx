@@ -33,87 +33,240 @@
     <div class="col-md-12">
 
         <div class="col-md-2">
-            <asp:Label ID="Label1" ForeColor="Black" runat="server" Height="34px" Text="RUT casa:" Font-Size="Large"></asp:Label>                      
+            <asp:Label ID="Label1" ForeColor="Black" runat="server" Height="34px" Text="Buscar una casa:" Font-Size="Large"></asp:Label>                      
         </div>
 
         <div class="col-md-2">
-            <asp:TextBox ID="rutVerificar" runat="server" Height="34px" ></asp:TextBox>
+            <asp:DropDownList ID="ddlBuscar" AutoPostBack="true" runat="server" Height="34px" DataTextField="Tipo" DataValueField="IdEspe"></asp:DropDownList>
         </div>
 
         <div class="col-md-2">
-            <asp:Button ID="btVerificar" CssClass="btn btn-default" runat="server" Text="Verificar" Height="34px" />
+            <asp:TextBox ID="rutVerificar" runat="server" Height="34px" Placeholder=" Rut"></asp:TextBox>
+        </div>
+
+        <div class="col-md-2">
+            <asp:Button ID="btVerificar" CssClass="btn btn-md btn-primary" runat="server" Text="Buscar" Height="34px" OnClick="btVerificar_Click" />
         </div>
 
     </div>
 
-    <div class="col-md-12" id="divCasa" runat="server" height="34px">
+    <div class="col-md-12" id="divCasa" runat="server" height="34px">                      
 
-        <div class="col-md-2">
-            <asp:TextBox ID="rut" runat="server"  Height="34px" Enabled="false" Placeholder="RUT" ></asp:TextBox>
-        </div>
+         <div class="col-md-12" runat="server">
+            <div class="col-md-2" runat="server">
+                <button type="button" class="btn-md btn-primary" data-toggle="modal" data-target="#agregarModal" data-whatever="Agregar una casa"><span aria-hidden="true" class="glyphicon glyphicon-plus"></span> Agregar</button>
+            </div>
 
-        <div class="col-md-2">
-            <asp:TextBox ID="nombre" runat="server" Height="34px" Enabled="false" Placeholder="Nombre"></asp:TextBox>
-        </div>
-
-        <div class="col-md-2">
-            <asp:DropDownList ID="ddlEspecializacion" runat="server" Enabled="false" AutoPostBack="True" Height="34px">
-                <asp:ListItem Value="0">Pizzeria</asp:ListItem>
-                <asp:ListItem Value="1">Parrillada</asp:ListItem>
-                <asp:ListItem Value="2">Minutas</asp:ListItem>
-                <asp:ListItem Value="3">Internacional</asp:ListItem>
-                <asp:ListItem Value="4">Vegetariano</asp:ListItem>
-            </asp:DropDownList>
-        </div>
-                       
-        <div class="col-md-1">
-            <asp:Button ID="btAgregar" CssClass="btn btn-default" runat="server" Text="Agregar" Height="34px" />
+            <div class="col-md-2" runat="server">
+                <button type="button" visible="false" id="btModificar" runat="server" class="btn-md btn-success" data-toggle="modal" data-target="#editarModal" data-whatever="Editar casa"><span aria-hidden="true" class="glyphicon glyphicon-pencil"></span> Editar</button>
+            </div>
         </div>
 
-        <div class="col-md-1">
-            <asp:Button ID="btModificar" CssClass="btn btn-default" runat="server" Text="Modificar" Height="34px" />
-        </div>
-
-        <div class="col-md-1">
-            <asp:Button ID="btCancelar" CssClass="btn btn-default" runat="server" Text="Cancelar" Height="34px" />
-        </div>
-
-        <div class="col-md-1">
-            <asp:Button ID="btEliminar" CssClass="btn btn-default" runat="server" Text="Eliminar" Height="34px" />
-        </div>
+        <br />
+        <br />
 
         <div class="col-md-12">
             <asp:GridView ID="GridCasas" runat="server" AllowPaging="true" OnPageIndexChanging="GridCasas_PageIndexChanging"        
-        AutoGenerateColumns="False" RowStyle-Height="34px" CellPadding="4" ForeColor="#333333" GridLines="None" HorizontalAlign="Center"
-        Visible="True" Width="98%" ShowFooter="False" ShowHeaderWhenEmpty="True" PageSize="10" Font-Size="Large" CaptionAlign="Top">
+                          AutoGenerateColumns="False" RowStyle-Height="34px" CellPadding="4" ForeColor="#333333" GridLines="None" HorizontalAlign="Center"
+                          Visible="True" Width="100%" ShowFooter="false" ShowHeaderWhenEmpty="True" PageSize="10" Font-Size="Large" CaptionAlign="Top" 
+                          HeaderStyle-HorizontalAlign="Center" HeaderStyle-VerticalAlign="Middle" PagerSettings-Mode="NextPrevious">
 
         <AlternatingRowStyle BackColor="White" />
 
           <Columns>
 
-              <asp:BoundField HeaderStyle-BorderWidth="2px" ItemStyle-Font-Size="Small" DataField="RUT" HeaderText="RUT"/>
-              <asp:BoundField HeaderStyle-BorderWidth="2px" ItemStyle-Font-Size="Small" DataField="Nombre" HeaderText="Nombre"/>
-              <asp:BoundField HeaderStyle-BorderWidth="2px" ItemStyle-Font-Size="Small" DataField="Especializacion" HeaderText="Especializacion" />                                      
+           <asp:TemplateField HeaderStyle-BorderWidth="2px" ItemStyle-HorizontalAlign="Center" ControlStyle-Font-Size="Medium" ControlStyle-CssClass="btn-primary btn-md" HeaderText="Editar">
+                <ItemTemplate>
+
+                <asp:LinkButton ID="btnSeleccionar" runat="server" OnClick="btnSeleccionar_Click" CommandName="select" CssClass="btn btn-md btn-danger" ForeColor="Black" BackColor="Transparent">
+                    <span aria-hidden="true" class="glyphicon glyphicon-pencil"></span>
+                </asp:LinkButton>
+         
+                </ItemTemplate>
+
+            </asp:TemplateField>
+
+            <asp:BoundField HeaderStyle-BorderWidth="2px" ItemStyle-Font-Size="Medium" DataField="RUT" HeaderText="RUT"/>
+            <asp:BoundField HeaderStyle-BorderWidth="2px" ItemStyle-Font-Size="Medium" DataField="Nombre" HeaderText="Nombre"/>                                     
+
+             <asp:TemplateField HeaderStyle-BorderWidth="2px" ItemStyle-HorizontalAlign="Center" ControlStyle-Font-Size="Medium" ControlStyle-CssClass="btn-danger btn-danger btn-md" HeaderText="Eliminar">
+                <ItemTemplate>
+
+                    <asp:LinkButton ID="btEliminar" runat="server" CommandName="delete" CssClass="btn btn-md btn-danger" ForeColor="Black" BackColor="Transparent">
+                        <span aria-hidden="true" class="glyphicon glyphicon-remove-circle"></span>
+                    </asp:LinkButton>
+
+                </ItemTemplate>
+            </asp:TemplateField> 
 
           </Columns>
 
-                    <FooterStyle BackColor="#990000" Font-Bold="True" ForeColor="White" />
-                    <HeaderStyle BackColor="Red" Font-Bold="True" ForeColor="White" />
-                    <PagerStyle BackColor="#FFCC66" ForeColor="#333333" HorizontalAlign="Center" />
-                    <RowStyle BackColor="#FFFBD6" ForeColor="#333333" />
-                    <SelectedRowStyle BackColor="#FFCC66" Font-Bold="True" ForeColor="Navy" />
-                    <SortedAscendingCellStyle BackColor="#FDF5AC" />
-                    <SortedAscendingHeaderStyle BackColor="#4D0000" />
-                    <SortedDescendingCellStyle BackColor="#FCF6C0" />
-                    <SortedDescendingHeaderStyle BackColor="#820000" />
-                    <PagerStyle BackColor="#B50000" ForeColor="White" />
+          <FooterStyle BackColor="DarkTurquoise" Font-Bold="True" ForeColor="White" />
+          <HeaderStyle BackColor="LightBlue" Font-Bold="True" ForeColor="White" />
+          <PagerStyle BackColor="DarkTurquoise" ForeColor="#333333" HorizontalAlign="Center" />
+          <RowStyle BackColor="White" ForeColor="#333333" />
+          <SelectedRowStyle BackColor="LightGray" Font-Bold="True" ForeColor="White" />
+          <PagerStyle BackColor="DarkTurquoise" ForeColor="White" />
 
         </asp:GridView>
        </div>
 
-    </div>
+       <div class="col-md-12">
+           <br />
+           <p class="text-center"><asp:Label ID="lbError" runat="server" Text="" ForeColor="Red"></asp:Label></p> 
+           <br />
+       </div>
 
+    </div>
+</div>    
 </div>
-</div>     
+
+
+
+<div class="modal fade" id="agregarModal" tabindex="-1" role="dialog">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Cerrar"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" runat="server"><asp:Label ID="Label2" runat="server" Text="Agregar una casa"></asp:Label></h4>
+      </div>
+             <div class="form-group" >
+            <br />
+
+           <div class="col-md-12">
+                <div class="col-md-4">                  
+                    <label for="message-text" class="control-label">Rut de la casa:</label>
+                </div>
+                <div class="col-md-4">
+                    <asp:TextBox ID="rutCasa" runat="server" Height="34px" Placeholder=" Rut"></asp:TextBox>
+                </div>
+            </div>
+
+              <br />
+              <br />
+              <br />
+
+            <div class="col-md-12">
+                <div class="col-md-4">                  
+                    <label for="message-text" class="control-label">Nombre de la casa:</label>
+                </div>
+                <div class="col-md-4">
+                    <asp:TextBox ID="nombreCasa" runat="server" Height="34px" Placeholder=" Nombre"></asp:TextBox>
+                </div>
+            </div>
+
+              <br />
+              <br />
+              <br />
+
+             <div class="col-md-12">
+                <div class="col-md-5">                  
+                    <label for="message-text" class="control-label">Especializacion de la casa:</label>
+                </div>
+                <div class="col-md-4">
+                    <asp:DropDownList ID="ddlEspecializacionAdd" AutoPostBack="true" runat="server" Height="34px" DataTextField="Tipo" DataValueField="IdEspe" OnSelectedIndexChanged="ddlEspecializacionAdd_SelectedIndexChanged">
+                    </asp:DropDownList>
+                </div>
+               </div>
+
+              <br />
+              <br />
+
+       <div class="col-md-12">
+           <br />
+           <br />
+           <p class="text-center"><asp:Label ID="lbError2" runat="server" Text="" ForeColor="Red"></asp:Label></p> 
+       </div>
+
+            </div> 
+      <div class="modal-footer">                       
+              <asp:Button ID="btAgregarModal" runat="server" CssClass="btn-md btn-success" OnClick="btAgregar_Click" Text="Guardar" />   
+      </div>
+    </div>
+  </div>
+</div>
+ 
+<div class="modal fade" id="editarModal" tabindex="-1" role="dialog">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Cerrar"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="H1" runat="server"><asp:Label ID="modTitulo" runat="server" Text="Editar una casa"></asp:Label></h4>
+      </div>
+      <div class="modal-body">      
+          <div class="form-group" >
+
+           <div class="col-md-12">
+                <div class="col-md-4">                  
+                    <label for="message-text" class="control-label">Rut de la casa:</label>
+                </div>
+                <div class="col-md-4">
+                    <asp:TextBox ID="modRut" runat="server" Height="34px" Placeholder=" Rut"></asp:TextBox>
+                </div>
+            </div>
+
+              <br />
+              <br />
+              <br />
+
+            <div class="col-md-12">
+                <div class="col-md-4">                  
+                    <label for="message-text" class="control-label">Nombre de la casa:</label>
+                </div>
+                <div class="col-md-4">
+                    <asp:TextBox ID="modNombre" runat="server" Height="34px" Placeholder=" Nombre"></asp:TextBox>
+                </div>
+            </div>
+
+              <br />
+              <br />
+              <br />
+
+             <div class="col-md-12">
+                <div class="col-md-5">                  
+                    <label for="message-text" class="control-label">Especializacion de la casa:</label>
+                </div>
+                <div class="col-md-4">
+                    <asp:DropDownList ID="modDdl" runat="server" Height="34px" DataTextField="Tipo" DataValueField="IdEspe" OnSelectedIndexChanged="modDdl_SelectedIndexChanged" AutoPostBack="true"></asp:DropDownList>
+                </div>
+               </div>
+
+              <br />
+            </div>
+
+       <div class="col-md-12">
+           <br />
+           <br />
+           <p class="text-center"><asp:Label ID="lbError3" runat="server" Text="" ForeColor="Red"></asp:Label></p> 
+           <br />
+       </div>
+
+      </div>
+      <div class="modal-footer">                       
+              <asp:Button ID="btGuardarModal" runat="server" CssClass="btn-md btn-success" OnClick="btGuardar_Click" Text="Guardar" />   
+      </div>
+    </div>
+  </div>
+</div>
+
+ <script>
+
+     function vpi() { $('#agregarModal').modal('show') }
+     function vpi2() { $('#editarModal').modal('show') }
+
+     $('#agregarModal').on('show.bs.modal', function (event) {
+         var button = $(event.relatedTarget) // Button that triggered the modal
+         var recipient = button.data('whatever')
+         var modal = $(this)
+     })
+
+     $('#editarModal').on('show.bs.modal', function (event) {
+         var button = $(event.relatedTarget) // Button that triggered the modal
+         var recipient = button.data('whatever')
+         var modal = $(this)
+     })
+         
+   
+ </script>
 
 </asp:Content>

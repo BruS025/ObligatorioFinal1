@@ -24,15 +24,16 @@
             <form class="form-signin" runat="server">
                 <span id="reauth-email" class="reauth-email"></span>
                 <p class="input_title">Nombre de usuario</p>
-                <input type="text" id="inputEmail" runat="server" class="login_box" placeholder="Ingrese nombre de usuario" required="required" autofocus="autofocus" height="44px" />
+                <input type="text" id="inputEmail" runat="server" class="login_box" placeholder=" Ingrese nombre de usuario" required="required" autofocus="autofocus" height="44px" />
                 <p class="input_title">Contraseña</p>
-                <input type="password" id="inputPassword" runat="server" class="login_box" placeholder="******" required="required" autofocus="autofocus" autocomplete="off"/>                                             
+                <input type="password" id="inputPassword" runat="server" class="login_box" placeholder=" ******" required="required" autofocus="autofocus" autocomplete="off"/>                                             
 
                 <asp:Button ID="entrar" CssClass="btn btn-lg btn-primary" runat="server" Text="Entrar" OnClick="entrar_Click" Width="100%"/>
 
                 <br/><br/>
                 <p>Queres comer ya pero no tenes usuario? <asp:LinkButton ID="register" runat="server" PostBackUrl="~/Register.aspx">Registrarse</asp:LinkButton> </p>
                 
+                <p class="text-center"><asp:Label ID="lbError" runat="server" Text="" ForeColor="Red"></asp:Label></p> 
 
             </form><!-- /form -->
         </div><!-- /card-container -->

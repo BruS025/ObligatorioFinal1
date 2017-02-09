@@ -7,19 +7,11 @@ using System.Web.UI.WebControls;
 
 namespace ObligatorioFinal1
 {
-    public partial class Plato : System.Web.UI.UserControl
+    public partial class WebForm8 : System.Web.UI.Page
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            try
-            {
 
-            }
-            catch (Exception)
-            {
-
-                throw;
-            }
         }
     }
 }

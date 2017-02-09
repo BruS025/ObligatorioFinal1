@@ -49,6 +49,51 @@ namespace ObligatorioFinal1 {
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl divAdmin;
         
         /// <summary>
+        /// btModificarModal control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlButton btModificarModal;
+        
+        /// <summary>
+        /// GridAdmins control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.GridView GridAdmins;
+        
+        /// <summary>
+        /// lbError control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbError;
+        
+        /// <summary>
+        /// exampleModalLabel control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl exampleModalLabel;
+        
+        /// <summary>
+        /// Label2 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label Label2;
+        
+        /// <summary>
         /// docAdmin control.
         /// </summary>
         /// <remarks>
@@ -58,13 +103,13 @@ namespace ObligatorioFinal1 {
         protected global::System.Web.UI.WebControls.TextBox docAdmin;
         
         /// <summary>
-        /// userAdmin control.
+        /// usAdmin control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox userAdmin;
+        protected global::System.Web.UI.WebControls.TextBox usAdmin;
         
         /// <summary>
         /// nombreAdmin control.
@@ -85,57 +130,93 @@ namespace ObligatorioFinal1 {
         protected global::System.Web.UI.WebControls.TextBox apellidoAdmin;
         
         /// <summary>
-        /// ddlCargosAdmin control.
+        /// ddlCargo control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlCargosAdmin;
+        protected global::System.Web.UI.WebControls.DropDownList ddlCargo;
         
         /// <summary>
-        /// btAgregar control.
+        /// btAgregarModal control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btAgregar;
+        protected global::System.Web.UI.WebControls.Button btAgregarModal;
         
         /// <summary>
-        /// btModificar control.
+        /// H1 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btModificar;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl H1;
         
         /// <summary>
-        /// btCancelar control.
+        /// modTitulo control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btCancelar;
+        protected global::System.Web.UI.WebControls.Label modTitulo;
         
         /// <summary>
-        /// btEliminar control.
+        /// editarDoc control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btEliminar;
+        protected global::System.Web.UI.WebControls.TextBox editarDoc;
         
         /// <summary>
-        /// GridAdmins control.
+        /// editarUsuario control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView GridAdmins;
+        protected global::System.Web.UI.WebControls.TextBox editarUsuario;
+        
+        /// <summary>
+        /// editarNombre control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox editarNombre;
+        
+        /// <summary>
+        /// editarApellido control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox editarApellido;
+        
+        /// <summary>
+        /// editarDdl control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList editarDdl;
+        
+        /// <summary>
+        /// btGuardarModal control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btGuardarModal;
     }
 }
