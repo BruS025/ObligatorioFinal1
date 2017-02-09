@@ -369,7 +369,7 @@ GO
 --SP Necesarios para Pedidos
 ----------------------------
 
-CREATE PROCEDURE SP_AgregarPedido
+--CREATE PROCEDURE SP_AgregarPedido
 
 
 
