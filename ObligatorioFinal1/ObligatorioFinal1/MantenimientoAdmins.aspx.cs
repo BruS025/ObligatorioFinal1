@@ -75,5 +75,25 @@ namespace ObligatorioFinal1
                 lbError.Text = (ex.Message);
             }
         }
+
+        protected void GridAdmins_RowDeleting(object sender, GridViewDeleteEventArgs e)
+        {
+
+        }
+
+        protected void GridAdmins_SelectedIndexChanging(object sender, GridViewSelectEventArgs e)
+        {
+
+        }
+
+        protected void ddlCargo_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        protected void editarDdl_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }

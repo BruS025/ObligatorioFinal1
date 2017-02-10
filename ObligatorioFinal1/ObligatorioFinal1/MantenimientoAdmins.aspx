@@ -46,6 +46,9 @@
 
     </div>
 
+    <br />
+    <br /> 
+
     <div class="col-md-12" id="divAdmin" runat="server" height="34px">
                        
         <div class="col-md-12" runat="server">
@@ -65,7 +68,7 @@
             <asp:GridView ID="GridAdmins" runat="server" AllowPaging="true" OnPageIndexChanging="GridAdmins_PageIndexChanging"        
         AutoGenerateColumns="False" RowStyle-Height="34px" CellPadding="4" ForeColor="#333333" GridLines="None" HorizontalAlign="Center"
                           Visible="True" Width="100%" ShowFooter="false" ShowHeaderWhenEmpty="True" PageSize="10" Font-Size="Large" CaptionAlign="Top" 
-                          HeaderStyle-HorizontalAlign="Center" HeaderStyle-VerticalAlign="Middle" PagerSettings-Mode="NextPrevious">
+                          HeaderStyle-HorizontalAlign="Center" HeaderStyle-VerticalAlign="Middle" PagerSettings-Mode="NextPrevious" OnRowDeleting="GridAdmins_RowDeleting" OnSelectedIndexChanging="GridAdmins_SelectedIndexChanging">
 
         <AlternatingRowStyle BackColor="White" />
 
@@ -123,12 +126,12 @@
 </div>     
 
 
-<div class="modal fade" id="agregarModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel">
+<div class="modal fade" id="agregarModal" tabindex="-1" role="dialog">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-label="Cerrar"><span aria-hidden="true">&times;</span></button>
-        <h4 class="modal-title" id="exampleModalLabel" runat="server"><asp:Label ID="Label2" runat="server" Text="PlatoNombre"></asp:Label></h4>
+        <h4 class="modal-title" runat="server"><asp:Label ID="Label2" runat="server" Text="Agregar administrador:"></asp:Label></h4>
       </div>
              <div class="form-group" >
             <br />
@@ -189,16 +192,14 @@
                 <div class="col-md-4">                  
                     <label for="message-text" class="control-label">Cargo de administrador:</label>
             </div>
-                <div class="col-md-2">
-                    <asp:DropDownList ID="ddlCargo" runat="server" AutoPostBack="True" Height="34px">
-                        <asp:ListItem Value="0">Petero</asp:ListItem>
-                        <asp:ListItem Value="1">Senton</asp:ListItem>
-                    </asp:DropDownList>
+                <div class="col-md-4">
+                    <asp:DropDownList ID="ddlCargo" runat="server" AutoPostBack="True" Height="34px" DataTextField="Nombre" DataValueField="Id" OnSelectedIndexChanged="ddlCargo_SelectedIndexChanged"></asp:DropDownList>
                 </div>
             </div>
 
               <br />
               <br />
+
             </div> 
       <div class="modal-footer">                       
               <asp:Button ID="btAgregarModal" runat="server" CssClass="btn-md btn-success" OnClick="btAgregarModal_Click" Text="Guardar" />   
@@ -207,12 +208,12 @@
   </div>
 </div>
  
-<div class="modal fade" id="editarModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel">
+<div class="modal fade" id="editarModal" tabindex="-1" role="dialog">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-label="Cerrar"><span aria-hidden="true">&times;</span></button>
-        <h4 class="modal-title" id="H1" runat="server"><asp:Label ID="modTitulo" runat="server" Text="nombreCasa"></asp:Label></h4>
+        <h4 class="modal-title" id="H1" runat="server"><asp:Label ID="modTitulo" runat="server" Text="Editar administrador"></asp:Label></h4>
       </div>
       <div class="modal-body">      
           <div class="form-group" >
@@ -223,7 +224,7 @@
                     <label for="message-text" class="control-label">Documento del administrador:</label>
                 </div>
                 <div class="col-md-4">
-                    <asp:TextBox ID="editarDoc" runat="server" Height="34px" Placeholder=" Documento"></asp:TextBox>
+                    <asp:TextBox ID="editarDoc" runat="server" Height="34px" Enabled="false" Placeholder=" Documento"></asp:TextBox>
                 </div>
             </div>
 
@@ -275,10 +276,7 @@
                     <label for="message-text" class="control-label">Cargo de administrador:</label>
             </div>
                 <div class="col-md-2">
-                    <asp:DropDownList ID="editarDdl" runat="server" AutoPostBack="True" Height="34px">
-                        <asp:ListItem Value="0">Petero</asp:ListItem>
-                        <asp:ListItem Value="1">Senton</asp:ListItem>
-                    </asp:DropDownList>
+                    <asp:DropDownList ID="editarDdl" runat="server" AutoPostBack="True" Height="34px" DataTextField="Nombre" DataValueField="Id" OnSelectedIndexChanged="editarDdl_SelectedIndexChanged"></asp:DropDownList>
                 </div>
             </div>
 
@@ -291,26 +289,25 @@
     </div>
   </div>
 </div>
+</div>
 
 <script>
+
+    function vpi() { $('#agregarModal').modal('show') }
+    function vpi2() { $('#editarModal').modal('show') }
 
      $('#agregarModal').on('show.bs.modal', function (event) {
          var button = $(event.relatedTarget) // Button that triggered the modal
          var recipient = button.data('whatever')
          var modal = $(this)
-         exampleModalLabel.innerText = recipient;
-         modal.find('.modal-title').text(recipient)
      })
 
      $('#editarModal').on('show.bs.modal', function (event) {
          var button = $(event.relatedTarget) // Button that triggered the modal
          var recipient = button.data('whatever')
          var modal = $(this)
-         exampleModalLabel.innerText = recipient;
-         modal.find('.modal-title').text(recipient)
      })
-         
-   
+           
  </script>
 
 </asp:Content>
