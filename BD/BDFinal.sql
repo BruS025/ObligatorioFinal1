@@ -423,6 +423,7 @@ INSERT INTO Especializacion VALUES('Vegetariano')
 INSERT INTO Cargo VALUES ('ADMIN')
 INSERT INTO Cargo VALUES ('GERENTE')
 
+/*
 -- DATOS DE PRUEBA
 INSERT INTO Casa VALUES(1234,1,'CASA1')
 INSERT INTO Casa VALUES(1235,1,'CASA2')
@@ -463,3 +464,4 @@ exec SP_BorrarCasa
 
 
 INSERT INTO CASA (rut,IdEspe,Nombre) values (1234123412341234,1,'Comida')
+INSERT INTO CASA (rut,IdEspe,Nombre) values (1234123412341231,1,'Comida2')*/
