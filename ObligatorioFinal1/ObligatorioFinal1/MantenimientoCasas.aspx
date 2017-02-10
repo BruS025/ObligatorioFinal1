@@ -37,18 +37,21 @@
         </div>
 
         <div class="col-md-2">
-            <asp:DropDownList ID="ddlBuscar" AutoPostBack="true" runat="server" Height="34px" DataTextField="Tipo" DataValueField="IdEspe"></asp:DropDownList>
+            <asp:DropDownList ID="ddlBuscar" AutoPostBack="true" runat="server" Height="34px" DataTextField="Tipo" DataValueField="IdEspe" OnSelectedIndexChanged="ddlBuscar_SelectedIndexChanged"></asp:DropDownList>
         </div>
 
         <div class="col-md-2">
-            <asp:TextBox ID="rutVerificar" runat="server" Height="34px" Placeholder=" Rut"></asp:TextBox>
+            <asp:TextBox ID="rutVerificar" runat="server" Height="34px" MaxLength="16" Placeholder=" Rut"></asp:TextBox>
         </div>
 
         <div class="col-md-2">
             <asp:Button ID="btVerificar" CssClass="btn btn-md btn-primary" runat="server" Text="Buscar" Height="34px" OnClick="btVerificar_Click" />
         </div>
 
-    </div>
+    </div>  
+        
+    <br />
+    <br /> 
 
     <div class="col-md-12" id="divCasa" runat="server" height="34px">                      
 
@@ -69,7 +72,7 @@
             <asp:GridView ID="GridCasas" runat="server" AllowPaging="true" OnPageIndexChanging="GridCasas_PageIndexChanging"        
                           AutoGenerateColumns="False" RowStyle-Height="34px" CellPadding="4" ForeColor="#333333" GridLines="None" HorizontalAlign="Center"
                           Visible="True" Width="100%" ShowFooter="false" ShowHeaderWhenEmpty="True" PageSize="10" Font-Size="Large" CaptionAlign="Top" 
-                          HeaderStyle-HorizontalAlign="Center" HeaderStyle-VerticalAlign="Middle" PagerSettings-Mode="NextPrevious">
+                          HeaderStyle-HorizontalAlign="Center" HeaderStyle-VerticalAlign="Middle" PagerSettings-Mode="NextPrevious" OnRowDeleting="GridCasas_RowDeleting" OnSelectedIndexChanging="GridCasas_SelectedIndexChanging">
 
         <AlternatingRowStyle BackColor="White" />
 
@@ -138,7 +141,7 @@
                     <label for="message-text" class="control-label">Rut de la casa:</label>
                 </div>
                 <div class="col-md-4">
-                    <asp:TextBox ID="rutCasa" runat="server" Height="34px" Placeholder=" Rut"></asp:TextBox>
+                    <asp:TextBox ID="rutCasa" MaxLength="16" runat="server" Height="34px" Placeholder=" Rut"></asp:TextBox>
                 </div>
             </div>
 
@@ -201,7 +204,7 @@
                     <label for="message-text" class="control-label">Rut de la casa:</label>
                 </div>
                 <div class="col-md-4">
-                    <asp:TextBox ID="modRut" runat="server" Height="34px" Placeholder=" Rut"></asp:TextBox>
+                    <asp:TextBox ID="modRut" MaxLength="16" runat="server" Height="34px" Placeholder=" Rut"></asp:TextBox>
                 </div>
             </div>
 
@@ -243,7 +246,7 @@
 
       </div>
       <div class="modal-footer">                       
-              <asp:Button ID="btGuardarModal" runat="server" CssClass="btn-md btn-success" OnClick="btGuardar_Click" Text="Guardar" />   
+              <asp:Button ID="btGuardarModal" runat="server" CssClass="btn-md btn-success" OnClick="btModificar_Click" Text="Guardar" />   
       </div>
     </div>
   </div>

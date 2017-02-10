@@ -13,23 +13,14 @@ namespace ObligatorioFinal1
 {
     public partial class WebForm2 : System.Web.UI.Page
     {
+
+        // Carga de pantalla
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!Page.IsPostBack)
             {
                 try
                 {
-                    /*// TEST
-                    List<Casa> listadoAdmin = new List<Casa>();
-                    Casa cliente = new Casa(1234, "La comilona", 500);
-                    Casa cliente2 = new Casa(1555, "La come", 1500);
-
-                    listadoAdmin.Add(cliente);
-                    listadoAdmin.Add(cliente2);
-
-                    GridCasas.DataSource = listadoAdmin;
-                    GridCasas.DataBind();
-                    */
 
                     List <Especializacion> listadoEspecializaciones = new List<Especializacion>(LogicaEspecializacion.Listar());
 
@@ -53,6 +44,7 @@ namespace ObligatorioFinal1
                 }
             }
         }
+
         // Index Grilla
         protected void GridCasas_PageIndexChanging(object sender, GridViewPageEventArgs e)
         {
@@ -79,6 +71,12 @@ namespace ObligatorioFinal1
                         GridCasas.DataBind();
                     }
 
+                    else
+                    {
+                        GridCasas.Visible = false;
+                        lbError.Text = "No existen casas registradas";
+                    }
+
                 }
 
                 else
@@ -93,6 +91,7 @@ namespace ObligatorioFinal1
             }
         }
 
+        // Buscar
         protected void btVerificar_Click(object sender, EventArgs e)
         {
             try
@@ -142,6 +141,7 @@ namespace ObligatorioFinal1
             }
         }
 
+        // Agregar
         protected void btAgregar_Click(object sender, EventArgs e)
         {
             try
@@ -158,7 +158,6 @@ namespace ObligatorioFinal1
                 nuevaCasa.RUT = Convert.ToInt64(rutCasa.Text);
                 nuevaCasa.Nombre = nombreCasa.Text;
                 nuevaCasa.Especializacion = Convert.ToInt32(ddlEspecializacionAdd.SelectedValue);
-                //nuevaCasa.Especialidad = ddlEspecializacion.SelectedItem.ToString();
 
                 int resultado = LogicaCasa.Agregar(nuevaCasa);
 
@@ -167,8 +166,10 @@ namespace ObligatorioFinal1
                     lbError.Text = "Casa agregada..";
                     CargarGrilla();
 
-                    // Resetear campos
-                        //FALTA HACER
+                    rutCasa.Text = "";
+                    nombreCasa.Text = "";
+                    ddlEspecializacionAdd.SelectedIndex = 0;
+                    lbError2.Text = "";
 
                 }
 
@@ -202,14 +203,14 @@ namespace ObligatorioFinal1
                 Casa casa = new Casa();
                 casa.RUT = Convert.ToInt64(modRut.Text);
                 casa.Nombre = modNombre.Text;
-                
+                casa.Especializacion = (modDdl.SelectedIndex + 1);
+
+
                 if (modRut.Text == "")
                 {
                     lbError3.Text = ("ERROR: Ingrese un Rut.");
                     ClientScript.RegisterStartupScript(this.GetType(), "myScript", "<script>javascript: vpi2();</script>");
                 }
-
-                casa.RUT = Convert.ToInt64(modRut.Text);
 
                 int resultado = LogicaCasa.Modificar(casa);
 
@@ -225,6 +226,7 @@ namespace ObligatorioFinal1
                     // Reseteamos campos
                     modRut.Text = "";
                     modNombre.Text = "";
+                    modDdl.SelectedIndex = 0;
                     
                 }
                 else
@@ -241,16 +243,7 @@ namespace ObligatorioFinal1
             }
         }
 
-        protected void btEliminar_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        protected void btGuardar_Click(object sender, EventArgs e)
-        {
-
-        }
-
+        // Seleccionar para editar
         protected void btnSeleccionar_Click(object sender, EventArgs e)
         {
             try
@@ -266,15 +259,109 @@ namespace ObligatorioFinal1
             }
         }
 
+        // DDL modal
         protected void modDdl_SelectedIndexChanged(object sender, EventArgs e)
         {
             ClientScript.RegisterStartupScript(this.GetType(), "myScript", "<script>javascript: vpi2();</script>");
         }
 
+        // DDL modal
         protected void ddlEspecializacionAdd_SelectedIndexChanged(object sender, EventArgs e)
         {
             ClientScript.RegisterStartupScript(this.GetType(), "myScript", "<script>javascript: vpi();</script>");
         }
+
+        // Filtrar por especializacion
+        protected void ddlBuscar_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                List<Casa> listadoCasa = LogicaCasa.Listar(); //ListarEspecializacion(Convert.ToInt32(ddlBuscar.SelectedIndex));
+
+                GridCasas.DataSource = null;
+
+                if (listadoCasa != null)
+                {
+                    if (listadoCasa.Count > 0)
+                    {
+                        GridCasas.Visible = true;
+                        GridCasas.DataSource = listadoCasa;
+                        GridCasas.DataBind();
+                    }
+
+                }
+
+                else
+                {
+                    GridCasas.Visible = false;
+                    GridCasas.DataBind();
+                    lbError.Text = "No existen casas registradas";
+                }
+            }
+
+            catch (Exception ex)
+            {
+                lbError.Text = "Error :" + ex.Message;
+            }
+        }
+
+            // Borrar una casa
+            protected void GridCasas_RowDeleting(object sender, GridViewDeleteEventArgs e)
+            {
+             try
+             {
+ 
+                 int resultado = 0;
+                 long rutEliminar = Convert.ToInt64(GridCasas.Rows[e.RowIndex].Cells[1].Text);
+
+
+                resultado = LogicaCasa.Eliminar(rutEliminar);
+ 
+                if (resultado == 1) // ok
+                {
+                     lbError.Text = "Se ha eliminado casa.";
+
+                    if (modRut.Text != null && modRut.Text != "")
+                    {
+                        if (rutEliminar == Convert.ToInt64(modRut.Text))
+                        {
+                            modRut.Text = "";
+                            modNombre.Text = "";
+                            modDdl.SelectedIndex = 0;
+                            lbError3.Text = "";
+                            btModificar.Visible = false;
+                        }
+                    }
+
+                     CargarGrilla();
+                 }
+ 
+               else if (resultado == -1)
+                {
+                   lbError.Text = "No es posible eliminar un cliente con ventas asociadas.";
+               }
+
+                else
+                {
+                    GridCasas.Visible = false;
+                    lbError.Text = "No existen casas registradas.";
+                }
+
+            }
+ 
+            catch (Exception ex)
+            {
+                 lbError.Text = ex.Message;
+             }
+            }
+ 
+         // Cargar datos en editar
+         protected void GridCasas_SelectedIndexChanging(object sender, GridViewSelectEventArgs e)
+            {
+             modRut.Text = this.GridCasas.Rows[e.NewSelectedIndex].Cells[1].Text;
+             modNombre.Text = this.GridCasas.Rows[e.NewSelectedIndex].Cells[2].Text;
+            modDdl.SelectedIndex = ddlBuscar.SelectedIndex;
+            }
     }
 }
 

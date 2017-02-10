@@ -271,8 +271,7 @@ BEGIN
 			RETURN -1
 		END
 	ELSE
-		BEGIN TRANSACTION
-
+		BEGIN TRANSACTION		
 			INSERT INTO Casa (Rut,IdEspe,Nombre)
 			VALUES (@RutN,@IdEspeN,@NombreN)
 
@@ -304,6 +303,7 @@ BEGIN
 			SET Rut=@RutM,
 				IdEspe=@IdEspeM,
 				Nombre=@NombreM
+				WHERE casa.Rut = @RutM
 		IF @@ERROR <> 0
 			BEGIN
 				ROLLBACK TRANSACTION
@@ -335,7 +335,7 @@ BEGIN
 END
 GO	
 CREATE PROCEDURE SP_BorrarCasa
-@RutB INT
+@RutB BIGINT
 AS
 BEGIN
 		BEGIN TRANSACTION
@@ -372,14 +372,13 @@ GO
 --CREATE PROCEDURE SP_AgregarPedido
 
 
-
 --------------------------
 CREATE PROCEDURE SP_ListarTodasLasCasas
 AS
 BEGIN
 	SELECT C.Nombre,
 		   C.Rut, 
-		   E.Tipo
+		   C.IdEspe
     FROM Casa C JOIN Especializacion E ON C.IdEspe=E.IdEspe
 END
 GO
@@ -390,7 +389,7 @@ AS
 BEGIN
 	SELECT C.Nombre,
 		   C.Rut,
-		   E.IdEspe
+		   C.IdEspe
     FROM Casa C JOIN Especializacion E ON C.IdEspe=E.IdEspe
 	WHERE E.IdEspe=@IdEspeMostrar
 END
@@ -412,8 +411,7 @@ BEGIN
 END
 GO
 ------------------
-
--- DATOS DE PRUEBA
+-- DATOS DE AMBIENTE
 --Especializaciones Basicos
 INSERT INTO Especializacion VALUES('Pizzeria')
 INSERT INTO Especializacion VALUES('Parrillada')
@@ -421,6 +419,11 @@ INSERT INTO Especializacion VALUES('Minutas')
 INSERT INTO Especializacion VALUES('Internacional')
 INSERT INTO Especializacion VALUES('Vegetariano')
 
+-- Cargos Basicos
+INSERT INTO Cargo VALUES ('ADMIN')
+INSERT INTO Cargo VALUES ('GERENTE')
+
+-- DATOS DE PRUEBA
 INSERT INTO Casa VALUES(1234,1,'CASA1')
 INSERT INTO Casa VALUES(1235,1,'CASA2')
 INSERT INTO Casa VALUES(6789,1,'CASA3')
@@ -435,10 +438,6 @@ INSERT INTO Tienen VALUES(1234,1)
 INSERT INTO Tienen VALUES(1234,2)
 INSERT INTO Tienen VALUES(6789,3)
 INSERT INTO Tienen VALUES(6677,4)
-
--- Cargos Basicos
-INSERT INTO Cargo VALUES ('ADMIN')
-INSERT INTO Cargo VALUES ('GERENTE')
 
 -- Consultas basicas
 delete Tienen
@@ -457,10 +456,10 @@ DELETE Especializacion
 
 -- TEST SP
 DECLARE @RETORNO INT
-EXEC @RETORNO = SP_BorrarCasa 1234
+EXEC @RETORNO = SP_ListarTodasLasCasas
 PRINT @retorno
 
 exec SP_BorrarCasa
 
 
-
+INSERT INTO CASA (rut,IdEspe,Nombre) values (1234123412341234,1,'Comida')
