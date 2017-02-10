@@ -22,7 +22,30 @@ namespace ObligatorioFinal1
                 try
                 {
 
-                    List <Especializacion> listadoEspecializaciones = new List<Especializacion>(LogicaEspecializacion.Listar());
+                    Usuario user = new Usuario();
+
+                    if (Session["Usuario"] == null)
+                    {
+                        Response.Redirect("Default.aspx");
+                    }
+
+                    else
+                    {
+                        user = (Usuario)Session["Usuario"];
+
+                        if (user is Administrador)
+                        {
+                            
+                        }              
+                        
+                        else if (user is Cliente)
+                        {
+
+                        }         
+                    }              
+
+
+                        List <Especializacion> listadoEspecializaciones = new List<Especializacion>(LogicaEspecializacion.Listar());
 
                     ddlEspecializacionAdd.DataSource = listadoEspecializaciones;
                     ddlEspecializacionAdd.DataBind();
@@ -305,8 +328,8 @@ namespace ObligatorioFinal1
             }
         }
 
-            // Borrar una casa
-            protected void GridCasas_RowDeleting(object sender, GridViewDeleteEventArgs e)
+        // Borrar una casa
+        protected void GridCasas_RowDeleting(object sender, GridViewDeleteEventArgs e)
             {
              try
              {
@@ -355,12 +378,14 @@ namespace ObligatorioFinal1
              }
             }
  
-         // Cargar datos en editar
-         protected void GridCasas_SelectedIndexChanging(object sender, GridViewSelectEventArgs e)
+        // Cargar datos en editar
+        protected void GridCasas_SelectedIndexChanging(object sender, GridViewSelectEventArgs e)
             {
+
              modRut.Text = this.GridCasas.Rows[e.NewSelectedIndex].Cells[1].Text;
              modNombre.Text = this.GridCasas.Rows[e.NewSelectedIndex].Cells[2].Text;
-            modDdl.SelectedIndex = ddlBuscar.SelectedIndex;
+             modDdl.SelectedIndex = ddlBuscar.SelectedIndex;
+
             }
     }
 }
