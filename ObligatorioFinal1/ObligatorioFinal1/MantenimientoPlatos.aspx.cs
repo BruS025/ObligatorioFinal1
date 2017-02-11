@@ -61,21 +61,97 @@ namespace ObligatorioFinal1
 
         }
 
-        protected void btVerificar_Click(object sender, EventArgs e)
+        // Cargar Grilla
+        private void CargarGrilla()
         {
             try
             {
 
+                List<Plato> listadoPlatos = LogicaPlato.Listar();
+
+                GridPlatos.DataSource = null;
+
+                if (listadoPlatos != null)
+                {
+                    if (listadoPlatos.Count > 0)
+                    {
+                        GridPlatos.Visible = true;
+                        GridPlatos.DataSource = listadoPlatos;
+                        GridPlatos.DataBind();
+                    }
+
+                    else
+                    {
+                        GridPlatos.Visible = false;
+                        lbError.Text = "No existen platos registrados";
+                    }
+
+                }
+
+                else
+                {
+                    GridPlatos.Visible = false;
+                    lbError.Text = "No existen platos registrados";
+                }
+            }
+            catch (Exception)
+            {
+                lbError.Text = "Ha ocurrido un error";
+            }
+        }
+
+
+        protected void btVerificar_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                List<Plato> listadoPlatos = new List<Plato>();
+
+                if (id.Text != "")
+                {
+
+                    Plato plato = LogicaPlato.Buscar(Convert.ToInt32(id.Text));
+
+                    if (plato.Id == 0)
+                    {
+                        CargarGrilla();
+                        throw new Exception("ERROR: No se encontraron coinciencias");
+                    }
+
+                    listadoPlatos.Add(plato);
+
+                    GridPlatos.DataSource = null;
+
+                    if (listadoPlatos != null)
+                    {
+                        if (listadoPlatos.Count > 0)
+                        {
+                            GridPlatos.Visible = true;
+                            GridPlatos.DataSource = listadoPlatos;
+                            GridPlatos.DataBind();
+                        }
+                    }
+
+                    else
+                    {
+                        GridPlatos.Visible = false;
+                        lbError.Text = "No existen platos registrados.";
+                    }
+                }
+                else
+                {
+                    CargarGrilla();
+                }
+
             }
             catch (Exception ex)
             {
-
                 lbError.Text = ex.Message;
             }
         }
 
-        // Boton seleccionar
-        protected void btnSeleccionar_Click(object sender, EventArgs e)
+    // Boton seleccionar
+    protected void btnSeleccionar_Click(object sender, EventArgs e)
         {
             try
             {
