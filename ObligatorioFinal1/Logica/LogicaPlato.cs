@@ -27,7 +27,7 @@ namespace Logica
 
         public static int Eliminar(int id)
         {
-            throw new NotImplementedException();
+            return PersistenciaPlatos.Eliminar(id);
         }
 
         public static List<Plato> Listar()

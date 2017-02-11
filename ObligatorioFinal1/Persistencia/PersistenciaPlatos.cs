@@ -135,5 +135,35 @@ namespace Persistencia
 
         }
 
+        public static int Eliminar(int id)
+        {
+            SqlConnection conexion = new SqlConnection(Conexion.CnnString);
+            SqlCommand comando = new SqlCommand("", conexion);
+            comando.CommandType = CommandType.StoredProcedure;
+
+            SqlParameter parametroId = new SqlParameter("@", id);
+            comando.Parameters.Add(parametroId);
+
+            try
+            {
+                conexion.Open();
+                int resultado = comando.ExecuteNonQuery();
+                return resultado;
+            }
+            catch (SqlException sqlex)
+            {
+                throw sqlex;
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+            finally
+            {
+                conexion.Close();
+            }
+        }
+
     }
 }
