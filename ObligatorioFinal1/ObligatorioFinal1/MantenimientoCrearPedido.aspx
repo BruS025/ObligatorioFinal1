@@ -31,8 +31,8 @@
 
     <div class="col-md-12">
 
-        <div class="col-md-3">
-            <asp:Label ID="idV" ForeColor="Black" runat="server" Height="34px" Text="Documento del administrador:" Font-Size="Large"></asp:Label>                      
+        <div class="col-md-2">
+            <asp:Label ID="idV" ForeColor="Black" runat="server" Height="34px" Text="Filtrar platos" Font-Size="Large"></asp:Label>                      
         </div>
 
         <div class="col-md-2">
@@ -45,44 +45,30 @@
 
         <br />
         <br />
+        <br />
 
         <div class="col-md-12">
-            <asp:GridView ID="GridPlatos" runat="server" AllowPaging="true" OnPageIndexChanging="GridPlatos_PageIndexChanging"        
-                          AutoGenerateColumns="False" RowStyle-Height="34px" CellPadding="4" ForeColor="#333333" GridLines="None" HorizontalAlign="Center"
-                          Visible="True" Width="100%" ShowFooter="False" ShowHeaderWhenEmpty="True" PageSize="10" Font-Size="Large" CaptionAlign="Top"
-                          HeaderStyle-HorizontalAlign="Center" HeaderStyle-VerticalAlign="Middle" PagerSettings-Mode="NextPrevious" OnRowDeleting="GridPlatos_RowDeleting" OnSelectedIndexChanging="GridPlatos_SelectedIndexChanging">
+            <div class="col-md-6">
+                <asp:Label ID="Label1" ForeColor="Black" runat="server" Height="34px" Text="Listado de productos:" Font-Size="Large"></asp:Label>                      
+            </div>
 
-        <AlternatingRowStyle BackColor="White" />
+            <div class="col-md-6">
+                <asp:Label ID="Label2" ForeColor="Black" runat="server" Height="34px" Text="Carrito:" Font-Size="Large"></asp:Label>                      
+            </div>
+        </div>
 
-          <Columns>
+        <div class="col-md-12">
+            <div class="col-md-6">
+                <asp:ListBox ID="listadoPlatos" runat="server" DataTextField="Nombre" DataValueField="Id" Font-Size="Medium"></asp:ListBox>
+            </div>
 
-            <asp:TemplateField HeaderStyle-BorderWidth="2px" ItemStyle-HorizontalAlign="Center" ControlStyle-Font-Size="Medium" ControlStyle-CssClass="btn-primary btn-md" HeaderText="Editar">
-                <ItemTemplate>
-
-                <asp:LinkButton ID="btnSeleccionar" runat="server" OnClick="btnSeleccionar_Click1" CommandName="select" CssClass="btn btn-md btn-danger" ForeColor="Black" BackColor="Transparent">
-                    <span aria-hidden="true" class="glyphicon glyphicon-pencil"></span>
-                </asp:LinkButton>
-         
-                </ItemTemplate>
-            </asp:TemplateField>
-
-            <asp:BoundField HeaderStyle-BorderWidth="2px" ItemStyle-Font-Size="Medium" DataField="Id" HeaderText="Id"/>
-            <asp:BoundField HeaderStyle-BorderWidth="2px" ItemStyle-Font-Size="Medium" DataField="Nombre" HeaderText="Nombre" />     
-            <asp:BoundField HeaderStyle-BorderWidth="2px" ItemStyle-Font-Size="Medium" DataField="Precio" HeaderText="Precio" /> 
-
-          </Columns>
-
-          <FooterStyle BackColor="DarkTurquoise" Font-Bold="True" ForeColor="White" />
-          <HeaderStyle BackColor="LightBlue" Font-Bold="True" ForeColor="White" />
-          <PagerStyle BackColor="DarkTurquoise" ForeColor="#333333" HorizontalAlign="Center" />
-          <RowStyle BackColor="White" ForeColor="#333333" />
-          <SelectedRowStyle BackColor="LightGray" Font-Bold="True" ForeColor="White" />
-          <PagerStyle BackColor="DarkTurquoise" ForeColor="White" />
-
-        </asp:GridView>
+            <div class="col-md-6">
+                <asp:ListBox ID="listadoCarrito" runat="server" DataTextField="Nombre" DataValueField="Id" Font-Size="Medium"></asp:ListBox>
+            </div>           
        </div>
 
         <div class="col-md-12">
+            <br />
             <asp:Button ID="btQuitar" CssClass="btn btn-default" runat="server" Text="-" OnClick="btQuitar_Click" Height="34px" />
             <asp:Label ID="btCantidad" runat="server" Text="0" Width="20px"></asp:Label>
             <asp:Button ID="btAgregar" CssClass="btn btn-default" runat="server" Text="+" OnClick="btAgregar_Click" Height="34px" />

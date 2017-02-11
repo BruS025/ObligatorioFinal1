@@ -24,14 +24,13 @@ namespace ObligatorioFinal1
                 listadoAdmin.Add(cliente);
                 listadoAdmin.Add(cliente2);
 
-                GridPlatos.DataSource = listadoAdmin;
-                GridPlatos.DataBind();
-
+                listadoPlatos.DataSource = listadoAdmin;
+                listadoPlatos.DataBind();
 
                 List<Especializacion> listadoEspecializaciones = new List<Especializacion>(LogicaEspecializacion.Listar());
 
-                ddlCasas.DataSource = listadoEspecializaciones;
-                ddlCasas.DataBind();
+                ddlEspecializacion.DataSource = listadoEspecializaciones;
+                ddlEspecializacion.DataBind();
             }
 
 
