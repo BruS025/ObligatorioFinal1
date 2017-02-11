@@ -199,6 +199,7 @@ namespace ObligatorioFinal1
 
                 lbError.Text = (ex.Message);
             }
+
         }
 
         // Editar un plato
@@ -234,5 +235,55 @@ namespace ObligatorioFinal1
                 lbError.Text = (ex.Message);
             }
         }
+
+        protected void GridCasas_RowDeleting(object sender, GridViewDeleteEventArgs e)
+        {
+            try
+            {
+
+                int resultado = 0;
+                int IdEliminar = Convert.ToInt32(GridPlatos.Rows[e.RowIndex].Cells[1].Text);
+
+
+                resultado = LogicaPlato.Eliminar(IdEliminar);
+
+                if (resultado == 1) // ok
+                {
+                    lbError.Text = "Se ha eliminado el plato.";
+
+                    if (modalNombrePlato.Text != null && modalNombrePlato.Text != "")
+                    {
+                        if (IdEliminar == Convert.ToInt32(modalNombrePlato.Text))
+                        {
+                           // modId.Text = "";
+                            modalNombrePlato.Text = "";
+                           // modDdl.SelectedIndex = 0;
+                          //  lbError3.Text = "";
+                            btModificar.Visible = false;
+                        }
+                    }
+
+                    CargarGrilla();
+                }
+
+                else if (resultado == -1)
+                {
+                    lbError.Text = "No es posible eliminar el plato con pedidos asociados.";
+                }
+
+                else
+                {
+                    GridPlatos.Visible = false;
+                    lbError.Text = "No existen platos registrados.";
+                }
+
+            }
+
+            catch (Exception ex)
+            {
+                lbError.Text = ex.Message;
+            }
+        }
+
     }
 }

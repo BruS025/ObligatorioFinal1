@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using EntidadesCompartidas;
+using Persistencia;
 
 namespace Logica
 {
@@ -11,7 +12,7 @@ namespace Logica
     {
         public static Plato Buscar(int id)
         {
-            throw new NotImplementedException();
+            return PersistenciaPlatos.Buscar(id);
         }
 
         public static int Agregar(Plato plato)
@@ -26,7 +27,7 @@ namespace Logica
 
         public static int Eliminar(int id)
         {
-            throw new NotImplementedException();
+            return PersistenciaPlatos.Eliminar(id);
         }
 
         public static List<Plato> Listar()
