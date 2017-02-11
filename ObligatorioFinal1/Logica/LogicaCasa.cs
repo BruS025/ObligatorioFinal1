@@ -23,12 +23,12 @@ namespace Logica
 
         public static int Modificar(Casa casa)
         {
-            throw new NotImplementedException();
+            return PersistenciaCasa.Modificar(casa);
         }
 
         public static int Eliminar(long rut)
         {
-            throw new NotImplementedException();
+            return PersistenciaCasa.Eliminar(rut);
         }
 
         public static List<Casa> Listar()

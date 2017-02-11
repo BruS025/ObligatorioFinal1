@@ -35,11 +35,18 @@ CREATE TABLE Cliente
 	NroPuerta INT NOT NULL
 )
 GO
+--Creo la tabla Cargo
+CREATE TABLE Cargo
+(
+	Tipo VARCHAR(20) NOT NULL,
+	IdCargo INT PRIMARY KEY IDENTITY(1,1)
+)
+GO
 --Creo la tabla Administrador
 CREATE TABLE Administrador
 (
 	IdLogueo INT PRIMARY KEY FOREIGN KEY REFERENCES Usuario(IdLogueo) ON DELETE CASCADE,
-	Cargo VARCHAR(20)
+	IdCargo INT FOREIGN KEY REFERENCES Cargo(IdCargo)
 )
 GO
 --Creo la tabla Especializacion
@@ -49,13 +56,7 @@ CREATE TABLE Especializacion
 	IdEspe INT PRIMARY KEY IDENTITY(1,1)
 )
 GO
---Creo la tabla Cargo
-CREATE TABLE Cargo
-(
-	Tipo VARCHAR(20) NOT NULL,
-	IdCargo INT PRIMARY KEY IDENTITY(1,1)
-)
-GO
+
 --Creo la tabla Casa
 CREATE TABLE Casa   
 (
@@ -67,19 +68,21 @@ GO
 --Creo la tabla Plato
 CREATE TABLE Plato 
 (
-	IdPlato INT PRIMARY KEY NOT NULL,
+	IdPlato INT PRIMARY KEY IDENTITY NOT NULL,
 	Nombre VARCHAR(20) NOT NULL,
-	Precio INT NOT NULL
+	Precio INT NOT NULL,
+    Foto VARCHAR(MAX)
 )
 GO
 --Creo la tabla Tienen
 CREATE TABLE Tienen
 (
 	Rut BIGINT FOREIGN KEY REFERENCES Casa(Rut) ON DELETE CASCADE,
-	IdPlato INT FOREIGN KEY REFERENCES Plato(IdPlato) ON DELETE CASCADE,
+	IdPlato INT FOREIGN KEY REFERENCES Plato(IdPlato) ON DELETE CASCADE UNIQUE,
 	PRIMARY KEY(Rut,IdPlato)
 )
 GO
+
 --Creo la tabla Pedido
 CREATE TABLE Pedido
 (
@@ -100,12 +103,13 @@ CREATE TABLE Realizan
 (
 	IdPlato INT FOREIGN KEY REFERENCES Plato(IdPlato) ON DELETE CASCADE,
 	IdLogueo INT FOREIGN KEY REFERENCES Usuario(IdLogueo),
-	IdPedido INT NOT NULL PRIMARY KEY IDENTITY (1,1)
+	IdPedido INT NOT NULL PRIMARY KEY IDENTITY (1,1),
 	Cantidad INT NOT NULL
 )
 GO
-
---Creo SP Necesarios Clientes
+------------------------
+--SP Necesarios Clientes
+------------------------
 CREATE PROCEDURE SP_AgregarCliente
 @NombreN VARCHAR(20) ,
 @ApellidoN VARCHAR (20),
@@ -152,20 +156,18 @@ BEGIN
 					END
 		END	
 GO
-DECLARE @RETORNO INT
-EXEC @RETORNO = SP_AgregarCliente pruebacliente,pruebacliente,pass1,123456,pruebacliente,123456789000,calle1,1414
-PRINT @retorno
-go
 -- -1 documento existente -2 nombrelogueo existente 
 
---SP Necesarios para administradores
+-------------------------------
+--SP Necesarios administradores
+-------------------------------
 CREATE PROCEDURE SP_AgregarAdministrador
 @NombreN VARCHAR(20) ,
 @ApellidoN VARCHAR (20),
 @ContraseniaN VARCHAR(20),
 @NroDocN INT,
 @NombreLogueoN VARCHAR(20),
-@CargoN VARCHAR(20)
+@CargoN INT
 AS
 BEGIN
 	
@@ -188,7 +190,7 @@ BEGIN
 						RETURN @@ERROR
 					END
 
-			INSERT INTO Administrador (IdLogueo,Cargo)
+			INSERT INTO Administrador (IdLogueo,IdCargo)
 			VALUES((SELECT max(IdLogueo) FROM Usuario),@CargoN)
 
 				IF @@ERROR <> 0
@@ -203,18 +205,13 @@ BEGIN
 					END
 		END	
 GO
-DECLARE @RETORNO INT
-EXEC @RETORNO = SP_AgregarAdministrador pruebaAdmin,pruebaAdmin,pass1,123456789,uadminn1,pruebaadmin
-PRINT @retorno
--- -1 documento existente -2 nombrelogueo existente 
-GO
 CREATE PROCEDURE SP_ModificarAdministrador
 @NombreM VARCHAR(20),
 @ApellidoM VARCHAR (20),
 @ContraseniaM VARCHAR(20),
 @NroDocM INT,
 @NombreLogueoM VARCHAR(20),
-@CargoM VARCHAR(20)
+@CargoM INT
 AS
 BEGIN
 	IF NOT EXISTS (SELECT U.NroDoc FROM Usuario U WHERE U.NroDoc = @NroDocM)
@@ -241,7 +238,7 @@ BEGIN
 
 			UPDATE Administrador
 			SET
-				Cargo=@CargoM
+				IdCargo=@CargoM
 			WHERE
 				Administrador.IdLogueo =(SELECT U.IdLogueo FROM Usuario U WHERE U.NroDoc=@NroDocM)
 
@@ -257,11 +254,12 @@ BEGIN
 			END
 END
 GO
-DECLARE @RETORNO INT
-EXEC @RETORNO = SP_ModificarAdministrador pruebaAdminMOD,pruebaAdminMOD,pass1,123456789,uadminn1,pruebaadminMOD
-PRINT @retorno
-go
---Creo sp para casas
+-- -1 documento existente -2 nombrelogueo existente 
+
+---------------------
+--SP Necesarios para Casas
+--------------------
+
 CREATE PROCEDURE SP_AgregarCasa
 @RutN BIGINT,
 @IdEspeN INT,
@@ -273,8 +271,7 @@ BEGIN
 			RETURN -1
 		END
 	ELSE
-		BEGIN TRANSACTION
-
+		BEGIN TRANSACTION		
 			INSERT INTO Casa (Rut,IdEspe,Nombre)
 			VALUES (@RutN,@IdEspeN,@NombreN)
 
@@ -289,23 +286,7 @@ BEGIN
 						RETURN 1
 					END
 END
-go
-DECLARE @RETORNO INT
-EXEC @RETORNO = SP_AgregarCasa 12345,1,pruebaparri
-PRINT @retorno
 GO
---insert Especializaciones Basicos
-INSERT INTO Especializacion VALUES('Pizzeria')
-INSERT INTO Especializacion VALUES('Parrillada')
-INSERT INTO Especializacion VALUES('Minutas')
-INSERT INTO Especializacion VALUES('Internacional')
-INSERT INTO Especializacion VALUES('Vegetariano')
-go
-
-INSERT INTO Cargo VALUES ('ADMIN')
-INSERT INTO Cargo VALUES ('GERENTE')
-
-
 CREATE PROCEDURE SP_ModificarCasa
 @RutM BIGINT,
 @IdEspeM INT,
@@ -322,6 +303,7 @@ BEGIN
 			SET Rut=@RutM,
 				IdEspe=@IdEspeM,
 				Nombre=@NombreM
+				WHERE casa.Rut = @RutM
 		IF @@ERROR <> 0
 			BEGIN
 				ROLLBACK TRANSACTION
@@ -334,11 +316,6 @@ BEGIN
 			END
 END
 GO
-DECLARE @RETORNO INT
-EXEC @RETORNO = SP_ModificarCasa 123456789,4,pruebapizzeMOD
-PRINT @retorno
-GO
-
 CREATE PROCEDURE SP_BuscarCasa
 @RutB BIGINT,
 @IdEspe INT
@@ -356,43 +333,55 @@ BEGIN
 		 WHERE
 			  C.Rut=@RutB AND E.IdEspe=@IdEspe
 END
-
-DECLARE @RETORNO INT
-EXEC @RETORNO = SP_BuscarCasa 123456789,4
-PRINT @retorno
 GO	
-@RutB INT
+CREATE PROCEDURE SP_BorrarCasa
+@RutB BIGINT
 AS
 BEGIN
-	IF EXISTS (SELECT T.Rut FROM Tienen T WHERE T.Rut =@RutB)
 		BEGIN TRANSACTION
 
-		DELETE Tienen
-		WHERE Tienen.Rut = @RutB
+		DELETE Plato
+		WHERE Plato.IdPlato IN (SELECT t.IdPlato FROM Tienen t WHERE t.Rut=@RutB)
 
 		IF @@ERROR <> 0
 			BEGIN
 				ROLLBACK TRANSACTION
 				RETURN @@ERROR
 			END
-	ELSE
+
+		DELETE Casa
+		WHERE Casa.Rut = @RutB
+
+			IF @@ERROR <> 0
+			BEGIN
+				ROLLBACK TRANSACTION
+				RETURN @@ERROR
+			END
+	 ELSE
 			BEGIN
 				COMMIT TRANSACTION
 				RETURN 1
 			END
 END
-DECLARE @RETORNO INT
-EXEC @RETORNO = SP_BorrarCasa 123456789
-PRINT @retorno
+GO
 
+----------------------------
+--SP Necesarios para Pedidos
+----------------------------
+
+--CREATE PROCEDURE SP_AgregarPedido
+
+
+--------------------------
 CREATE PROCEDURE SP_ListarTodasLasCasas
 AS
 BEGIN
 	SELECT C.Nombre,
-		   C.Rut,
-		   E.Tipo
+		   C.Rut, 
+		   C.IdEspe
     FROM Casa C JOIN Especializacion E ON C.IdEspe=E.IdEspe
 END
+GO
 
 CREATE PROCEDURE SP_ListarCasa
 @IdEspeMostrar INT
@@ -400,10 +389,11 @@ AS
 BEGIN
 	SELECT C.Nombre,
 		   C.Rut,
-		   E.IdEspe
+		   C.IdEspe
     FROM Casa C JOIN Especializacion E ON C.IdEspe=E.IdEspe
 	WHERE E.IdEspe=@IdEspeMostrar
 END
+GO
 
 -- Listar especializaciones
 CREATE PROCEDURE SP_ListarEspecializaciones
@@ -411,6 +401,7 @@ AS
 BEGIN
 	SELECT * FROM Especializacion;
 END
+GO
 
 -- Listar cargos
 CREATE PROCEDURE SP_ListarCargos
@@ -418,9 +409,39 @@ AS
 BEGIN
 	SELECT * FROM Cargo;
 END
+GO
+------------------
+-- DATOS DE AMBIENTE
+--Especializaciones Basicos
+INSERT INTO Especializacion VALUES('Pizzeria')
+INSERT INTO Especializacion VALUES('Parrillada')
+INSERT INTO Especializacion VALUES('Minutas')
+INSERT INTO Especializacion VALUES('Internacional')
+INSERT INTO Especializacion VALUES('Vegetariano')
 
+-- Cargos Basicos
+INSERT INTO Cargo VALUES ('ADMIN')
+INSERT INTO Cargo VALUES ('GERENTE')
 
+/*
+-- DATOS DE PRUEBA
+INSERT INTO Casa VALUES(1234,1,'CASA1')
+INSERT INTO Casa VALUES(1235,1,'CASA2')
+INSERT INTO Casa VALUES(6789,1,'CASA3')
+INSERT INTO Casa VALUES(6677,1,'CASA4')
 
+INSERT INTO Plato VALUES('PLATO1',1,'FOTO1')
+INSERT INTO Plato VALUES('PLATO2',2,'FOTO2')
+INSERT INTO Plato VALUES('PLATO3',3,'FOTO3')
+INSERT INTO Plato VALUES('PLATO4',4,'FOTO4')
+
+INSERT INTO Tienen VALUES(1234,1)
+INSERT INTO Tienen VALUES(1234,2)
+INSERT INTO Tienen VALUES(6789,3)
+INSERT INTO Tienen VALUES(6677,4)
+
+-- Consultas basicas
+delete Tienen
 select * from Usuario
 select * from Cliente
 select * from Administrador
@@ -432,7 +453,15 @@ select * from Pedido
 select * from Compran 
 select * from Realizan 
 select * from Casa c join Especializacion e on c.IdEspe=e.IdEspe
-go
+DELETE Especializacion
 
-insert into Plato VALUES(1234,'PRUEBABORRAR',123)
-INSERT INTO Tienen VALUES (123456789,1234)
+-- TEST SP
+DECLARE @RETORNO INT
+EXEC @RETORNO = SP_ListarTodasLasCasas
+PRINT @retorno
+
+exec SP_BorrarCasa
+
+
+INSERT INTO CASA (rut,IdEspe,Nombre) values (1234123412341234,1,'Comida')
+INSERT INTO CASA (rut,IdEspe,Nombre) values (1234123412341231,1,'Comida2')*/

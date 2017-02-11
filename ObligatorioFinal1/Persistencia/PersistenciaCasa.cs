@@ -50,7 +50,6 @@ namespace Persistencia
                 conexion.Close();
             }
         }
-   
 
         public static int Agregar(Casa casa)
         {
@@ -59,8 +58,8 @@ namespace Persistencia
             comando.CommandType = CommandType.StoredProcedure;
 
 
-            SqlParameter parametroRut = new SqlParameter("@RutN ", casa.RUT);
-            SqlParameter parametroNombre = new SqlParameter("@NombreN ", casa.Nombre);
+            SqlParameter parametroRut = new SqlParameter("@RutN", casa.RUT);
+            SqlParameter parametroNombre = new SqlParameter("@NombreN", casa.Nombre);
             SqlParameter parametroEspecializacion = new SqlParameter("@IdEspeN", casa.Especializacion);
             
             comando.Parameters.Add(parametroRut);
@@ -139,9 +138,9 @@ namespace Persistencia
             comando.CommandType = CommandType.StoredProcedure;
 
 
-            SqlParameter parametroRut = new SqlParameter("@ciCliNue", casa.RUT);
-            SqlParameter parametroNombre = new SqlParameter("@nomCliNue", casa.Nombre);
-            SqlParameter parametroEspecializacion = new SqlParameter("@apeCliNue", casa.Especializacion);
+            SqlParameter parametroRut = new SqlParameter("@RutM", casa.RUT);
+            SqlParameter parametroNombre = new SqlParameter("@NombreM", casa.Nombre);
+            SqlParameter parametroEspecializacion = new SqlParameter("@IdEspeM", casa.Especializacion);
             
             comando.Parameters.Add(parametroRut);
             comando.Parameters.Add(parametroNombre);
@@ -160,6 +159,36 @@ namespace Persistencia
                 throw sqlex;
             }
 
+            finally
+            {
+                conexion.Close();
+            }
+        }
+
+        public static int Eliminar(long rut)
+        {
+            SqlConnection conexion = new SqlConnection(Conexion.CnnString);
+            SqlCommand comando = new SqlCommand("SP_BorrarCasa", conexion);
+            comando.CommandType = CommandType.StoredProcedure;
+
+            SqlParameter parametroRut = new SqlParameter("@RutB", rut);
+            comando.Parameters.Add(parametroRut);
+
+            try
+            {
+                conexion.Open();
+                int resultado = comando.ExecuteNonQuery();
+                return resultado;
+            }
+            catch (SqlException sqlex)
+            {
+                throw sqlex;
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
             finally
             {
                 conexion.Close();
