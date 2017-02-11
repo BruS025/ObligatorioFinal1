@@ -86,7 +86,6 @@
                 </asp:LinkButton>
          
                 </ItemTemplate>
-
             </asp:TemplateField>
 
             <asp:BoundField HeaderStyle-BorderWidth="2px" ItemStyle-Font-Size="Medium" DataField="RUT" HeaderText="RUT"/>

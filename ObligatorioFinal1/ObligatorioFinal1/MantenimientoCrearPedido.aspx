@@ -9,6 +9,7 @@
     <link rel="shortcut icon" href="Imagenes/favicon.ico"/> 
     <script src="js/jquery.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
+
 </asp:Content>
 
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
@@ -35,52 +36,48 @@
         </div>
 
         <div class="col-md-2">
-            <asp:DropDownList ID="ddlEspecializacion" runat="server" AutoPostBack="True" Height="34px">
-            <asp:ListItem Value="0">Traer de BD</asp:ListItem>
-            </asp:DropDownList>
+            <asp:DropDownList ID="ddlEspecializacion" AutoPostBack="true" runat="server" Height="34px" DataTextField="Tipo" DataValueField="IdEspe" OnSelectedIndexChanged="ddlEspecializacion_SelectedIndexChanged" ></asp:DropDownList>
         </div>
 
         <div class="col-md-2">
-            <asp:DropDownList ID="ddlCasas" runat="server" AutoPostBack="True" Height="34px">
-            <asp:ListItem Value="0">Traer de BD</asp:ListItem>
-            </asp:DropDownList>
+            <asp:DropDownList ID="ddlCasas" runat="server" AutoPostBack="True" Height="34px" DataTextField="Nombre" DataValueField="RUT" OnSelectedIndexChanged="ddlCasas_SelectedIndexChanged" ></asp:DropDownList>
         </div>
+
+        <br />
+        <br />
 
         <div class="col-md-12">
             <asp:GridView ID="GridPlatos" runat="server" AllowPaging="true" OnPageIndexChanging="GridPlatos_PageIndexChanging"        
-        AutoGenerateColumns="False" RowStyle-Height="34px" CellPadding="4" ForeColor="#333333" GridLines="None" HorizontalAlign="Center"
-        Visible="True" Width="98%" ShowFooter="False" ShowHeaderWhenEmpty="True" PageSize="10" Font-Size="Large" CaptionAlign="Top">
+                          AutoGenerateColumns="False" RowStyle-Height="34px" CellPadding="4" ForeColor="#333333" GridLines="None" HorizontalAlign="Center"
+                          Visible="True" Width="100%" ShowFooter="False" ShowHeaderWhenEmpty="True" PageSize="10" Font-Size="Large" CaptionAlign="Top"
+                          HeaderStyle-HorizontalAlign="Center" HeaderStyle-VerticalAlign="Middle" PagerSettings-Mode="NextPrevious" OnRowDeleting="GridPlatos_RowDeleting" OnSelectedIndexChanging="GridPlatos_SelectedIndexChanging">
 
         <AlternatingRowStyle BackColor="White" />
 
           <Columns>
 
-              <asp:TemplateField HeaderStyle-BorderWidth="2px" ControlStyle-Font-Size="Small" ControlStyle-CssClass="btn btn-default" HeaderText="Actualizar">
+            <asp:TemplateField HeaderStyle-BorderWidth="2px" ItemStyle-HorizontalAlign="Center" ControlStyle-Font-Size="Medium" ControlStyle-CssClass="btn-primary btn-md" HeaderText="Editar">
                 <ItemTemplate>
-                    <asp:Button ID="btnSeleccionar" runat="server" CommandName="select" Text="Seleccionar" OnClick="btnSeleccionar_Click" />
-                </ItemTemplate>
-              </asp:TemplateField>
 
-              <asp:BoundField HeaderStyle-BorderWidth="2px" ItemStyle-Font-Size="Small" DataField="ID" HeaderText="ID"/>
-              <asp:BoundField HeaderStyle-BorderWidth="2px" ItemStyle-Font-Size="Small" DataField="DOC" HeaderText="Cliente"/>
-              <asp:BoundField HeaderStyle-BorderWidth="2px" ItemStyle-Font-Size="Small" DataField="CASA" HeaderText="Casa" />     
-              <asp:BoundField HeaderStyle-BorderWidth="2px" ItemStyle-Font-Size="Small" DataField="PLATO" HeaderText="Plato" />   
-              <asp:BoundField HeaderStyle-BorderWidth="2px" ItemStyle-Font-Size="Small" DataField="CANTIDAD" HeaderText="Cantidad" />
-              <asp:BoundField HeaderStyle-BorderWidth="2px" ItemStyle-Font-Size="Small" DataField="FECHA" HeaderText="Fecha pedido" />                                  
-              <asp:CheckBoxField HeaderStyle-BorderWidth="2px" ItemStyle-Font-Size="Small" DataField="ESTADO" HeaderText="Estado" />
+                <asp:LinkButton ID="btnSeleccionar" runat="server" OnClick="btnSeleccionar_Click1" CommandName="select" CssClass="btn btn-md btn-danger" ForeColor="Black" BackColor="Transparent">
+                    <span aria-hidden="true" class="glyphicon glyphicon-pencil"></span>
+                </asp:LinkButton>
+         
+                </ItemTemplate>
+            </asp:TemplateField>
+
+            <asp:BoundField HeaderStyle-BorderWidth="2px" ItemStyle-Font-Size="Medium" DataField="Id" HeaderText="Id"/>
+            <asp:BoundField HeaderStyle-BorderWidth="2px" ItemStyle-Font-Size="Medium" DataField="Nombre" HeaderText="Nombre" />     
+            <asp:BoundField HeaderStyle-BorderWidth="2px" ItemStyle-Font-Size="Medium" DataField="Precio" HeaderText="Precio" /> 
 
           </Columns>
 
-                    <FooterStyle BackColor="#990000" Font-Bold="True" ForeColor="White" />
-                    <HeaderStyle BackColor="Red" Font-Bold="True" ForeColor="White" />
-                    <PagerStyle BackColor="#FFCC66" ForeColor="#333333" HorizontalAlign="Center" />
-                    <RowStyle BackColor="#FFFBD6" ForeColor="#333333" />
-                    <SelectedRowStyle BackColor="#FFCC66" Font-Bold="True" ForeColor="Navy" />
-                    <SortedAscendingCellStyle BackColor="#FDF5AC" />
-                    <SortedAscendingHeaderStyle BackColor="#4D0000" />
-                    <SortedDescendingCellStyle BackColor="#FCF6C0" />
-                    <SortedDescendingHeaderStyle BackColor="#820000" />
-                    <PagerStyle BackColor="#B50000" ForeColor="White" />
+          <FooterStyle BackColor="DarkTurquoise" Font-Bold="True" ForeColor="White" />
+          <HeaderStyle BackColor="LightBlue" Font-Bold="True" ForeColor="White" />
+          <PagerStyle BackColor="DarkTurquoise" ForeColor="#333333" HorizontalAlign="Center" />
+          <RowStyle BackColor="White" ForeColor="#333333" />
+          <SelectedRowStyle BackColor="LightGray" Font-Bold="True" ForeColor="White" />
+          <PagerStyle BackColor="DarkTurquoise" ForeColor="White" />
 
         </asp:GridView>
        </div>
@@ -94,6 +91,12 @@
         <div class="col-md-12">
             <asp:Button ID="btVender" CssClass="btn btn-default" runat="server" Text="Comprar!" OnClick="btVender_Click" Height="34px" />
         </div>
+
+        <div class="col-md-12">
+           <br />
+           <p class="text-center"><asp:Label ID="lbError" runat="server" Text="" ForeColor="Red"></asp:Label></p> 
+           <br />
+       </div>
 
     </div>
     </div>
