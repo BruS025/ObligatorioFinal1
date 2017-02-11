@@ -369,7 +369,7 @@ GO
 ----------------------------
 --SP Necesarios para Platos
 ----------------------------
-CREATE PROCEDURE SP_AgregarPlato
+alter PROCEDURE SP_AgregarPlato
 @Rut INT,
 @NombreA VARCHAR(20),
 @PrecioA FLOAT,
@@ -389,7 +389,7 @@ BEGIN
 					END
 
 			     INSERT INTO Tienen (Rut,IdPlato,IdPlatoCasa)
-			     VALUES (@Rut,(SELECT Plato.IdPlato FROM Plato),(SELECT max(Tienen.IdPlatoCasa) +1 FROM Tienen WHERE Tienen.Rut=1234))
+			     VALUES (@Rut,(SELECT Plato.IdPlato FROM Plato),(SELECT max(Tienen.IdPlatoCasa) +1 FROM Tienen WHERE Tienen.Rut=@Rut))
 
 			IF @@ERROR <> 0
 					BEGIN
@@ -541,11 +541,11 @@ select * from Pedido
 select * from Compran 
 select * from Realizan 
 select * from Casa c join Especializacion e on c.IdEspe=e.IdEspe
-DELETE Especializacion*/
+DELETE Especializacion
 
 -- TEST SP
 DECLARE @RETORNO INT
-EXEC @RETORNO = SP_AgregarPlato 1236,'PruebaAgregar',1,'FotoPrueba'
+EXEC @RETORNO = SP_AgregarPlato 1234,'PruebaAgregar2',1,'FotoPrueba2'
 PRINT @retorno
 
 /*INSERT INTO CASA (rut,IdEspe,Nombre) values (1234123412341234,1,'Comida')
