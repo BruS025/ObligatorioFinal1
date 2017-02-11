@@ -37,10 +37,7 @@
         </div>
 
         <div class="col-md-2" runat="server">
-            <asp:DropDownList ID="ddlPlatoBuscar" runat="server" AutoPostBack="True" Width="100%" Height="34px">
-            <asp:ListItem Value="0">Casa0</asp:ListItem>
-            <asp:ListItem Value="1">Casa1</asp:ListItem>
-            </asp:DropDownList>
+            <asp:DropDownList ID="ddlPlatoBuscar" runat="server" AutoPostBack="True" Width="100%" Height="34px" DataTextField="Nombre" DataValueField="RUT" OnSelectedIndexChanged="ddlPlatoBuscar_SelectedIndexChanged"></asp:DropDownList>
         </div>
 
         <div class="col-md-2" runat="server">
@@ -161,10 +158,7 @@
                     <label for="message-text" class="control-label">Casa del plato:</label>
                 </div>
                 <div class="col-md-4">
-                    <asp:DropDownList ID="ddlCasasPlato" runat="server" Height="34px">
-                        <asp:ListItem Value="0">Casa0</asp:ListItem>
-                        <asp:ListItem Value="1">Casa1</asp:ListItem>
-                    </asp:DropDownList>
+                    <asp:DropDownList ID="ddlCasasPlato" AutoPostBack="true" runat="server" Height="34px" DataTextField="Nombre" DataValueField="RUT" OnSelectedIndexChanged="ddlCasasPlato_SelectedIndexChanged" ></asp:DropDownList>
                 </div>
                </div>
 
@@ -242,10 +236,7 @@
                     <label for="message-text" class="control-label">Casa del plato:</label>
                 </div>
                 <div class="col-md-4">
-                    <asp:DropDownList ID="casaModificar" runat="server" Height="34px">
-                        <asp:ListItem Value="0">Casa0</asp:ListItem>
-                        <asp:ListItem Value="1">Casa1</asp:ListItem>
-                    </asp:DropDownList>
+                    <asp:DropDownList ID="ddlCasaModificar" AutoPostBack="true" runat="server" Height="34px" DataTextField="Nombre" DataValueField="RUT" OnSelectedIndexChanged="casaModificar_SelectedIndexChanged"></asp:DropDownList>
                 </div>
                </div>
 

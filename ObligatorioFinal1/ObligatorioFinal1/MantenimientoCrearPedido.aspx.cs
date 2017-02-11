@@ -31,7 +31,13 @@ namespace ObligatorioFinal1
 
                 ddlEspecializacion.DataSource = listadoEspecializaciones;
                 ddlEspecializacion.DataBind();
-            }
+
+                List<Casa> listadoCasas = new List<Casa>(LogicaCasa.Listar());
+
+                ddlCasas.DataSource = listadoCasas;
+                ddlCasas.DataBind();
+
+                }
 
 
             catch (Exception ex)
@@ -87,6 +93,16 @@ namespace ObligatorioFinal1
         }
 
         protected void btnSeleccionar_Click1(object sender, EventArgs e)
+        {
+
+        }
+
+        protected void btQuitarCarrito_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        protected void btAgregarCarrito_Click(object sender, EventArgs e)
         {
 
         }

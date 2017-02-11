@@ -46,6 +46,17 @@ namespace ObligatorioFinal1
                     GridPlatos.DataSource = listadoAdmin;
                     GridPlatos.DataBind();
 
+                    List<Casa> listadoCasas = new List<Casa>(LogicaCasa.Listar());
+
+                    ddlPlatoBuscar.DataSource = listadoCasas;
+                    ddlPlatoBuscar.DataBind();
+
+                    ddlCasaModificar.DataSource = listadoCasas;
+                    ddlCasaModificar.DataBind();
+
+                    ddlCasasPlato.DataSource = listadoCasas;
+                    ddlCasasPlato.DataBind();
+
                     //CargarGrilla();
                 }
 
@@ -285,5 +296,19 @@ namespace ObligatorioFinal1
             }
         }
 
+        protected void ddlPlatoBuscar_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        protected void ddlCasasPlato_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        protected void casaModificar_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }

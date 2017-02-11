@@ -45,7 +45,7 @@ namespace ObligatorioFinal1
                     }              
 
 
-                        List <Especializacion> listadoEspecializaciones = new List<Especializacion>(LogicaEspecializacion.Listar());
+                    List <Especializacion> listadoEspecializaciones = new List<Especializacion>(LogicaEspecializacion.Listar());
 
                     ddlEspecializacionAdd.DataSource = listadoEspecializaciones;
                     ddlEspecializacionAdd.DataBind();

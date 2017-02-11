@@ -76,13 +76,13 @@ namespace ObligatorioFinal1 {
         protected global::System.Web.UI.WebControls.ListBox listadoCarrito;
         
         /// <summary>
-        /// btQuitar control.
+        /// btQuitarCarrito control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btQuitar;
+        protected global::System.Web.UI.WebControls.LinkButton btQuitarCarrito;
         
         /// <summary>
         /// btCantidad control.
@@ -94,13 +94,13 @@ namespace ObligatorioFinal1 {
         protected global::System.Web.UI.WebControls.Label btCantidad;
         
         /// <summary>
-        /// btAgregar control.
+        /// btAgregarCarrito control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btAgregar;
+        protected global::System.Web.UI.WebControls.LinkButton btAgregarCarrito;
         
         /// <summary>
         /// btVender control.

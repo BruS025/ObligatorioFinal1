@@ -53,29 +53,39 @@
             </div>
 
             <div class="col-md-6">
-                <asp:Label ID="Label2" ForeColor="Black" runat="server" Height="34px" Text="Carrito:" Font-Size="Large"></asp:Label>                      
+                <asp:Label ID="Label2" ForeColor="Black" runat="server" Height="34px" Text="Carrito:" Font-Size="Large" Visible="false"></asp:Label>                      
             </div>
         </div>
 
         <div class="col-md-12">
             <div class="col-md-6">
-                <asp:ListBox ID="listadoPlatos" runat="server" DataTextField="Nombre" DataValueField="Id" Font-Size="Medium"></asp:ListBox>
+                <asp:ListBox ID="listadoPlatos" runat="server" DataTextField="Nombre" DataValueField="Id" Font-Size="Medium" AutoPostBack="true"></asp:ListBox>
             </div>
 
             <div class="col-md-6">
-                <asp:ListBox ID="listadoCarrito" runat="server" DataTextField="Nombre" DataValueField="Id" Font-Size="Medium"></asp:ListBox>
+                <asp:ListBox ID="listadoCarrito" runat="server" DataTextField="Nombre" DataValueField="Id" Font-Size="Medium" AutoPostBack="true" Visible="false"></asp:ListBox>
             </div>           
        </div>
 
         <div class="col-md-12">
+
             <br />
-            <asp:Button ID="btQuitar" CssClass="btn btn-default" runat="server" Text="-" OnClick="btQuitar_Click" Height="34px" />
-            <asp:Label ID="btCantidad" runat="server" Text="0" Width="20px"></asp:Label>
-            <asp:Button ID="btAgregar" CssClass="btn btn-default" runat="server" Text="+" OnClick="btAgregar_Click" Height="34px" />
+
+            <asp:LinkButton ID="btQuitarCarrito" runat="server" OnClick="btQuitarCarrito_Click" CssClass="btn-primary btn-md" ForeColor="Black" BackColor="Transparent">
+                    <span aria-hidden="true" class="glyphicon glyphicon-plus"></span>
+            </asp:LinkButton>
+
+            <asp:Label ID="btCantidad" runat="server" Text="0"></asp:Label>
+
+            <asp:LinkButton ID="btAgregarCarrito" runat="server" OnClick="btAgregarCarrito_Click" CssClass="btn-primary btn-md" ForeColor="Black" BackColor="Transparent">
+                    <span aria-hidden="true" class="glyphicon glyphicon-minus"></span>
+            </asp:LinkButton>
+
         </div>
 
         <div class="col-md-12">
-            <asp:Button ID="btVender" CssClass="btn btn-default" runat="server" Text="Comprar!" OnClick="btVender_Click" Height="34px" />
+            <br />
+            <asp:Button ID="btVender" CssClass="btn btn-md btn-primary" runat="server" Text="Comprar!" OnClick="btVender_Click" Height="34px" />
         </div>
 
         <div class="col-md-12">
