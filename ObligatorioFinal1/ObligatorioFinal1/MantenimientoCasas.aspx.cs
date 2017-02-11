@@ -108,9 +108,9 @@ namespace ObligatorioFinal1
                     lbError.Text = "No existen casas registradas";
                 }
             }
-            catch (Exception ex)
+            catch (Exception)
             {
-                lbError.Text = ex.Message; //"Ha ocurrido un error";
+                lbError.Text = "Ha ocurrido un error";
             }
         }
 

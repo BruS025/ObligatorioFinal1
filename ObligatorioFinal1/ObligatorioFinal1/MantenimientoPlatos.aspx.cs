@@ -61,11 +61,51 @@ namespace ObligatorioFinal1
 
         }
 
-        protected void btVerificar_Click(object sender, EventArgs e)
+        // Cargar Grilla
+        private void CargarGrilla()
         {
             try
             {
 
+                List<Plato> listadoPlatos = LogicaPlato.Listar();
+
+                GridPlatos.DataSource = null;
+
+                if (listadoPlatos != null)
+                {
+                    if (listadoPlatos.Count > 0)
+                    {
+                        GridPlatos.Visible = true;
+                        GridPlatos.DataSource = listadoPlatos;
+                        GridPlatos.DataBind();
+                    }
+
+                    else
+                    {
+                        GridPlatos.Visible = false;
+                        lbError.Text = "No existen platos registrados";
+                    }
+
+                }
+
+                else
+                {
+                    GridPlatos.Visible = false;
+                    lbError.Text = "No existen platos registrados";
+                }
+            }
+            catch (Exception)
+            {
+                lbError.Text = "Ha ocurrido un error";
+            }
+        }
+
+
+        protected void btVerificar_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                
             }
             catch (Exception ex)
             {
