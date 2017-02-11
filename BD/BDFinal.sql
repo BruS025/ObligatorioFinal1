@@ -35,7 +35,6 @@ CREATE TABLE Cliente
 	NroPuerta INT NOT NULL
 )
 GO
-fghfghfg
 --Creo la tabla Cargo
 CREATE TABLE Cargo
 (
@@ -80,6 +79,7 @@ CREATE TABLE Tienen
 (
 	Rut BIGINT FOREIGN KEY REFERENCES Casa(Rut) ON DELETE CASCADE,
 	IdPlato INT FOREIGN KEY REFERENCES Plato(IdPlato) ON DELETE CASCADE UNIQUE,
+	IdPlatoCasa INT NOT NULL,
 	PRIMARY KEY(Rut,IdPlato)
 )
 GO
@@ -367,11 +367,98 @@ END
 GO
 
 ----------------------------
---SP Necesarios para Pedidos
+--SP Necesarios para Platos
 ----------------------------
+CREATE PROCEDURE SP_AgregarPlato
+@Rut INT,
+@NombreA VARCHAR(20),
+@PrecioA FLOAT,
+@FotoA VARCHAR(MAX)
+AS
+BEGIN
+	IF EXISTS(SELECT Tienen.Rut FROM Tienen WHERE Tienen.Rut=@Rut)
+	BEGIN
+		BEGIN TRANSACTION
+		     INSERT INTO Plato (Nombre,Precio,Foto)
+			        VALUES (@NombreA,@PrecioA,@FotoA)
 
---CREATE PROCEDURE SP_AgregarPedido
+			IF @@ERROR <> 0
+					BEGIN
+						ROLLBACK TRANSACTION
+						RETURN @@ERROR
+					END
 
+			     INSERT INTO Tienen (Rut,IdPlato,IdPlatoCasa)
+			     VALUES (@Rut,(SELECT Plato.IdPlato FROM Plato),(SELECT max(Tienen.IdPlatoCasa) +1 FROM Tienen WHERE Tienen.Rut=1234))
+
+			IF @@ERROR <> 0
+					BEGIN
+						ROLLBACK TRANSACTION
+						RETURN @@ERROR
+					END
+			ELSE 
+					BEGIN
+						COMMIT TRANSACTION
+						RETURN 1
+					END
+	END
+	ELSE
+		BEGIN
+		     BEGIN TRANSACTION
+		     INSERT INTO Plato (Nombre,Precio,Foto)
+			        VALUES (@NombreA,@PrecioA,@FotoA)
+
+			IF @@ERROR <> 0
+					BEGIN
+						ROLLBACK TRANSACTION
+						RETURN @@ERROR
+					END
+
+		     INSERT INTO Tienen (Rut,IdPlato,IdPlatoCasa)
+			        VALUES (@Rut,(SELECT Plato.IdPlato FROM Plato),1)
+
+			IF @@ERROR <> 0
+					BEGIN
+						ROLLBACK TRANSACTION
+						RETURN @@ERROR
+					END
+			ELSE 
+					BEGIN
+						COMMIT TRANSACTION
+						RETURN 1
+					END 
+		--
+    END
+END
+GO
+
+CREATE PROCEDURE SP_ModificarPlato
+@IdPlato INT,
+@NombreM VARCHAR(20),
+@PrecioM FLOAT,
+@FotoM VARCHAR(MAX)
+AS
+BEGIN
+	BEGIN TRANSACTION
+		UPDATE Plato
+		SET IdPlato=@IdPlato,
+			Nombre=@NombreM,
+			Precio=@PrecioM,
+			Foto=@FotoM
+
+		IF @@ERROR <> 0
+			BEGIN
+				ROLLBACK TRANSACTION
+				RETURN @@ERROR
+			END
+       ELSE
+			BEGIN
+				COMMIT TRANSACTION
+				RETURN 1	
+			END
+END
+GO
+CREATE PROCEDURE SP_BorrarPlato
 
 --------------------------
 CREATE PROCEDURE SP_ListarTodasLasCasas
@@ -424,7 +511,7 @@ INSERT INTO Especializacion VALUES('Vegetariano')
 INSERT INTO Cargo VALUES ('ADMIN')
 INSERT INTO Cargo VALUES ('GERENTE')
 
-/*
+
 -- DATOS DE PRUEBA
 INSERT INTO Casa VALUES(1234,1,'CASA1')
 INSERT INTO Casa VALUES(1235,1,'CASA2')
@@ -436,13 +523,13 @@ INSERT INTO Plato VALUES('PLATO2',2,'FOTO2')
 INSERT INTO Plato VALUES('PLATO3',3,'FOTO3')
 INSERT INTO Plato VALUES('PLATO4',4,'FOTO4')
 
-INSERT INTO Tienen VALUES(1234,1)
-INSERT INTO Tienen VALUES(1234,2)
-INSERT INTO Tienen VALUES(6789,3)
-INSERT INTO Tienen VALUES(6677,4)
+INSERT INTO Tienen VALUES(1234,1,1)
+INSERT INTO Tienen VALUES(1235,2,0)
+INSERT INTO Tienen VALUES(6789,3,0)
+INSERT INTO Tienen VALUES(6677,4,0)
 
 -- Consultas basicas
-delete Tienen
+delete Especializacion
 select * from Usuario
 select * from Cliente
 select * from Administrador
@@ -454,15 +541,12 @@ select * from Pedido
 select * from Compran 
 select * from Realizan 
 select * from Casa c join Especializacion e on c.IdEspe=e.IdEspe
-DELETE Especializacion
+DELETE Especializacion*/
 
 -- TEST SP
 DECLARE @RETORNO INT
-EXEC @RETORNO = SP_ListarTodasLasCasas
+EXEC @RETORNO = SP_AgregarPlato 1236,'PruebaAgregar',1,'FotoPrueba'
 PRINT @retorno
 
-exec SP_BorrarCasa
-
-
-INSERT INTO CASA (rut,IdEspe,Nombre) values (1234123412341234,1,'Comida')
+/*INSERT INTO CASA (rut,IdEspe,Nombre) values (1234123412341234,1,'Comida')
 INSERT INTO CASA (rut,IdEspe,Nombre) values (1234123412341231,1,'Comida2')*/
