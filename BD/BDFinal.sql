@@ -35,6 +35,7 @@ CREATE TABLE Cliente
 	NroPuerta INT NOT NULL
 )
 GO
+fghfghfg
 --Creo la tabla Cargo
 CREATE TABLE Cargo
 (
