@@ -461,7 +461,7 @@ BEGIN
 				RETURN 1	
 			END
 END
-GO*/
+GO*/--
 CREATE PROCEDURE SP_BorrarPlato
 
 --------------------------
