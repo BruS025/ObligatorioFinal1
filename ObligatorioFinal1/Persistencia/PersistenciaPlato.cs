@@ -11,7 +11,7 @@ namespace Persistencia
 {
     public class PersistenciaPlato
     {
-        public static List<Plato> Listar()
+        public static List<Plato> Listar(long rut)
         {
             List<Plato> lista = new List<Plato>();
 
@@ -19,6 +19,9 @@ namespace Persistencia
             SqlCommand comando = new SqlCommand("", conexion);
             comando.CommandType = CommandType.StoredProcedure;
 
+            SqlParameter parametroRut = new SqlParameter("@rut", rut);
+
+            comando.Parameters.Add(parametroRut);
 
             try
             {
@@ -31,7 +34,7 @@ namespace Persistencia
 
                     Plato plato = new Plato();
 
-                    plato.Id = Convert.ToInt32(lector["IdPlato"].ToString());
+                    plato.Id = Convert.ToInt32(lector["IdPlatoCasa"].ToString());
                     plato.Nombre = lector["Nombre"].ToString();
                     plato.Precio = Convert.ToInt32(lector["Precio"].ToString());
                     
@@ -170,7 +173,7 @@ namespace Persistencia
             List<Plato> lista = new List<Plato>();
 
             SqlConnection conexion = new SqlConnection(Conexion.CnnString);
-            SqlCommand comando = new SqlCommand("ListarPlato", conexion);
+            SqlCommand comando = new SqlCommand("ListarPlatoPedido", conexion);
             comando.CommandType = CommandType.StoredProcedure;
 
             SqlParameter parametroId = new SqlParameter("@IdEspe", id);

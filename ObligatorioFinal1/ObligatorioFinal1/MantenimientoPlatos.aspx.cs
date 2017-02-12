@@ -18,15 +18,6 @@ namespace ObligatorioFinal1
             {
                 try
                 {
-                    List<Plato> listadoAdmin = new List<Plato>();
-                    Plato cliente = new Plato(1234,1234,"Lasaña",1,"foto");
-                    Plato cliente2 = new Plato(1111,2222,"Ravioles",1, "foto");
-
-                    listadoAdmin.Add(cliente);
-                    listadoAdmin.Add(cliente2);
-
-                    GridPlatos.DataSource = listadoAdmin;
-                    GridPlatos.DataBind();
 
                     List<Casa> listadoCasas = new List<Casa>(LogicaCasa.Listar());
 
@@ -60,7 +51,7 @@ namespace ObligatorioFinal1
             try
             {
 
-                List<Plato> listadoPlatos = LogicaPlato.Listar();
+                List<Plato> listadoPlatos = LogicaPlato.Listar(Convert.ToInt64(ddlCasasPlato.SelectedValue));
 
                 GridPlatos.DataSource = null;
 

@@ -30,9 +30,9 @@ namespace Logica
             return PersistenciaPlato.Eliminar(id);
         }
 
-        public static List<Plato> Listar()
+        public static List<Plato> Listar(long rut)
         {
-            return PersistenciaPlato.Listar();
+            return PersistenciaPlato.Listar(rut);
         }
 
         public static List<Plato> ListarPedido(int id, long rut)

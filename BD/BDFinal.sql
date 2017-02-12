@@ -554,7 +554,7 @@ GO
 -- Casas pedidos
 -- Recibe: idEspe - RUT
 -- Envia: RUT - idPlatoCasa - Nombre - Plato - Precio
-CREATE PROCEDURE ListarPlato
+CREATE PROCEDURE ListarPlatoPedido
 @IdEspe INT,
 @Rut BIGINT
 AS
@@ -573,6 +573,20 @@ BEGIN
 AS
 BEGIN
 	SELECT * FROM Casa ca WHERE ca.IdEspe = @IdEspe
+ END
+ GO
+
+-- Listado de platos para casa
+ CREATE PROCEDURE ListarPlato
+@rut INT
+AS
+BEGIN
+	SELECT ti.IdPlatoCasa, pl.Nombre, pl.Precio, pl.Foto FROM Plato pl
+	JOIN Tienen ti on pl.IdPlato = ti.IdPlato 
+	JOIN Casa ca on ca.Rut = ti.Rut
+	JOIN Especializacion esp on esp.IdEspe = ca.IdEspe
+	WHERE ca.Rut = @Rut
+
  END
  GO
 
