@@ -369,7 +369,7 @@ GO
 ----------------------------
 --SP Necesarios para Platos
 ----------------------------
-alter PROCEDURE SP_AgregarPlato
+CREATE PROCEDURE SP_AgregarPlato
 @Rut INT,
 @NombreA VARCHAR(20),
 @PrecioA FLOAT,
@@ -389,7 +389,7 @@ BEGIN
 					END
 
 			     INSERT INTO Tienen (Rut,IdPlato,IdPlatoCasa)
-			     VALUES (@Rut,(SELECT Plato.IdPlato FROM Plato),(SELECT max(Tienen.IdPlatoCasa) +1 FROM Tienen WHERE Tienen.Rut=@Rut))
+			     VALUES (@Rut,(SELECT max(Plato.IdPlato) FROM Plato),(SELECT max(Tienen.IdPlatoCasa) +1 FROM Tienen WHERE Tienen.Rut=@Rut))
 
 			IF @@ERROR <> 0
 					BEGIN
@@ -415,7 +415,7 @@ BEGIN
 					END
 
 		     INSERT INTO Tienen (Rut,IdPlato,IdPlatoCasa)
-			        VALUES (@Rut,(SELECT Plato.IdPlato FROM Plato),1)
+			        VALUES (@Rut,(SELECT max(Plato.IdPlato) FROM Plato),1)
 
 			IF @@ERROR <> 0
 					BEGIN
@@ -432,8 +432,10 @@ BEGIN
 END
 GO
 
-CREATE PROCEDURE SP_ModificarPlato
-@IdPlato INT,
+/*CREATE PROCEDURE SP_ModificarPlato
+@RutOriginal BIGINT,
+@RutM BIGINT,
+@IdPlatoM INT,
 @NombreM VARCHAR(20),
 @PrecioM FLOAT,
 @FotoM VARCHAR(MAX)
@@ -441,10 +443,12 @@ AS
 BEGIN
 	BEGIN TRANSACTION
 		UPDATE Plato
-		SET IdPlato=@IdPlato,
+		SET IdPlato=@IdPlatoM,
 			Nombre=@NombreM,
 			Precio=@PrecioM,
 			Foto=@FotoM
+		WHERE (SELECT T.Rut FROM Tienen T WHERE T.Rut=@RutOriginal)
+		
 
 		IF @@ERROR <> 0
 			BEGIN
@@ -457,7 +461,7 @@ BEGIN
 				RETURN 1	
 			END
 END
-GO
+GO*/
 CREATE PROCEDURE SP_BorrarPlato
 
 --------------------------
@@ -545,7 +549,7 @@ DELETE Especializacion
 
 -- TEST SP
 DECLARE @RETORNO INT
-EXEC @RETORNO = SP_AgregarPlato 1234,'PruebaAgregar2',1,'FotoPrueba2'
+EXEC @RETORNO = SP_AgregarPlato 1235,'PruebaAgregar1',1,'FotoPrueba1'
 PRINT @retorno
 
 /*INSERT INTO CASA (rut,IdEspe,Nombre) values (1234123412341234,1,'Comida')
