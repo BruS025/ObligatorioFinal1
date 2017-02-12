@@ -431,35 +431,22 @@ BEGIN
     END
 END
 GO
-
-/*CREATE PROCEDURE SP_ModificarPlato
+CREATE PROCEDURE SP_ModificarPlato
 @RutOriginal BIGINT,
-@RutM BIGINT,
-@IdPlatoM INT,
 @NombreM VARCHAR(20),
 @PrecioM FLOAT,
 @FotoM VARCHAR(MAX)
 AS
 BEGIN
- IF EXISTS(SELECT T.IdPlatoCasa FROM Tienen T WHERE T.IdPlatoCasa=@IdPlatoM AND Rut=@RutOriginal)
+ IF EXISTS(SELECT T.IdPlatoCasa FROM Tienen T WHERE Rut=@RutOriginal)
 	BEGIN
 		BEGIN TRANSACTION
 			UPDATE Plato
 			SET Nombre=@NombreM,
 				Precio=@PrecioM,
 				Foto=@FotoM
-			WHERE Plato.IdPlato IN (SELECT T.IdPlato FROM Tienen T WHERE T.Rut=@RutOriginal)
+			WHERE Plato.IdPlato IN (SELECT T.IdPlato FROM Tienen T WHERE Rut=@RutOriginal)
 		
-			IF @@ERROR <> 0
-				BEGIN
-					ROLLBACK TRANSACTION
-					RETURN @@ERROR
-				END
-			UPDATE Tienen
-			SET Rut=@RutM,
-				IdPlatoCasa=@IdPlatoM
-			WHERE Tienen.Rut =@RutOriginal
-
 			IF @@ERROR <> 0
 				BEGIN
 					ROLLBACK TRANSACTION
@@ -476,9 +463,7 @@ ELSE
 		RETURN -1
 	END
 END
-GO*/
-
-/*
+GO
 CREATE PROCEDURE SP_BorrarPlato
 @IdPlatoB INT
 AS
@@ -497,21 +482,7 @@ BEGIN
 				RETURN 1	
 			END
 END
-GO*/--
-/*CREATE PROCEDURE SP_BorrarPlato
-			IF @@ERROR <> 0
-				BEGIN
-					ROLLBACK TRANSACTION
-					RETURN @@ERROR
-				END
-	    ELSE
-				BEGIN
-					COMMIT TRANSACTION
-					RETURN 1	
-				END
-END
 GO
-*/
 --------------------------
 CREATE PROCEDURE SP_ListarTodasLasCasas
 AS
@@ -645,7 +616,7 @@ EXEC @RETORNO = SP_AgregarPlato 1235,'PLATO5',10,'FOTO5'
 PRINT @retorno
 
 DECLARE @RETORNO INT
-EXEC @RETORNO = SP_ModificarPlato 1234567890123452,1234567890123456,1,'MODIFICADO1',10,'MODIFICADO1'
+EXEC @RETORNO = SP_BorrarPlato 4
 PRINT @retorno
 
 @RutOriginal BIGINT,
