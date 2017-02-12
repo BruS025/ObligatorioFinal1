@@ -15,9 +15,9 @@ namespace Logica
             return PersistenciaPlato.Buscar(id);
         }
 
-        public static int Agregar(Plato plato)
+        public static int Agregar(Plato plato, long rut)
         {
-            throw new NotImplementedException();
+            return PersistenciaPlato.Agregar(plato, rut);
         }
 
         public static int Modificar(Plato plato)

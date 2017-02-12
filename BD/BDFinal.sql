@@ -370,7 +370,7 @@ GO
 --SP Necesarios para Platos
 ----------------------------
 CREATE PROCEDURE SP_AgregarPlato
-@Rut INT,
+@Rut BIGINT,
 @NombreA VARCHAR(20),
 @PrecioA FLOAT,
 @FotoA VARCHAR(MAX)
@@ -549,7 +549,7 @@ BEGIN
 
 -- Listado de platos para casa
  CREATE PROCEDURE ListarPlato
-@rut INT
+@rut BIGINT
 AS
 BEGIN
 	SELECT ti.IdPlatoCasa, pl.Nombre, pl.Precio, pl.Foto FROM Plato pl
@@ -638,3 +638,12 @@ INSERT INTO CASA (rut,IdEspe,Nombre) values (1234123412341231,1,'Comida2')
 DECLARE @RETORNO INT
 EXEC @RETORNO = ListarPlato 1,1234567890123452
 PRINT @retorno*/
+
+@Rut INT,
+@NombreA VARCHAR(20),
+@PrecioA FLOAT,
+@FotoA VARCHAR(MAX)
+
+DECLARE @RETORNO INT
+EXEC @RETORNO = AgreSP_AgregarPlato 1,1234567890123452
+PRINT @retorno

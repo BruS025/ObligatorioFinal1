@@ -20,6 +20,7 @@ namespace ObligatorioFinal1
                 {
                     ActualizarCasas();
                     CargarGrilla();
+
                 }
 
                 catch (Exception ex)
@@ -82,9 +83,9 @@ namespace ObligatorioFinal1
                     lbError.Text = "No existen platos registrados";
                 }
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-                lbError.Text = "Ha ocurrido un error";
+                lbError.Text = ex.Message; //"Ha ocurrido un error";
             }
         }
 
@@ -285,7 +286,30 @@ namespace ObligatorioFinal1
 
         protected void casaModificar_SelectedIndexChanged(object sender, EventArgs e)
         {
+            
+        }
+
+        protected void verFotoClick(object sender, EventArgs e)
+        {
+            String foto = "1.jpg";
+
+            fotoMostrar.Src = "/ImagenesPlato/" + foto; 
+            fotoMostrar.DataBind();
+            ClientScript.RegisterStartupScript(this.GetType(), "myScript", "<script>javascript: vpi3();</script>");
+        }
+
+        override protected void OnInit(EventArgs e)
+        {
+            InitializeComponent();
+            base.OnInit(e);
+        }
+
+        private void InitializeComponent()
+        {
+            this.foto.ServerClick += new System.EventHandler(this.verFotoClick);
+            this.Load += new System.EventHandler(this.Page_Load);
 
         }
+
     }
 }

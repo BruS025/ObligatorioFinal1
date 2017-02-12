@@ -78,7 +78,7 @@
 
           <Columns>
 
-            <asp:TemplateField HeaderStyle-BorderWidth="2px" ItemStyle-HorizontalAlign="Center" ControlStyle-Font-Size="Medium" ControlStyle-CssClass="btn-primary btn-md" HeaderText="Editar">
+            <asp:TemplateField HeaderStyle-BorderWidth="2px" ItemStyle-HorizontalAlign="Center" ControlStyle-Font-Size="Medium" ControlStyle-CssClass="btn-primary btn-md" HeaderText="Seleccionar">
                 <ItemTemplate>
 
                 <asp:LinkButton ID="btnSeleccionar" runat="server" OnClick="btnSeleccionar_Click" CommandName="select" CssClass="btn btn-md btn-danger" ForeColor="Black" BackColor="Transparent">
@@ -91,7 +91,8 @@
 
             <asp:BoundField HeaderStyle-BorderWidth="2px" ItemStyle-Font-Size="Medium" DataField="Id" HeaderText="Id"/>
             <asp:BoundField HeaderStyle-BorderWidth="2px" ItemStyle-Font-Size="Medium" DataField="Nombre" HeaderText="Nombre" />     
-            <asp:BoundField HeaderStyle-BorderWidth="2px" ItemStyle-Font-Size="Medium" DataField="Precio" HeaderText="Precio" />                                   
+            <asp:BoundField HeaderStyle-BorderWidth="2px" ItemStyle-Font-Size="Medium" DataField="Precio" HeaderText="Precio" />      
+            <asp:BoundField HeaderStyle-BorderWidth="2px" ItemStyle-Font-Size="Medium" DataField="Foto" HeaderText="Foto" />                             
 
             <asp:TemplateField HeaderStyle-BorderWidth="2px" ItemStyle-HorizontalAlign="Center" ControlStyle-Font-Size="Medium" ControlStyle-CssClass="btn-danger btn-danger btn-md" HeaderText="Eliminar">
                 <ItemTemplate>
@@ -135,7 +136,7 @@
         <h4 class="modal-title"><asp:Label ID="modalNombrePlato" runat="server" Text="PlatoNombre"></asp:Label></h4>
       </div>
       <div class="modal-body">
-        <img class="card-img-center" src="/ImagenesPlato/1.jpg" width="100%" height="100%" alt="Card image cap" />
+        <img class="card-img-center" src="~/Imagenes/logo.png" id="fotoMostrar" alt="Card image cap" runat="server" />
       </div>
       <div class="modal-footer">                                      
       </div>
@@ -289,6 +290,10 @@
 
  <script>
 
+     function vpi() { $('#agregarModal').modal('show') }
+     function vpi2() { $('#editarModal').modal('show') }
+     function vpi3() { $('#myModal').modal('show') }
+
      $('#agregarModal').on('show.bs.modal', function (event) {
          var button = $(event.relatedTarget) // Button that triggered the modal
          var recipient = button.data('whatever')
@@ -301,11 +306,6 @@
          var modal = $(this)
      })
 
-     $('#myModal').on('show.bs.modal', function (event) {
-         var button = $(event.relatedTarget) // Button that triggered the modal
-         var recipient = button.data('whatever')
-         var modal = $(this)        
-     })
          
    
  </script>
