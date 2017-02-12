@@ -61,23 +61,22 @@
         </div>
 
         <div class="col-md-12">
-            <div class="col-md-6">
+            <div class="col-md-4">
                 <asp:ListBox ID="listadoPlatos" runat="server" DataTextField="Nombre" DataValueField="Id" Font-Size="Medium" AutoPostBack="true"></asp:ListBox>
             </div>
 
-            <div class="col-md-6">
-                <asp:ListBox ID="listadoCarrito" runat="server" DataTextField="Nombre" DataValueField="Id" Font-Size="Medium" AutoPostBack="true" Visible="false"></asp:ListBox>
+            <div class="col-md-4">
+                <asp:ListBox ID="listadoCarrito" runat="server" DataTextField="Nombre" DataValueField="Id" Font-Size="Medium" AutoPostBack="true" Visible="true"></asp:ListBox>
             </div>           
        </div>
 
-        <div class="col-md-12">
-
+       <div class="col-md-4">
             <br />
-
-            <div class="col-md-2" runat="server">
+            <div class="col-md-3" runat="server">
                 <button type="button" visible="true" id="verPlatoSeleccionado" runat="server" class="btn-md btn-success" data-toggle="modal" data-target="#detallesPlato" data-whatever="Ver plato"><span aria-hidden="true" class="glyphicon glyphicon-eye-open"></span> Ver</button>
             </div>
-
+            <br />
+            <br />
             <asp:LinkButton ID="btQuitarCarrito" runat="server" OnClick="btQuitarCarrito_Click" CssClass="btn-primary btn-md" ForeColor="Black" BackColor="Transparent">
                     <span aria-hidden="true" class="glyphicon glyphicon-plus"></span>
             </asp:LinkButton>

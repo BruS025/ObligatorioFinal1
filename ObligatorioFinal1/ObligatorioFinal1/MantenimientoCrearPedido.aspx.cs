@@ -23,7 +23,7 @@ namespace ObligatorioFinal1
                 ddlEspecializacion.DataSource = listadoEspecializaciones;
                 ddlEspecializacion.DataBind();
 
-                List<Casa> listadoCasas = new List<Casa>(LogicaCasa.Listar());
+                List<Casa> listadoCasas = new List<Casa>(LogicaCasa.ListarPedido(Convert.ToInt32(ddlEspecializacion.SelectedValue)));
 
                 ddlCasas.DataSource = listadoCasas;
                 ddlCasas.DataBind();
