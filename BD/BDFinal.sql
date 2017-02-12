@@ -511,21 +511,11 @@ CREATE PROCEDURE ListarPlato
 @Rut BIGINT
 AS
 BEGIN
-	IF @IdEspe = 0
-		BEGIN
-			SELECT ti.IdPlatoCasa, pl.Nombre, pl.Precio, pl.Foto FROM Plato pl
-			JOIN Tienen ti on pl.IdPlato = ti.IdPlato 
-			JOIN Casa ca on ca.Rut = ti.Rut
-			JOIN Especializacion esp on esp.IdEspe = ca.IdEspe
-		END
-	ELSE
-		BEGIN
-			SELECT ti.IdPlatoCasa, pl.Nombre, pl.Precio, pl.Foto FROM Plato pl
-			JOIN Tienen ti on pl.IdPlato = ti.IdPlato 
-			JOIN Casa ca on ca.Rut = ti.Rut
-			JOIN Especializacion esp on esp.IdEspe = ca.IdEspe
-			WHERE esp.IdEspe = @IdEspe and ca.Rut = @Rut
-		END
+	SELECT pl.IdPlato, pl.Nombre, pl.Precio, pl.Foto FROM Plato pl
+	JOIN Tienen ti on pl.IdPlato = ti.IdPlato 
+	JOIN Casa ca on ca.Rut = ti.Rut
+	JOIN Especializacion esp on esp.IdEspe = ca.IdEspe
+	WHERE esp.IdEspe = @IdEspe and ca.Rut = @Rut
  END
  GO
 
@@ -601,3 +591,6 @@ PRINT @retorno
 /*INSERT INTO CASA (rut,IdEspe,Nombre) values (1234123412341234,1,'Comida')
 INSERT INTO CASA (rut,IdEspe,Nombre) values (1234123412341231,1,'Comida2')*/
 
+DECLARE @RETORNO INT
+EXEC @RETORNO = ListarPlato 1,1234567890123452
+PRINT @retorno

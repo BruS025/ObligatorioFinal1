@@ -190,7 +190,7 @@ namespace Persistencia
 
                     Plato plato = new Plato();
 
-                    plato.Id = Convert.ToInt32(lector["IdPlatoCasa"].ToString());
+                    plato.Id = Convert.ToInt32(lector["IdPlato"].ToString());
                     plato.Nombre = lector["Nombre"].ToString();
                     plato.Precio = Convert.ToDouble(lector["Precio"].ToString());
                     plato.Foto = lector["Foto"].ToString();

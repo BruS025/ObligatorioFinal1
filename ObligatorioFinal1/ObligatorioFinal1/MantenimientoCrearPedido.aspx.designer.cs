@@ -76,6 +76,15 @@ namespace ObligatorioFinal1 {
         protected global::System.Web.UI.WebControls.ListBox listadoCarrito;
         
         /// <summary>
+        /// btAgregarListado control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.LinkButton btAgregarListado;
+        
+        /// <summary>
         /// verPlatoSeleccionado control.
         /// </summary>
         /// <remarks>
@@ -85,24 +94,6 @@ namespace ObligatorioFinal1 {
         protected global::System.Web.UI.HtmlControls.HtmlButton verPlatoSeleccionado;
         
         /// <summary>
-        /// btQuitarCarrito control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton btQuitarCarrito;
-        
-        /// <summary>
-        /// btCantidad control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label btCantidad;
-        
-        /// <summary>
         /// btAgregarCarrito control.
         /// </summary>
         /// <remarks>
@@ -110,6 +101,15 @@ namespace ObligatorioFinal1 {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.LinkButton btAgregarCarrito;
+        
+        /// <summary>
+        /// btQuitarCarrito control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.LinkButton btQuitarCarrito;
         
         /// <summary>
         /// btVender control.

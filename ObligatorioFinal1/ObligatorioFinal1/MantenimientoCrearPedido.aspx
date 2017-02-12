@@ -56,37 +56,41 @@
             </div>
 
             <div class="col-md-6">
-                <asp:Label ID="Label2" ForeColor="Black" runat="server" Height="34px" Text="Carrito:" Font-Size="Large" Visible="false"></asp:Label>                      
+                <asp:Label ID="Label2" ForeColor="Black" runat="server" Height="34px" Text="Carrito:" Font-Size="Large" Visible="true"></asp:Label>                      
             </div>
         </div>
 
         <div class="col-md-12">
-            <div class="col-md-4">
-                <asp:ListBox ID="listadoPlatos" runat="server" DataTextField="Nombre" DataValueField="Id" Font-Size="Medium" AutoPostBack="true"></asp:ListBox>
+            <div class="col-md-6">
+                <asp:ListBox ID="listadoPlatos" runat="server" DataTextField="Nombre" DataValueField="Id" Font-Size="Medium" AutoPostBack="true" Width="100%"></asp:ListBox>
             </div>
 
-            <div class="col-md-4">
-                <asp:ListBox ID="listadoCarrito" runat="server" DataTextField="Nombre" DataValueField="Id" Font-Size="Medium" AutoPostBack="true" Visible="true"></asp:ListBox>
+            <div class="col-md-6">
+                <asp:ListBox ID="listadoCarrito" runat="server" DataTextField="Nombre" DataValueField="Id" Font-Size="Medium" AutoPostBack="true" Visible="true" Width="100%"></asp:ListBox>
             </div>           
        </div>
 
-       <div class="col-md-4">
-            <br />
-            <div class="col-md-3" runat="server">
-                <button type="button" visible="true" id="verPlatoSeleccionado" runat="server" class="btn-md btn-success" data-toggle="modal" data-target="#detallesPlato" data-whatever="Ver plato"><span aria-hidden="true" class="glyphicon glyphicon-eye-open"></span> Ver</button>
+        <div class="col-md-12">
+            <div class="col-md-6">
+                <br />
+                <div class="col-md-3" runat="server">
+                    <asp:LinkButton ID="btAgregarListado" runat="server" OnClick="btAgregarListado_Click" CssClass="btn-primary" ForeColor="White" BackColor="Transparent" Font-Size="Large" Height="34px">
+                        <span aria-hidden="true" class="glyphicon glyphicon-plus-sign"></span>
+                    </asp:LinkButton>
+                    <button type="button" visible="true" id="verPlatoSeleccionado" runat="server" class="btn-primary" data-toggle="modal" data-target="#detallesPlato"><span aria-hidden="true" class="glyphicon glyphicon-camera"></span></button>
+                </div>
             </div>
-            <br />
-            <br />
-            <asp:LinkButton ID="btQuitarCarrito" runat="server" OnClick="btQuitarCarrito_Click" CssClass="btn-primary btn-md" ForeColor="Black" BackColor="Transparent">
-                    <span aria-hidden="true" class="glyphicon glyphicon-plus"></span>
-            </asp:LinkButton>
-
-            <asp:Label ID="btCantidad" runat="server" Text="0"></asp:Label>
-
-            <asp:LinkButton ID="btAgregarCarrito" runat="server" OnClick="btAgregarCarrito_Click" CssClass="btn-primary btn-md" ForeColor="Black" BackColor="Transparent">
-                    <span aria-hidden="true" class="glyphicon glyphicon-minus"></span>
-            </asp:LinkButton>
-
+            <div class="col-md-6">
+                <br />
+                <div class="col-md-3" runat="server">
+                    <asp:LinkButton ID="btAgregarCarrito" runat="server" OnClick="btAgregarCarrito_Click" CssClass="btn-primary" ForeColor="White" BackColor="Transparent" Font-Size="Large" Height="34px">
+                        <span aria-hidden="true" class="glyphicon glyphicon-plus-sign"></span>
+                    </asp:LinkButton>
+                    <asp:LinkButton ID="btQuitarCarrito" runat="server" OnClick="btQuitarCarrito_Click" CssClass="btn-primary" ForeColor="White" BackColor="Transparent" Font-Size="Large" Height="34px">
+                        <span aria-hidden="true" class="glyphicon glyphicon-minus-sign"></span>
+                    </asp:LinkButton>
+                </div>
+            </div>
         </div>
 
         <div class="col-md-12">
