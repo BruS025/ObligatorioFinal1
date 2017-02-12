@@ -18,19 +18,8 @@ namespace ObligatorioFinal1
             {
                 try
                 {
-
-                    List<Casa> listadoCasas = new List<Casa>(LogicaCasa.Listar());
-
-                    ddlPlatoBuscar.DataSource = listadoCasas;
-                    ddlPlatoBuscar.DataBind();
-
-                    ddlCasaModificar.DataSource = listadoCasas;
-                    ddlCasaModificar.DataBind();
-
-                    ddlCasasPlato.DataSource = listadoCasas;
-                    ddlCasasPlato.DataBind();
-
-                    //CargarGrilla();
+                    ActualizarCasas();
+                    CargarGrilla();
                 }
 
                 catch (Exception ex)
@@ -43,6 +32,21 @@ namespace ObligatorioFinal1
         protected void GridPlatos_PageIndexChanging(object sender, GridViewPageEventArgs e)
         {
 
+        }
+
+        // Actualizar DDL casas
+        private void ActualizarCasas()
+        {
+            List<Casa> listadoCasas = new List<Casa>(LogicaCasa.Listar());
+
+            ddlPlatoBuscar.DataSource = listadoCasas;
+            ddlPlatoBuscar.DataBind();
+
+            ddlCasaModificar.DataSource = listadoCasas;
+            ddlCasaModificar.DataBind();
+
+            ddlCasasPlato.DataSource = listadoCasas;
+            ddlCasasPlato.DataBind();
         }
 
         // Cargar Grilla
