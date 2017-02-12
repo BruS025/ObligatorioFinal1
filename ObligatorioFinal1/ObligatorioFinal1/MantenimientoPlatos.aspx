@@ -143,12 +143,12 @@
   </div>
 </div>
 
-<div class="modal fade" id="agregarModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel">
+<div class="modal fade" id="agregarModal" tabindex="-1" role="dialog">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-label="Cerrar"><span aria-hidden="true">&times;</span></button>
-        <h4 class="modal-title" id="exampleModalLabel" runat="server"><asp:Label ID="Label1" runat="server" Text="PlatoNombre"></asp:Label></h4>
+        <h4 class="modal-title" runat="server"><asp:Label ID="Label1" runat="server" Text="PlatoNombre"></asp:Label></h4>
       </div>
       <div class="modal-body">      
           <div class="form-group" >
@@ -208,7 +208,7 @@
   </div>
 </div>
  
-<div class="modal fade" id="editarModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel">
+<div class="modal fade" id="editarModal" tabindex="-1" role="dialog">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
@@ -293,23 +293,18 @@
          var button = $(event.relatedTarget) // Button that triggered the modal
          var recipient = button.data('whatever')
          var modal = $(this)
-         exampleModalLabel.innerText = recipient;
-         modal.find('.modal-title').text(recipient)
      })
 
      $('#editarModal').on('show.bs.modal', function (event) {
          var button = $(event.relatedTarget) // Button that triggered the modal
          var recipient = button.data('whatever')
          var modal = $(this)
-         exampleModalLabel.innerText = recipient;
-         modal.find('.modal-title').text(recipient)
      })
 
      $('#myModal').on('show.bs.modal', function (event) {
          var button = $(event.relatedTarget) // Button that triggered the modal
          var recipient = button.data('whatever')
          var modal = $(this)        
-         modal.find('.modal-title').text(recipient)
      })
          
    

@@ -76,6 +76,15 @@ namespace ObligatorioFinal1 {
         protected global::System.Web.UI.WebControls.ListBox listadoCarrito;
         
         /// <summary>
+        /// verPlatoSeleccionado control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlButton verPlatoSeleccionado;
+        
+        /// <summary>
         /// btQuitarCarrito control.
         /// </summary>
         /// <remarks>
@@ -119,5 +128,23 @@ namespace ObligatorioFinal1 {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label lbError;
+        
+        /// <summary>
+        /// Label3 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label Label3;
+        
+        /// <summary>
+        /// verPlato control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::ObligatorioFinal1.verPlato verPlato;
     }
 }

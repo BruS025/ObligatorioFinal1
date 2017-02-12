@@ -1,5 +1,8 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/MasterPage.Master" AutoEventWireup="true" CodeBehind="MantenimientoCrearPedido.aspx.cs" Inherits="ObligatorioFinal1.WebForm5" %>
 
+<%@ Register Src="~/verPlato.ascx" TagPrefix="uc1" TagName="verPlato" %>
+
+
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
         
     <title>Creacion de pedidos</title>
@@ -71,6 +74,10 @@
 
             <br />
 
+            <div class="col-md-2" runat="server">
+                <button type="button" visible="true" id="verPlatoSeleccionado" runat="server" class="btn-md btn-success" data-toggle="modal" data-target="#detallesPlato" data-whatever="Ver plato"><span aria-hidden="true" class="glyphicon glyphicon-eye-open"></span> Ver</button>
+            </div>
+
             <asp:LinkButton ID="btQuitarCarrito" runat="server" OnClick="btQuitarCarrito_Click" CssClass="btn-primary btn-md" ForeColor="Black" BackColor="Transparent">
                     <span aria-hidden="true" class="glyphicon glyphicon-plus"></span>
             </asp:LinkButton>
@@ -97,5 +104,34 @@
     </div>
     </div>
 </div>     
+
+<div class="modal fade" id="detallesPlato" tabindex="-1" role="dialog">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Cerrar"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" runat="server"><asp:Label ID="Label3" runat="server" Text="PlatoNombre"></asp:Label></h4>
+      </div>
+      <div class="modal-body">      
+          <div class="form-group" >
+
+              <uc1:verPlato runat="server" ID="verPlato" />
+
+            <br />
+          </div>      
+      </div>
+    </div>
+  </div>
+</div>
+
+ <script>
+
+     $('#detallesPlato').on('show.bs.modal', function (event) {
+         var button = $(event.relatedTarget) // Button that triggered the modal
+         var recipient = button.data('whatever')
+         var modal = $(this)
+     })       
+   
+ </script>
 
 </asp:Content>
