@@ -432,7 +432,7 @@ BEGIN
 END
 GO
 
-/*CREATE PROCEDURE SP_ModificarPlato
+ALTER PROCEDURE SP_ModificarPlato
 @RutOriginal BIGINT,
 @RutM BIGINT,
 @IdPlatoM INT,
@@ -441,29 +441,63 @@ GO
 @FotoM VARCHAR(MAX)
 AS
 BEGIN
-	BEGIN TRANSACTION
-		UPDATE Plato
-		SET IdPlato=@IdPlatoM,
-			Nombre=@NombreM,
-			Precio=@PrecioM,
-			Foto=@FotoM
-		WHERE (SELECT T.Rut FROM Tienen T WHERE T.Rut=@RutOriginal)
+/*IF NOT EXISTS(SELECT T.IdPlatoCasa FROM Tienen T WHERE T.IdPlatoCasa=@IdPlatoM)
+	BEGIN*/
+		BEGIN TRANSACTION
+			UPDATE Plato
+			SET Nombre=@NombreM,
+				Precio=@PrecioM,
+				Foto=@FotoM
+			WHERE Plato.IdPlato IN (SELECT T.IdPlato FROM Tienen T WHERE T.Rut=@RutOriginal AND T.IdPlatoCasa=@IdPlatoM)
 		
+			IF @@ERROR <> 0
+				BEGIN
+					ROLLBACK TRANSACTION
+					RETURN @@ERROR
+				END
+			UPDATE Tienen
+			SET Rut=@RutM,
+				IdPlatoCasa=@IdPlatoM
+			WHERE Tienen.Rut =@RutOriginal
 
-		IF @@ERROR <> 0
-			BEGIN
-				ROLLBACK TRANSACTION
-				RETURN @@ERROR
-			END
-       ELSE
-			BEGIN
-				COMMIT TRANSACTION
-				RETURN 1	
-			END
-END
-GO*/--
+			IF @@ERROR <> 0
+				BEGIN
+					ROLLBACK TRANSACTION
+					RETURN @@ERROR
+				END
+	    ELSE
+				BEGIN
+					COMMIT TRANSACTION
+					RETURN 1	
+				END
+	END
+/*ELSE 
+	BEGIN
+		RETURN -1
+	END
+END*/
+GO
+
 CREATE PROCEDURE SP_BorrarPlato
+@IdPlatoB INT
+AS
+BEGIN
+	BEGIN TRANSACTION
+		DELETE Plato
+		WHERE Plato.IdPlato=@IdPlatoB
 
+			IF @@ERROR <> 0
+				BEGIN
+					ROLLBACK TRANSACTION
+					RETURN @@ERROR
+				END
+	    ELSE
+				BEGIN
+					COMMIT TRANSACTION
+					RETURN 1	
+				END
+END
+GO
 --------------------------
 CREATE PROCEDURE SP_ListarTodasLasCasas
 AS
@@ -528,12 +562,12 @@ INSERT INTO Plato VALUES('PLATO3',3,'FOTO3')
 INSERT INTO Plato VALUES('PLATO4',4,'FOTO4')
 
 INSERT INTO Tienen VALUES(1234,1,1)
-INSERT INTO Tienen VALUES(1235,2,0)
-INSERT INTO Tienen VALUES(6789,3,0)
-INSERT INTO Tienen VALUES(6677,4,0)
+INSERT INTO Tienen VALUES(1235,2,1)
+INSERT INTO Tienen VALUES(6789,3,1)
+INSERT INTO Tienen VALUES(6677,4,1)
 
 -- Consultas basicas
-delete Especializacion
+delete Plato
 select * from Usuario
 select * from Cliente
 select * from Administrador
@@ -549,8 +583,19 @@ DELETE Especializacion
 
 -- TEST SP
 DECLARE @RETORNO INT
-EXEC @RETORNO = SP_AgregarPlato 1235,'PruebaAgregar1',1,'FotoPrueba1'
+EXEC @RETORNO = SP_AgregarPlato 1235,'PLATO5',10,'FOTO5'
 PRINT @retorno
+
+DECLARE @RETORNO INT
+EXEC @RETORNO = SP_ModificarPlato 1234,1235,3,'MODIFICADO1',10,'MODIFICADO1'
+PRINT @retorno
+
+@RutOriginal BIGINT,
+@RutM BIGINT,
+@IdPlatoM INT,
+@NombreM VARCHAR(20),
+@PrecioM FLOAT,
+@FotoM VARCHAR(MAX)
 
 /*INSERT INTO CASA (rut,IdEspe,Nombre) values (1234123412341234,1,'Comida')
 INSERT INTO CASA (rut,IdEspe,Nombre) values (1234123412341231,1,'Comida2')*/
