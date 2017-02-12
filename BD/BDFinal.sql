@@ -427,12 +427,12 @@ BEGIN
 						COMMIT TRANSACTION
 						RETURN 1
 					END 
-		--
+		
     END
 END
 GO
 
-ALTER PROCEDURE SP_ModificarPlato
+/*CREATE PROCEDURE SP_ModificarPlato
 @RutOriginal BIGINT,
 @RutM BIGINT,
 @IdPlatoM INT,
@@ -441,14 +441,14 @@ ALTER PROCEDURE SP_ModificarPlato
 @FotoM VARCHAR(MAX)
 AS
 BEGIN
-/*IF NOT EXISTS(SELECT T.IdPlatoCasa FROM Tienen T WHERE T.IdPlatoCasa=@IdPlatoM)
-	BEGIN*/
+ IF EXISTS(SELECT T.IdPlatoCasa FROM Tienen T WHERE T.IdPlatoCasa=@IdPlatoM AND Rut=@RutOriginal)
+	BEGIN
 		BEGIN TRANSACTION
 			UPDATE Plato
 			SET Nombre=@NombreM,
 				Precio=@PrecioM,
 				Foto=@FotoM
-			WHERE Plato.IdPlato IN (SELECT T.IdPlato FROM Tienen T WHERE T.Rut=@RutOriginal AND T.IdPlatoCasa=@IdPlatoM)
+			WHERE Plato.IdPlato IN (SELECT T.IdPlato FROM Tienen T WHERE T.Rut=@RutOriginal)
 		
 			IF @@ERROR <> 0
 				BEGIN
@@ -471,12 +471,12 @@ BEGIN
 					RETURN 1	
 				END
 	END
-/*ELSE 
+ELSE 
 	BEGIN
 		RETURN -1
 	END
-END*/
-GO
+END
+GO*/
 
 /*
 CREATE PROCEDURE SP_BorrarPlato
@@ -631,7 +631,7 @@ EXEC @RETORNO = SP_AgregarPlato 1235,'PLATO5',10,'FOTO5'
 PRINT @retorno
 
 DECLARE @RETORNO INT
-EXEC @RETORNO = SP_ModificarPlato 1234,1235,3,'MODIFICADO1',10,'MODIFICADO1'
+EXEC @RETORNO = SP_ModificarPlato 1234567890123452,1234567890123456,1,'MODIFICADO1',10,'MODIFICADO1'
 PRINT @retorno
 /*
 @RutOriginal BIGINT,
