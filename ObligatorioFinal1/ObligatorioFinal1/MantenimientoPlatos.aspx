@@ -37,10 +37,7 @@
         </div>
 
         <div class="col-md-2" runat="server">
-            <asp:DropDownList ID="ddlPlatoBuscar" runat="server" AutoPostBack="True" Width="100%" Height="34px">
-            <asp:ListItem Value="0">Casa0</asp:ListItem>
-            <asp:ListItem Value="1">Casa1</asp:ListItem>
-            </asp:DropDownList>
+            <asp:DropDownList ID="ddlPlatoBuscar" runat="server" AutoPostBack="True" Width="100%" Height="34px" DataTextField="Nombre" DataValueField="RUT" OnSelectedIndexChanged="ddlPlatoBuscar_SelectedIndexChanged"></asp:DropDownList>
         </div>
 
         <div class="col-md-2" runat="server">
@@ -146,12 +143,12 @@
   </div>
 </div>
 
-<div class="modal fade" id="agregarModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel">
+<div class="modal fade" id="agregarModal" tabindex="-1" role="dialog">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-label="Cerrar"><span aria-hidden="true">&times;</span></button>
-        <h4 class="modal-title" id="exampleModalLabel" runat="server"><asp:Label ID="Label1" runat="server" Text="PlatoNombre"></asp:Label></h4>
+        <h4 class="modal-title" runat="server"><asp:Label ID="Label1" runat="server" Text="PlatoNombre"></asp:Label></h4>
       </div>
       <div class="modal-body">      
           <div class="form-group" >
@@ -161,10 +158,7 @@
                     <label for="message-text" class="control-label">Casa del plato:</label>
                 </div>
                 <div class="col-md-4">
-                    <asp:DropDownList ID="ddlCasasPlato" runat="server" Height="34px">
-                        <asp:ListItem Value="0">Casa0</asp:ListItem>
-                        <asp:ListItem Value="1">Casa1</asp:ListItem>
-                    </asp:DropDownList>
+                    <asp:DropDownList ID="ddlCasasPlato" AutoPostBack="true" runat="server" Height="34px" DataTextField="Nombre" DataValueField="RUT" OnSelectedIndexChanged="ddlCasasPlato_SelectedIndexChanged" ></asp:DropDownList>
                 </div>
                </div>
 
@@ -214,7 +208,7 @@
   </div>
 </div>
  
-<div class="modal fade" id="editarModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel">
+<div class="modal fade" id="editarModal" tabindex="-1" role="dialog">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
@@ -242,10 +236,7 @@
                     <label for="message-text" class="control-label">Casa del plato:</label>
                 </div>
                 <div class="col-md-4">
-                    <asp:DropDownList ID="casaModificar" runat="server" Height="34px">
-                        <asp:ListItem Value="0">Casa0</asp:ListItem>
-                        <asp:ListItem Value="1">Casa1</asp:ListItem>
-                    </asp:DropDownList>
+                    <asp:DropDownList ID="ddlCasaModificar" AutoPostBack="true" runat="server" Height="34px" DataTextField="Nombre" DataValueField="RUT" OnSelectedIndexChanged="casaModificar_SelectedIndexChanged"></asp:DropDownList>
                 </div>
                </div>
 
@@ -302,23 +293,18 @@
          var button = $(event.relatedTarget) // Button that triggered the modal
          var recipient = button.data('whatever')
          var modal = $(this)
-         exampleModalLabel.innerText = recipient;
-         modal.find('.modal-title').text(recipient)
      })
 
      $('#editarModal').on('show.bs.modal', function (event) {
          var button = $(event.relatedTarget) // Button that triggered the modal
          var recipient = button.data('whatever')
          var modal = $(this)
-         exampleModalLabel.innerText = recipient;
-         modal.find('.modal-title').text(recipient)
      })
 
      $('#myModal').on('show.bs.modal', function (event) {
          var button = $(event.relatedTarget) // Button that triggered the modal
          var recipient = button.data('whatever')
          var modal = $(this)        
-         modal.find('.modal-title').text(recipient)
      })
          
    

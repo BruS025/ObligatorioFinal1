@@ -143,6 +143,7 @@
     <Content Include="Register.aspx" />
     <Content Include="scripts\ai.0.15.0-build58334.js" />
     <Content Include="scripts\ai.0.15.0-build58334.min.js" />
+    <Content Include="verPlato.ascx" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
@@ -226,6 +227,13 @@
     </Compile>
     <Compile Include="BienvenidaAdministrador.aspx.designer.cs">
       <DependentUpon>BienvenidaAdministrador.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="verPlato.ascx.cs">
+      <DependentUpon>verPlato.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="verPlato.ascx.designer.cs">
+      <DependentUpon>verPlato.ascx</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>

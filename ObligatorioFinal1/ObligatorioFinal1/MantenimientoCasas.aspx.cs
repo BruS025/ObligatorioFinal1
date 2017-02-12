@@ -45,7 +45,7 @@ namespace ObligatorioFinal1
                     }              
 
 
-                        List <Especializacion> listadoEspecializaciones = new List<Especializacion>(LogicaEspecializacion.Listar());
+                    List <Especializacion> listadoEspecializaciones = new List<Especializacion>(LogicaEspecializacion.Listar());
 
                     ddlEspecializacionAdd.DataSource = listadoEspecializaciones;
                     ddlEspecializacionAdd.DataBind();
@@ -108,9 +108,9 @@ namespace ObligatorioFinal1
                     lbError.Text = "No existen casas registradas";
                 }
             }
-            catch (Exception ex)
+            catch (Exception)
             {
-                lbError.Text = ex.Message; //"Ha ocurrido un error";
+                lbError.Text = "Ha ocurrido un error";
             }
         }
 

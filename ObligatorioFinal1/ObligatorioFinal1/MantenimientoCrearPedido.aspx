@@ -1,5 +1,8 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/MasterPage.Master" AutoEventWireup="true" CodeBehind="MantenimientoCrearPedido.aspx.cs" Inherits="ObligatorioFinal1.WebForm5" %>
 
+<%@ Register Src="~/verPlato.ascx" TagPrefix="uc1" TagName="verPlato" %>
+
+
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
         
     <title>Creacion de pedidos</title>
@@ -9,6 +12,7 @@
     <link rel="shortcut icon" href="Imagenes/favicon.ico"/> 
     <script src="js/jquery.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
+
 </asp:Content>
 
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
@@ -30,73 +34,107 @@
 
     <div class="col-md-12">
 
-        <div class="col-md-3">
-            <asp:Label ID="idV" ForeColor="Black" runat="server" Height="34px" Text="Documento del administrador:" Font-Size="Large"></asp:Label>                      
+        <div class="col-md-2">
+            <asp:Label ID="idV" ForeColor="Black" runat="server" Height="34px" Text="Filtrar platos" Font-Size="Large"></asp:Label>                      
         </div>
 
         <div class="col-md-2">
-            <asp:DropDownList ID="ddlEspecializacion" runat="server" AutoPostBack="True" Height="34px">
-            <asp:ListItem Value="0">Traer de BD</asp:ListItem>
-            </asp:DropDownList>
+            <asp:DropDownList ID="ddlEspecializacion" AutoPostBack="true" runat="server" Height="34px" DataTextField="Tipo" DataValueField="IdEspe" OnSelectedIndexChanged="ddlEspecializacion_SelectedIndexChanged" ></asp:DropDownList>
         </div>
 
         <div class="col-md-2">
-            <asp:DropDownList ID="ddlCasas" runat="server" AutoPostBack="True" Height="34px">
-            <asp:ListItem Value="0">Traer de BD</asp:ListItem>
-            </asp:DropDownList>
+            <asp:DropDownList ID="ddlCasas" runat="server" AutoPostBack="True" Height="34px" DataTextField="Nombre" DataValueField="RUT" OnSelectedIndexChanged="ddlCasas_SelectedIndexChanged" ></asp:DropDownList>
+        </div>
+
+        <br />
+        <br />
+        <br />
+
+        <div class="col-md-12">
+            <div class="col-md-6">
+                <asp:Label ID="Label1" ForeColor="Black" runat="server" Height="34px" Text="Listado de productos:" Font-Size="Large"></asp:Label>                      
+            </div>
+
+            <div class="col-md-6">
+                <asp:Label ID="Label2" ForeColor="Black" runat="server" Height="34px" Text="Carrito:" Font-Size="Large" Visible="true"></asp:Label>                      
+            </div>
         </div>
 
         <div class="col-md-12">
-            <asp:GridView ID="GridPlatos" runat="server" AllowPaging="true" OnPageIndexChanging="GridPlatos_PageIndexChanging"        
-        AutoGenerateColumns="False" RowStyle-Height="34px" CellPadding="4" ForeColor="#333333" GridLines="None" HorizontalAlign="Center"
-        Visible="True" Width="98%" ShowFooter="False" ShowHeaderWhenEmpty="True" PageSize="10" Font-Size="Large" CaptionAlign="Top">
+            <div class="col-md-6">
+                <asp:ListBox ID="listadoPlatos" runat="server" DataTextField="Nombre" DataValueField="Id" Font-Size="Medium" AutoPostBack="true" Width="100%"></asp:ListBox>
+            </div>
 
-        <AlternatingRowStyle BackColor="White" />
-
-          <Columns>
-
-              <asp:TemplateField HeaderStyle-BorderWidth="2px" ControlStyle-Font-Size="Small" ControlStyle-CssClass="btn btn-default" HeaderText="Actualizar">
-                <ItemTemplate>
-                    <asp:Button ID="btnSeleccionar" runat="server" CommandName="select" Text="Seleccionar" OnClick="btnSeleccionar_Click" />
-                </ItemTemplate>
-              </asp:TemplateField>
-
-              <asp:BoundField HeaderStyle-BorderWidth="2px" ItemStyle-Font-Size="Small" DataField="ID" HeaderText="ID"/>
-              <asp:BoundField HeaderStyle-BorderWidth="2px" ItemStyle-Font-Size="Small" DataField="DOC" HeaderText="Cliente"/>
-              <asp:BoundField HeaderStyle-BorderWidth="2px" ItemStyle-Font-Size="Small" DataField="CASA" HeaderText="Casa" />     
-              <asp:BoundField HeaderStyle-BorderWidth="2px" ItemStyle-Font-Size="Small" DataField="PLATO" HeaderText="Plato" />   
-              <asp:BoundField HeaderStyle-BorderWidth="2px" ItemStyle-Font-Size="Small" DataField="CANTIDAD" HeaderText="Cantidad" />
-              <asp:BoundField HeaderStyle-BorderWidth="2px" ItemStyle-Font-Size="Small" DataField="FECHA" HeaderText="Fecha pedido" />                                  
-              <asp:CheckBoxField HeaderStyle-BorderWidth="2px" ItemStyle-Font-Size="Small" DataField="ESTADO" HeaderText="Estado" />
-
-          </Columns>
-
-                    <FooterStyle BackColor="#990000" Font-Bold="True" ForeColor="White" />
-                    <HeaderStyle BackColor="Red" Font-Bold="True" ForeColor="White" />
-                    <PagerStyle BackColor="#FFCC66" ForeColor="#333333" HorizontalAlign="Center" />
-                    <RowStyle BackColor="#FFFBD6" ForeColor="#333333" />
-                    <SelectedRowStyle BackColor="#FFCC66" Font-Bold="True" ForeColor="Navy" />
-                    <SortedAscendingCellStyle BackColor="#FDF5AC" />
-                    <SortedAscendingHeaderStyle BackColor="#4D0000" />
-                    <SortedDescendingCellStyle BackColor="#FCF6C0" />
-                    <SortedDescendingHeaderStyle BackColor="#820000" />
-                    <PagerStyle BackColor="#B50000" ForeColor="White" />
-
-        </asp:GridView>
+            <div class="col-md-6">
+                <asp:ListBox ID="listadoCarrito" runat="server" DataTextField="Nombre" DataValueField="Id" Font-Size="Medium" AutoPostBack="true" Visible="true" Width="100%"></asp:ListBox>
+            </div>           
        </div>
 
         <div class="col-md-12">
-            <asp:Button ID="btQuitar" CssClass="btn btn-default" runat="server" Text="-" OnClick="btQuitar_Click" Height="34px" />
-            <asp:Label ID="btCantidad" runat="server" Text="0" Width="20px"></asp:Label>
-            <asp:Button ID="btAgregar" CssClass="btn btn-default" runat="server" Text="+" OnClick="btAgregar_Click" Height="34px" />
+            <div class="col-md-6">
+                <br />
+                <div class="col-md-3" runat="server">
+                    <asp:LinkButton ID="btAgregarListado" runat="server" OnClick="btAgregarListado_Click" CssClass="btn-primary" ForeColor="White" BackColor="Transparent" Font-Size="Large" Height="34px">
+                        <span aria-hidden="true" class="glyphicon glyphicon-plus-sign"></span>
+                    </asp:LinkButton>
+                    <button type="button" visible="true" id="verPlatoSeleccionado" runat="server" class="btn-primary" data-toggle="modal" data-target="#detallesPlato"><span aria-hidden="true" class="glyphicon glyphicon-camera"></span></button>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <br />
+                <div class="col-md-3" runat="server">
+                    <asp:LinkButton ID="btAgregarCarrito" runat="server" OnClick="btAgregarCarrito_Click" CssClass="btn-primary" ForeColor="White" BackColor="Transparent" Font-Size="Large" Height="34px">
+                        <span aria-hidden="true" class="glyphicon glyphicon-plus-sign"></span>
+                    </asp:LinkButton>
+                    <asp:LinkButton ID="btQuitarCarrito" runat="server" OnClick="btQuitarCarrito_Click" CssClass="btn-primary" ForeColor="White" BackColor="Transparent" Font-Size="Large" Height="34px">
+                        <span aria-hidden="true" class="glyphicon glyphicon-minus-sign"></span>
+                    </asp:LinkButton>
+                </div>
+            </div>
         </div>
 
         <div class="col-md-12">
-            <asp:Button ID="btVender" CssClass="btn btn-default" runat="server" Text="Comprar!" OnClick="btVender_Click" Height="34px" />
+            <br />
+            <asp:Button ID="btVender" CssClass="btn btn-md btn-primary" runat="server" Text="Comprar!" OnClick="btVender_Click" Height="34px" />
         </div>
+
+        <div class="col-md-12">
+           <br />
+           <p class="text-center"><asp:Label ID="lbError" runat="server" Text="" ForeColor="Red"></asp:Label></p> 
+           <br />
+       </div>
 
     </div>
     </div>
 </div>     
+
+<div class="modal fade" id="detallesPlato" tabindex="-1" role="dialog">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Cerrar"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" runat="server"><asp:Label ID="Label3" runat="server" Text="PlatoNombre"></asp:Label></h4>
+      </div>
+      <div class="modal-body">      
+          <div class="form-group" >
+
+              <uc1:verPlato runat="server" ID="verPlato" />
+
+            <br />
+          </div>      
+      </div>
+    </div>
+  </div>
+</div>
+
+ <script>
+
+     $('#detallesPlato').on('show.bs.modal', function (event) {
+         var button = $(event.relatedTarget) // Button that triggered the modal
+         var recipient = button.data('whatever')
+         var modal = $(this)
+     })       
+   
+ </script>
 
 </asp:Content>

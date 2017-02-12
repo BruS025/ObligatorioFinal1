@@ -194,5 +194,47 @@ namespace Persistencia
                 conexion.Close();
             }
         }
+
+        public static List<Casa> ListarPedido(int id)
+        {
+            List<Casa> lista = new List<Casa>();
+
+            SqlConnection conexion = new SqlConnection(Conexion.CnnString);
+            SqlCommand comando = new SqlCommand("ListarCasaPedido", conexion);
+            comando.CommandType = CommandType.StoredProcedure;
+
+            SqlParameter parametroId = new SqlParameter("@IdEspe", id);
+
+            comando.Parameters.Add(parametroId);
+
+            try
+            {
+                conexion.Open();
+                SqlDataReader lector = comando.ExecuteReader();
+
+
+                while (lector.Read())
+                {
+
+                    Casa casa = new Casa();
+
+                    casa.RUT = Convert.ToInt64(lector["Rut"].ToString());
+                    casa.Especializacion = Convert.ToInt32(lector["IdEspe"].ToString());
+                    casa.Nombre = lector["Nombre"].ToString();
+
+                    lista.Add(casa);
+                }
+
+                return lista;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                conexion.Close();
+            }
+        }
     }
 }

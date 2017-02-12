@@ -103,15 +103,6 @@ namespace ObligatorioFinal1 {
         protected global::System.Web.UI.WebControls.Label modalNombrePlato;
         
         /// <summary>
-        /// exampleModalLabel control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl exampleModalLabel;
-        
-        /// <summary>
         /// Label1 control.
         /// </summary>
         /// <remarks>
@@ -202,13 +193,13 @@ namespace ObligatorioFinal1 {
         protected global::System.Web.UI.WebControls.TextBox idModificar;
         
         /// <summary>
-        /// casaModificar control.
+        /// ddlCasaModificar control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList casaModificar;
+        protected global::System.Web.UI.WebControls.DropDownList ddlCasaModificar;
         
         /// <summary>
         /// nombreModificar control.
