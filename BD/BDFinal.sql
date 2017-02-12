@@ -462,7 +462,7 @@ BEGIN
 			END
 END
 GO*/--
-CREATE PROCEDURE SP_BorrarPlato
+--CREATE PROCEDURE SP_BorrarPlato
 
 --------------------------
 CREATE PROCEDURE SP_ListarTodasLasCasas
@@ -502,6 +502,33 @@ BEGIN
 	SELECT * FROM Cargo;
 END
 GO
+
+-- Casas pedidos
+-- Recibe: idEspe - RUT
+-- Envia: RUT - idPlatoCasa - Nombre - Plato - Precio
+CREATE PROCEDURE ListarPlato
+@IdEspe INT,
+@Rut BIGINT
+AS
+BEGIN
+	IF @IdEspe = 0
+		BEGIN
+			SELECT ti.IdPlatoCasa, pl.Nombre, pl.Precio, pl.Foto FROM Plato pl
+			JOIN Tienen ti on pl.IdPlato = ti.IdPlato 
+			JOIN Casa ca on ca.Rut = ti.Rut
+			JOIN Especializacion esp on esp.IdEspe = ca.IdEspe
+		END
+	ELSE
+		BEGIN
+			SELECT ti.IdPlatoCasa, pl.Nombre, pl.Precio, pl.Foto FROM Plato pl
+			JOIN Tienen ti on pl.IdPlato = ti.IdPlato 
+			JOIN Casa ca on ca.Rut = ti.Rut
+			JOIN Especializacion esp on esp.IdEspe = ca.IdEspe
+			WHERE esp.IdEspe = @IdEspe and ca.Rut = @Rut
+		END
+ END
+ GO
+
 ------------------
 -- DATOS DE AMBIENTE
 --Especializaciones Basicos
@@ -517,21 +544,22 @@ INSERT INTO Cargo VALUES ('GERENTE')
 
 
 -- DATOS DE PRUEBA
-INSERT INTO Casa VALUES(1234,1,'CASA1')
-INSERT INTO Casa VALUES(1235,1,'CASA2')
-INSERT INTO Casa VALUES(6789,1,'CASA3')
-INSERT INTO Casa VALUES(6677,1,'CASA4')
+INSERT INTO Casa VALUES(1234567890123456,2,'CASA1')
+INSERT INTO Casa VALUES(1234567890123455,3,'CASA2')
+INSERT INTO Casa VALUES(1234567890123454,4,'CASA3')
+INSERT INTO Casa VALUES(1234567890123453,5,'CASA4')
 
-INSERT INTO Plato VALUES('PLATO1',1,'FOTO1')
-INSERT INTO Plato VALUES('PLATO2',2,'FOTO2')
-INSERT INTO Plato VALUES('PLATO3',3,'FOTO3')
-INSERT INTO Plato VALUES('PLATO4',4,'FOTO4')
+INSERT INTO Plato VALUES('PLATO1',2,'FOTO1')
+INSERT INTO Plato VALUES('PLATO2',3,'FOTO2')
+INSERT INTO Plato VALUES('PLATO3',4,'FOTO3')
+INSERT INTO Plato VALUES('PLATO4',5,'FOTO4')
 
-INSERT INTO Tienen VALUES(1234,1,1)
-INSERT INTO Tienen VALUES(1235,2,0)
-INSERT INTO Tienen VALUES(6789,3,0)
-INSERT INTO Tienen VALUES(6677,4,0)
+INSERT INTO Tienen VALUES(1234567890123456,1,1)
+INSERT INTO Tienen VALUES(1234567890123455,2,1)
+INSERT INTO Tienen VALUES(1234567890123454,3,1)
+INSERT INTO Tienen VALUES(1234567890123453,4,1)
 
+/*
 -- Consultas basicas
 delete Especializacion
 select * from Usuario
@@ -550,7 +578,11 @@ DELETE Especializacion
 -- TEST SP
 DECLARE @RETORNO INT
 EXEC @RETORNO = SP_AgregarPlato 1235,'PruebaAgregar1',1,'FotoPrueba1'
-PRINT @retorno
+PRINT @retorno*/
 
 /*INSERT INTO CASA (rut,IdEspe,Nombre) values (1234123412341234,1,'Comida')
 INSERT INTO CASA (rut,IdEspe,Nombre) values (1234123412341231,1,'Comida2')*/
+
+DECLARE @RETORNO INT
+EXEC @RETORNO = ListarPlato 1,1234567890123456
+PRINT @retorno

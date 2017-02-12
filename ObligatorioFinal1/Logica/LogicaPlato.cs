@@ -12,7 +12,7 @@ namespace Logica
     {
         public static Plato Buscar(int id)
         {
-            return PersistenciaPlatos.Buscar(id);
+            return PersistenciaPlato.Buscar(id);
         }
 
         public static int Agregar(Plato plato)
@@ -27,12 +27,17 @@ namespace Logica
 
         public static int Eliminar(int id)
         {
-            return PersistenciaPlatos.Eliminar(id);
+            return PersistenciaPlato.Eliminar(id);
         }
 
         public static List<Plato> Listar()
         {
-            throw new NotImplementedException();
+            return PersistenciaPlato.Listar();
+        }
+
+        public static List<Plato> ListarPedido(int id, long rut)
+        {
+            return PersistenciaPlato.ListarPedido(id,rut);
         }
     }
 }

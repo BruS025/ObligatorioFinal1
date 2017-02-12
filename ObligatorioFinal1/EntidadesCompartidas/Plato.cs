@@ -14,13 +14,13 @@ namespace EntidadesCompartidas
         public int _IdPlato;
         public string _Nombre;
         public double _Precio;
-        public int _Foto;
+        public string _Foto;
 
         // Constructor simple
         public Plato() { }
 
         // Constructor completo
-        public Plato(int Id, int IdPlato, string Nombre, double Precio, int Foto)
+        public Plato(int Id, int IdPlato, string Nombre, double Precio, string Foto)
         {
             _Id = Id;
             _IdPlato = IdPlato;
@@ -72,6 +72,12 @@ namespace EntidadesCompartidas
                 else
                     _Precio = value;
             }
+        }
+
+        public string Foto
+        {
+            get { return _Foto; }
+            set{_Foto = value;}
         }
 
     }

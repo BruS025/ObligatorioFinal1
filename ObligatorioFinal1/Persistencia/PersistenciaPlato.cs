@@ -9,7 +9,7 @@ using EntidadesCompartidas;
 
 namespace Persistencia
 {
-    public class PersistenciaPlatos
+    public class PersistenciaPlato
     {
         public static List<Plato> Listar()
         {
@@ -157,6 +157,53 @@ namespace Persistencia
             catch (Exception ex)
             {
 
+                throw ex;
+            }
+            finally
+            {
+                conexion.Close();
+            }
+        }
+
+        public static List<Plato> ListarPedido(int id, long rut)
+        {
+            List<Plato> lista = new List<Plato>();
+
+            SqlConnection conexion = new SqlConnection(Conexion.CnnString);
+            SqlCommand comando = new SqlCommand("ListarPlato", conexion);
+            comando.CommandType = CommandType.StoredProcedure;
+
+            SqlParameter parametroId = new SqlParameter("@IdEspe", id);
+            SqlParameter parametroRut = new SqlParameter("@rut", rut);
+
+            comando.Parameters.Add(parametroId);
+            comando.Parameters.Add(parametroRut);
+
+            try
+            {
+                conexion.Open();
+                SqlDataReader lector = comando.ExecuteReader();
+
+
+                while (lector.Read())
+                {
+
+                    Plato plato = new Plato();
+
+                    plato.Id = Convert.ToInt32(lector["IdPlatoCasa"].ToString());
+                    plato.Nombre = lector["Nombre"].ToString();
+                    plato.Precio = Convert.ToDouble(lector["Precio"].ToString());
+                    plato.Foto = lector["Foto"].ToString();
+
+                    //VER COMO ES LO DE LA FOTO
+
+                    lista.Add(plato);
+                }
+
+                return lista;
+            }
+            catch (Exception ex)
+            {
                 throw ex;
             }
             finally

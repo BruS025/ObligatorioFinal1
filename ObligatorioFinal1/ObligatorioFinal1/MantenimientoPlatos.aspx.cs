@@ -19,29 +19,11 @@ namespace ObligatorioFinal1
                 try
                 {
                     List<Plato> listadoAdmin = new List<Plato>();
-                    Plato cliente = new Plato(1234,1234,"Lasaña",1234,1);
-                    Plato cliente2 = new Plato(1111,2222,"Ravioles",1234,1);
-                    Plato cliente3 = new Plato(1111, 2222, "Ravioles", 1234, 1);
-                    Plato cliente4 = new Plato(1111, 2222, "Ravioles", 1234, 1);
-                    Plato cliente5 = new Plato(1111, 2222, "Ravioles", 1234, 1);
-                    Plato cliente6 = new Plato(1111, 2222, "Ravioles", 1234, 1);
-                    Plato cliente7 = new Plato(1111, 2222, "Ravioles", 1234, 1);
-                    Plato cliente8 = new Plato(1111, 2222, "Ravioles", 1234, 1);
-                    Plato cliente9 = new Plato(1111, 2222, "Ravioles", 1234, 1);
-                    Plato cliente10 = new Plato(1111, 2222, "Ravioles", 1234, 1);
-                    Plato cliente11 = new Plato(1111, 2222, "Ravioles", 1234, 1);
+                    Plato cliente = new Plato(1234,1234,"Lasaña",1,"foto");
+                    Plato cliente2 = new Plato(1111,2222,"Ravioles",1, "foto");
 
                     listadoAdmin.Add(cliente);
                     listadoAdmin.Add(cliente2);
-                    listadoAdmin.Add(cliente3);
-                    listadoAdmin.Add(cliente4);
-                    listadoAdmin.Add(cliente5);
-                    listadoAdmin.Add(cliente6);
-                    listadoAdmin.Add(cliente7);
-                    listadoAdmin.Add(cliente8);
-                    listadoAdmin.Add(cliente9);
-                    listadoAdmin.Add(cliente10);
-                    listadoAdmin.Add(cliente11);
 
                     GridPlatos.DataSource = listadoAdmin;
                     GridPlatos.DataBind();

@@ -17,15 +17,6 @@ namespace ObligatorioFinal1
             {
                 try
             {
-                List<Plato> listadoAdmin = new List<Plato>();
-                Plato cliente = new Plato(1234, 1234, "Lasaña", 1234, 1);
-                Plato cliente2 = new Plato(1111, 2222, "Ravioles", 1234, 1);
-
-                listadoAdmin.Add(cliente);
-                listadoAdmin.Add(cliente2);
-
-                listadoPlatos.DataSource = listadoAdmin;
-                listadoPlatos.DataBind();
 
                 List<Especializacion> listadoEspecializaciones = new List<Especializacion>(LogicaEspecializacion.Listar());
 
@@ -36,6 +27,10 @@ namespace ObligatorioFinal1
 
                 ddlCasas.DataSource = listadoCasas;
                 ddlCasas.DataBind();
+
+                List<Plato> listarPlatos = new List<Plato>(LogicaPlato.ListarPedido(Convert.ToInt32(ddlEspecializacion.SelectedValue), Convert.ToInt64(ddlCasas.SelectedValue)));
+                listadoPlatos.DataSource = listarPlatos;
+                listadoPlatos.DataBind();               
 
                 }
 
