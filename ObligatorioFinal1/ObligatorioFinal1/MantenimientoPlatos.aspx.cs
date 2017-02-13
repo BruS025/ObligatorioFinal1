@@ -334,10 +334,61 @@ namespace ObligatorioFinal1
 
         protected void casaModificar_SelectedIndexChanged(object sender, EventArgs e)
         {
-            
-        }
+            try
+            {
+                //String nombreOriginal = Path.GetFileName(FileUpload2.PostedFile.FileName);
+                //String[] extensionFoto = nombreOriginal.Split('.');
+               // string nombreFoto = Path.GetFileName(FileUpload2.PostedFile.FileName);
 
-        protected void verFotoClick(object sender, EventArgs e)
+                Plato plato = new Plato();
+
+               // 
+                plato.Id = Convert.ToInt32(idModificar.Text);
+                plato.Nombre = nombreModificar.Text;
+                plato.Precio = Convert.ToDouble(precioModificar.Text);
+                long rut = Convert.ToInt64(ddlPlatoBuscar.SelectedValue);
+                //plato.Foto = nombreFoto;
+
+
+                if (nombreModificar.Text == "")
+                {
+                    lbError.Text = ("ERROR: Ingrese un Plato.");
+                    ClientScript.RegisterStartupScript(this.GetType(), "myScript", "<script>javascript: vpi2();</script>");
+                }
+
+                int resultado = LogicaPlato.Modificar(plato, rut);
+
+                if (resultado == 1)
+                {
+                    lbError.Text = "Casa Modificada";
+                    CargarGrilla();
+
+                    //btAgregarModal.Visible = true;
+                    //btGuardarModal.Visible = false;
+                    btVerificar.Visible = false;
+
+                    // Reseteamos campos
+                    id.Text = "";
+                    nombrePlato.Text = "";
+                    
+
+                }
+                else
+                {
+                    lbError.Text = "No se pudo modificar";
+                    ClientScript.RegisterStartupScript(this.GetType(), "myScript", "<script>javascript: vpi2();</script>");
+                }
+            }
+
+            catch (Exception ex)
+            {
+                lbError.Text = ex.Message;
+                ClientScript.RegisterStartupScript(this.GetType(), "myScript", "<script>javascript: vpi2();</script>");
+            }
+        }
+          
+
+    protected void verFotoClick(object sender, EventArgs e)
         {
             String foto = "1.jpg";
 
