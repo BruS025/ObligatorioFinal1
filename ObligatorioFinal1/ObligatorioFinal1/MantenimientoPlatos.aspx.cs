@@ -32,7 +32,8 @@ namespace ObligatorioFinal1
 
         protected void GridPlatos_PageIndexChanging(object sender, GridViewPageEventArgs e)
         {
-
+            GridPlatos.PageIndex = e.NewPageIndex;
+            CargarGrilla();
         }
 
         // Actualizar DDL casas
@@ -189,6 +190,55 @@ namespace ObligatorioFinal1
                 lbError.Text = (ex.Message);
             }
 
+            try
+            {
+                if (id.Text == "")
+                {
+                    lbError.Text = ("ERROR: Ingrese un Rut.");
+                    ClientScript.RegisterStartupScript(this.GetType(), "myScript", "<script>javascript: vpi();</script>");
+
+                }
+
+                Plato nuevoPlato = new Plato();
+
+                nuevoPlato.Id = Convert.ToInt32(id.Text);
+                nuevoPlato.Nombre = nombrePlato.Text;
+                nuevoPlato.Precio = Convert.ToInt32(precioPlato.Text);
+
+                int resultado = LogicaPlato.Agregar(nuevoPlato);
+
+                if (resultado == 1)
+                {
+                    lbError.Text = "Plato agregado..";
+                    CargarGrilla();
+
+                    id.Text = "";
+                    nombrePlato.Text = "";
+                    precioPlato.Text = "";
+                    lbError.Text = "";
+
+                }
+
+                else if (resultado == 1)
+                {
+                    lbError.Text = " El Plato ingresado ya se encuentra registrado.";
+                    ClientScript.RegisterStartupScript(this.GetType(), "myScript", "<script>javascript: vpi();</script>");
+                }
+
+                else
+                {
+                    lbError.Text = "No se ha agregado el Plato..";
+                    ClientScript.RegisterStartupScript(this.GetType(), "myScript", "<script>javascript: vpi();</script>");
+
+                }
+
+            }
+
+            catch (Exception ex)
+            {
+                lbError.Text = ex.Message;
+                ClientScript.RegisterStartupScript(this.GetType(), "myScript", "<script>javascript: vpi();</script>");
+            }
         }
 
         // Editar un plato
