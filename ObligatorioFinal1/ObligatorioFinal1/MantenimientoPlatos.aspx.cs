@@ -324,8 +324,9 @@ namespace ObligatorioFinal1
 
         protected void ddlPlatoBuscar_SelectedIndexChanged(object sender, EventArgs e)
         {
-
-        }
+            
+        
+    }
 
         protected void ddlCasasPlato_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -336,19 +337,14 @@ namespace ObligatorioFinal1
         {
             try
             {
-                //String nombreOriginal = Path.GetFileName(FileUpload2.PostedFile.FileName);
-                //String[] extensionFoto = nombreOriginal.Split('.');
-               // string nombreFoto = Path.GetFileName(FileUpload2.PostedFile.FileName);
-
                 Plato plato = new Plato();
 
-               // 
+                
                 plato.Id = Convert.ToInt32(idModificar.Text);
                 plato.Nombre = nombreModificar.Text;
                 plato.Precio = Convert.ToDouble(precioModificar.Text);
                 long rut = Convert.ToInt64(ddlPlatoBuscar.SelectedValue);
-                //plato.Foto = nombreFoto;
-
+                
 
                 if (nombreModificar.Text == "")
                 {
@@ -360,13 +356,13 @@ namespace ObligatorioFinal1
 
                 if (resultado == 1)
                 {
-                    lbError.Text = "Casa Modificada";
+                    lbError.Text = "Plato Modificado";
                     CargarGrilla();
 
                     //btAgregarModal.Visible = true;
                     //btGuardarModal.Visible = false;
                     btVerificar.Visible = false;
-
+                    
                     // Reseteamos campos
                     id.Text = "";
                     nombrePlato.Text = "";
