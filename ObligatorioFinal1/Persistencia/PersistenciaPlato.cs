@@ -139,14 +139,17 @@ namespace Persistencia
 
         }
 
-        public static int Eliminar(int id)
+        public static int Eliminar(int id, long rut)
         {
             SqlConnection conexion = new SqlConnection(Conexion.CnnString);
-            SqlCommand comando = new SqlCommand("", conexion);
+            SqlCommand comando = new SqlCommand("SP_BorrarPlato", conexion);
             comando.CommandType = CommandType.StoredProcedure;
 
-            SqlParameter parametroId = new SqlParameter("@", id);
+            SqlParameter parametroId = new SqlParameter("@IdPlatoB", id);
+            SqlParameter parametroRut = new SqlParameter("@rut", rut);
+
             comando.Parameters.Add(parametroId);
+            comando.Parameters.Add(parametroRut);
 
             try
             {

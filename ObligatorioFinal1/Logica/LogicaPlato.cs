@@ -25,9 +25,9 @@ namespace Logica
             throw new NotImplementedException();
         }
 
-        public static int Eliminar(int id)
+        public static int Eliminar(int id, long rut)
         {
-            return PersistenciaPlato.Eliminar(id);
+            return PersistenciaPlato.Eliminar(id,rut);
         }
 
         public static List<Plato> Listar(long rut)

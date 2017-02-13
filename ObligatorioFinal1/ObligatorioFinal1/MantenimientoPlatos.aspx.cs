@@ -213,6 +213,8 @@ namespace ObligatorioFinal1
                     precioPlato.Text = "";
                     lbError.Text = "";
 
+                    ClientScript.RegisterStartupScript(this.GetType(), "myScript", "<script>javascript: vpi4();</script>");
+
                 }
 
                 else if (resultado == 1)
@@ -270,21 +272,22 @@ namespace ObligatorioFinal1
             }
         }
 
-        protected void GridCasas_RowDeleting(object sender, GridViewDeleteEventArgs e)
+        protected void GridPlatos_RowDeleting(object sender, GridViewDeleteEventArgs e)
         {
             try
             {
 
                 int resultado = 0;
                 int IdEliminar = Convert.ToInt32(GridPlatos.Rows[e.RowIndex].Cells[1].Text);
+                long rut = Convert.ToInt64(ddlPlatoBuscar.SelectedValue);
 
-
-                resultado = LogicaPlato.Eliminar(IdEliminar);
+                resultado = LogicaPlato.Eliminar(IdEliminar, rut);
 
                 if (resultado == 1) // ok
                 {
                     lbError.Text = "Se ha eliminado el plato.";
 
+                    /* Control para eliminar EDICION del plalto que se esta eliminando
                     if (modalNombrePlato.Text != null && modalNombrePlato.Text != "")
                     {
                         if (IdEliminar == Convert.ToInt32(modalNombrePlato.Text))
@@ -295,7 +298,7 @@ namespace ObligatorioFinal1
                           //  lbError3.Text = "";
                             btModificar.Visible = false;
                         }
-                    }
+                    }*/
 
                     CargarGrilla();
                 }

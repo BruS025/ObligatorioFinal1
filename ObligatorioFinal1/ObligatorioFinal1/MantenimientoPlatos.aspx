@@ -70,7 +70,7 @@
         <br />
 
         <div class="col-md-12" runat="server">
-            <asp:GridView ID="GridPlatos" runat="server" AllowPaging="true" OnPageIndexChanging="GridPlatos_PageIndexChanging"        
+            <asp:GridView ID="GridPlatos" runat="server" AllowPaging="true" OnPageIndexChanging="GridPlatos_PageIndexChanging" OnRowDeleting="GridPlatos_RowDeleting"        
         AutoGenerateColumns="False" RowStyle-Height="34px" CellPadding="4" ForeColor="#333333" GridLines="None" HorizontalAlign="Center"
         Visible="True" Width="100%" ShowFooter="false" ShowHeaderWhenEmpty="True" PageSize="10" Font-Size="Large" CaptionAlign="Top" HeaderStyle-HorizontalAlign="Center" HeaderStyle-VerticalAlign="Middle" PagerSettings-Mode="NextPrevious">
 
@@ -293,6 +293,8 @@
      function vpi() { $('#agregarModal').modal('show') }
      function vpi2() { $('#editarModal').modal('show') }
      function vpi3() { $('#myModal').modal('show') }
+
+     function vpi() { $('#agregarModal').modal('hide') }
 
      $('#agregarModal').on('show.bs.modal', function (event) {
          var button = $(event.relatedTarget) // Button that triggered the modal

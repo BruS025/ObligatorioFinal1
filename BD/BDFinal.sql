@@ -464,13 +464,18 @@ ELSE
 	END
 END
 GO
+
 CREATE PROCEDURE SP_BorrarPlato
-@IdPlatoB INT
+@IdPlatoB INT,
+@Rut BIGINT
 AS
 BEGIN
 	BEGIN TRANSACTION
-		DELETE Plato
-		WHERE Plato.IdPlato=@IdPlatoB
+		DELETE Plato WHERE Plato.IdPlato = (SELECT pl.IdPlato FROM Casa ca
+											JOIN Tienen ti on Ca.Rut = ti.Rut
+											JOIN Plato pl on ti.IdPlato = pl.IdPlato
+											WHERE ti.IdPlatoCasa = @IdPlatoB and ti.Rut = @Rut)
+
 		IF @@ERROR <> 0
 			BEGIN
 				ROLLBACK TRANSACTION
