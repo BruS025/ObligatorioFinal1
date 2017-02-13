@@ -162,13 +162,23 @@ namespace ObligatorioFinal1
         {
             try
             {
+                string nombreFoto = "";
+
+                if (id.Text == "")
+                {
+                    lbError.Text = ("ERROR: Ingrese un Rut.");
+                    ClientScript.RegisterStartupScript(this.GetType(), "myScript", "<script>javascript: vpi();</script>");
+
+                }
+
                 if ((FileUpload1.PostedFile != null) && (FileUpload1.PostedFile.ContentLength > 0))
                 {
                     String nombreOriginal = Path.GetFileName(FileUpload1.PostedFile.FileName);
                     String[] extensionFoto = nombreOriginal.Split('.');
-                    string nombreFoto = "1" + "." + extensionFoto[1]; // Sacar ultimo ID de foto en la bd para colocar como nombre del archivo
+                    nombreFoto = "1" + "." + extensionFoto[1]; // Sacar ultimo ID de foto en la bd para colocar como nombre del archivo
 
                     string SaveLocation = Server.MapPath("Imagenes") + "\\" + nombreFoto;
+
                     try
                     {
                         FileUpload1.PostedFile.SaveAs(SaveLocation);
@@ -183,31 +193,17 @@ namespace ObligatorioFinal1
                 {
                     lbError.Text = ("Seleccione una foto.");
                 }
-            }
-            catch (Exception ex)
-            {
-
-                lbError.Text = (ex.Message);
-            }
-
-            try
-            {
-                if (id.Text == "")
-                {
-                    lbError.Text = ("ERROR: Ingrese un Rut.");
-                    ClientScript.RegisterStartupScript(this.GetType(), "myScript", "<script>javascript: vpi();</script>");
-
-                }
 
                 Plato nuevoPlato = new Plato();
 
-                nuevoPlato.Id = Convert.ToInt32(id.Text);
+                nuevoPlato.Id = 0;
                 nuevoPlato.Nombre = nombrePlato.Text;
-                nuevoPlato.Precio = Convert.ToInt32(precioPlato.Text);
+                nuevoPlato.Precio = Convert.ToDouble(precioPlato.Text);
+                nuevoPlato.Foto = nombreFoto;
 
-                int resultado = LogicaPlato.Agregar(nuevoPlato);
+                int resultado = LogicaPlato.Agregar(nuevoPlato, Convert.ToInt64(ddlCasasPlato.SelectedValue));
 
-                if (resultado == 1)
+                if (resultado == 2)
                 {
                     lbError.Text = "Plato agregado..";
                     CargarGrilla();
@@ -231,7 +227,6 @@ namespace ObligatorioFinal1
                     ClientScript.RegisterStartupScript(this.GetType(), "myScript", "<script>javascript: vpi();</script>");
 
                 }
-
             }
 
             catch (Exception ex)
