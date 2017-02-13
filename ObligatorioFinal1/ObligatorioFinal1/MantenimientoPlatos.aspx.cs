@@ -58,7 +58,8 @@ namespace ObligatorioFinal1
 
         protected void GridPlatos_PageIndexChanging(object sender, GridViewPageEventArgs e)
         {
-
+            GridPlatos.PageIndex = e.NewPageIndex;
+            CargarGrilla();
         }
 
         // Cargar Grilla
