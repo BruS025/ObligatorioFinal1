@@ -140,8 +140,8 @@ namespace ObligatorioFinal1
             }
         }
 
-    // Boton seleccionar
-    protected void btnSeleccionar_Click(object sender, EventArgs e)
+        // Boton seleccionar
+        protected void btnSeleccionar_Click(object sender, GridViewSelectEventArgs e)
         {
             try
             {
@@ -272,6 +272,7 @@ namespace ObligatorioFinal1
             }
         }
 
+        // Eliminar un plato
         protected void GridPlatos_RowDeleting(object sender, GridViewDeleteEventArgs e)
         {
             try
@@ -279,7 +280,7 @@ namespace ObligatorioFinal1
 
                 int resultado = 0;
                 int IdEliminar = Convert.ToInt32(GridPlatos.Rows[e.RowIndex].Cells[1].Text);
-                long rut = Convert.ToInt64(ddlPlatoBuscar.SelectedValue);
+                long rut = Convert.ToInt64(ddlPlatoBuscar.SelectedValue);              
 
                 resultado = LogicaPlato.Eliminar(IdEliminar, rut);
 
@@ -287,18 +288,18 @@ namespace ObligatorioFinal1
                 {
                     lbError.Text = "Se ha eliminado el plato.";
 
-                    /* Control para eliminar EDICION del plalto que se esta eliminando
-                    if (modalNombrePlato.Text != null && modalNombrePlato.Text != "")
+                    /* Control para eliminar EDICION del plalto que se esta eliminando*/
+                    if (idModificar.Text != null && idModificar.Text != "")
                     {
-                        if (IdEliminar == Convert.ToInt32(modalNombrePlato.Text))
+                        if (Convert.ToInt32(idModificar.Text) == IdEliminar)
                         {
-                           // modId.Text = "";
-                            modalNombrePlato.Text = "";
-                           // modDdl.SelectedIndex = 0;
-                          //  lbError3.Text = "";
+                            idModificar.Text = "";
+                            nombreModificar.Text = "";
+                            ddlCasaModificar.SelectedIndex = 0;
+                            precioModificar.Text = "";
                             btModificar.Visible = false;
                         }
-                    }*/
+                    }
 
                     CargarGrilla();
                 }
@@ -383,10 +384,10 @@ namespace ObligatorioFinal1
             }
         }
           
-
-    protected void verFotoClick(object sender, EventArgs e)
+        // Ver foto
+		protected void verFotoClick(object sender, EventArgs e)
         {
-            String foto = "1.jpg";
+            string foto = "1.jpg";
 
             fotoMostrar.Src = "/ImagenesPlato/" + foto; 
             fotoMostrar.DataBind();
@@ -406,5 +407,10 @@ namespace ObligatorioFinal1
 
         }
 
+        protected void GridPlatos_SelectedIndexChanging(object sender, GridViewSelectEventArgs e)
+        {
+            // Asignar att
+            // Crear session con ID foto
+        }
     }
 }
