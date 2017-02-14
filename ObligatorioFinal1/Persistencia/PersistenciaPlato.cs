@@ -219,5 +219,41 @@ namespace Persistencia
             }
         }
 
+    
+
+    public static int Modificar(Plato plato, long rut)
+    {
+            SqlConnection conexion = new SqlConnection(Conexion.CnnString);
+            SqlCommand comando = new SqlCommand("SP_ModificarPlato", conexion);
+            comando.CommandType = CommandType.StoredProcedure;
+
+            SqlParameter parametroRut = new SqlParameter("@RutOriginal", rut);
+            SqlParameter parametroNombre = new SqlParameter("@NombreM", plato.Nombre);
+            SqlParameter parametroPrecio = new SqlParameter("@PrecioM", plato.Precio);
+            SqlParameter parametroFoto = new SqlParameter("@FotoM", plato.Foto);
+
+            comando.Parameters.Add(parametroRut);
+            comando.Parameters.Add(parametroNombre);
+            comando.Parameters.Add(parametroPrecio);
+            comando.Parameters.Add(parametroFoto);
+
+                try
+            {
+                conexion.Open();
+                int resultado = comando.ExecuteNonQuery();
+                return resultado;
+
+            }
+            catch (SqlException sqlex)
+            {
+
+                throw sqlex;
+            }
+
+            finally
+            {
+                conexion.Close();
+            }
+         }
     }
 }

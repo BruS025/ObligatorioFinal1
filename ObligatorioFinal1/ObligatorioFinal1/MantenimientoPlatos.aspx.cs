@@ -325,8 +325,9 @@ namespace ObligatorioFinal1
 
         protected void ddlPlatoBuscar_SelectedIndexChanged(object sender, EventArgs e)
         {
-
-        }
+            
+        
+    }
 
         protected void ddlCasasPlato_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -335,11 +336,61 @@ namespace ObligatorioFinal1
 
         protected void casaModificar_SelectedIndexChanged(object sender, EventArgs e)
         {
-            
-        }
+            try
+            {
+                Plato plato = new Plato();
 
+                
+                plato.Id = Convert.ToInt32(idModificar.Text);
+                plato.Nombre = nombreModificar.Text;
+                plato.Precio = Convert.ToDouble(precioModificar.Text);
+                long rut = Convert.ToInt64(ddlPlatoBuscar.SelectedValue);
+                
+
+                if (nombreModificar.Text == "")
+                {
+                    lbError.Text = ("ERROR: Ingrese un Plato.");
+                    ClientScript.RegisterStartupScript(this.GetType(), "myScript", "<script>javascript: vpi2();</script>");
+                }
+
+                int resultado = LogicaPlato.Modificar(plato, rut);
+
+                if (resultado == 1)
+                {
+                    lbError.Text = "Plato Modificado";
+                    CargarGrilla();
+
+                    //btAgregarModal.Visible = true;
+                    //btGuardarModal.Visible = false;
+                    btVerificar.Visible = false;
+                    
+                    // Reseteamos campos
+                    id.Text = "";
+                    nombrePlato.Text = "";
+                    
+
+                }
+                else
+                {
+                    lbError.Text = "No se pudo modificar";
+                    ClientScript.RegisterStartupScript(this.GetType(), "myScript", "<script>javascript: vpi2();</script>");
+                }
+            }
+
+            catch (Exception ex)
+            {
+                lbError.Text = ex.Message;
+                ClientScript.RegisterStartupScript(this.GetType(), "myScript", "<script>javascript: vpi2();</script>");
+            }
+        }
+          
+
+<<<<<<< HEAD
         // Ver foto
         protected void verFotoClick(object sender, EventArgs e)
+=======
+    protected void verFotoClick(object sender, EventArgs e)
+>>>>>>> origin/WORK
         {
             string foto = "1.jpg";
 
