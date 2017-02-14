@@ -79,7 +79,8 @@ CREATE TABLE Tienen
 (
 	Rut BIGINT FOREIGN KEY REFERENCES Casa(Rut) ON DELETE CASCADE,
 	IdPlato INT FOREIGN KEY REFERENCES Plato(IdPlato) ON DELETE CASCADE UNIQUE,
-	IdPlatoCasa INT NOT NULL PRIMARY KEY(Rut,IdPlato)
+	IdPlatoCasa INT NOT NULL,
+	PRIMARY KEY(Rut,IdPlato)
 )
 GO
 
@@ -241,6 +242,26 @@ BEGIN
 				IdCargo=@CargoM
 			WHERE
 				Administrador.IdLogueo =(SELECT U.IdLogueo FROM Usuario U WHERE U.NroDoc=@NroDocM)
+
+			IF @@ERROR <> 0
+			BEGIN
+				ROLLBACK TRANSACTION
+				RETURN @@ERROR
+			END
+       ELSE
+			BEGIN
+				COMMIT TRANSACTION
+				RETURN 1	
+			END
+END
+GO
+CREATE PROCEDURE SP_BorrarAdministrador
+@NroDocB INT
+AS
+BEGIN
+	BEGIN TRANSACTION 
+		DELETE Usuario
+		WHERE IdLogueo = (SELECT U.IdLogueo FROM Usuario U WHERE U.NroDoc=@NroDocB)
 
 			IF @@ERROR <> 0
 			BEGIN
@@ -487,7 +508,10 @@ BEGIN
 			END
 END
 GO
---------------------------
+
+---------------------------
+--SP Necesarios para Pedido
+---------------------------
 CREATE PROCEDURE SP_ListarTodasLasCasas
 AS
 BEGIN
@@ -601,9 +625,10 @@ INSERT INTO Tienen VALUES(1234567890123453,5,5)
 /*
 -- Consultas basicas
 delete Plato
+SELECT * FROM Cargo
 select * from Usuario
-select * from Cliente
 select * from Administrador
+select * from Cliente
 select * from Especializacion 
 select * from Casa 
 select * from Plato 
@@ -616,19 +641,19 @@ DELETE Especializacion
 
 -- TEST SP
 DECLARE @RETORNO INT
-EXEC @RETORNO = SP_AgregarPlato 1235,'PLATO5',10,'FOTO5'
+EXEC @RETORNO = SP_BorrarAdministrador 12345
 PRINT @retorno
 
 DECLARE @RETORNO INT
-EXEC @RETORNO = SP_BorrarPlato 4
+EXEC @RETORNO = SP_AgregarAdministrador 'prueba2','prueba2','pass2',123456,'log2',1
 PRINT @retorno
-
-@RutOriginal BIGINT,
-@RutM BIGINT,
-@IdPlatoM INT,
-@NombreM VARCHAR(20),
-@PrecioM FLOAT,
-@FotoM VARCHAR(MAX)
+CREATE PROCEDURE SP_AgregarAdministrador
+@NombreN VARCHAR(20) ,
+@ApellidoN VARCHAR (20),
+@ContraseniaN VARCHAR(20),
+@NroDocN INT,
+@NombreLogueoN VARCHAR(20),
+@CargoN INT
 =======
 EXEC @RETORNO = ListarPlato 1,1234567890123456
 PRINT @retorno
