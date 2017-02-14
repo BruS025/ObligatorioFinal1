@@ -70,7 +70,7 @@
         <br />
 
         <div class="col-md-12" runat="server">
-            <asp:GridView ID="GridPlatos" runat="server" AllowPaging="true" OnPageIndexChanging="GridPlatos_PageIndexChanging" OnRowDeleting="GridPlatos_RowDeleting"        
+            <asp:GridView ID="GridPlatos" runat="server" AllowPaging="true" OnPageIndexChanging="GridPlatos_PageIndexChanging" OnRowDeleting="GridPlatos_RowDeleting" OnSelectedIndexChanging="GridPlatos_SelectedIndexChanging"        
         AutoGenerateColumns="False" RowStyle-Height="34px" CellPadding="4" ForeColor="#333333" GridLines="None" HorizontalAlign="Center"
         Visible="True" Width="100%" ShowFooter="false" ShowHeaderWhenEmpty="True" PageSize="10" Font-Size="Large" CaptionAlign="Top" HeaderStyle-HorizontalAlign="Center" HeaderStyle-VerticalAlign="Middle" PagerSettings-Mode="NextPrevious">
 
@@ -136,7 +136,7 @@
         <h4 class="modal-title"><asp:Label ID="modalNombrePlato" runat="server" Text="PlatoNombre"></asp:Label></h4>
       </div>
       <div class="modal-body">
-        <img class="card-img-center" src="~/Imagenes/logo.png" id="fotoMostrar" alt="Card image cap" runat="server" />
+        <img class="card-img-center" src="/Imagenes/logo.png" id="fotoMostrar" alt="Card image cap" runat="server" />
       </div>
       <div class="modal-footer">                                      
       </div>
