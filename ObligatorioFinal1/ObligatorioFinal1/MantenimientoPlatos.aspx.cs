@@ -384,13 +384,8 @@ namespace ObligatorioFinal1
             }
         }
           
-
-<<<<<<< HEAD
         // Ver foto
-        protected void verFotoClick(object sender, EventArgs e)
-=======
-    protected void verFotoClick(object sender, EventArgs e)
->>>>>>> origin/WORK
+		protected void verFotoClick(object sender, EventArgs e)
         {
             string foto = "1.jpg";
 
