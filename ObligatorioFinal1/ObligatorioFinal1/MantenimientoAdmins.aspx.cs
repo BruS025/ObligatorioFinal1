@@ -211,7 +211,9 @@ namespace ObligatorioFinal1
 
         protected void GridAdmins_SelectedIndexChanging(object sender, GridViewSelectEventArgs e)
         {
-
+            nombreAdmin.Text = this.GridAdmins.Rows[e.NewSelectedIndex].Cells[1].Text;
+            nombreAdmin.Text = this.GridAdmins.Rows[e.NewSelectedIndex].Cells[2].Text;
+           // ddlCargo.SelectedIndex = 
         }
 
         protected void ddlCargo_SelectedIndexChanged(object sender, EventArgs e)
