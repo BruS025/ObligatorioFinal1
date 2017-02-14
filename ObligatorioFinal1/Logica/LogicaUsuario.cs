@@ -4,22 +4,23 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using EntidadesCompartidas;
+using Persistencia;
 
 namespace Logica
 {
     public class LogicaUsuario
     {
-        public static Cliente Buscar(int documento)
+        public static Administrador Buscar(int documento)
+        {
+            return PersistenciaUsuario.Buscar(documento);
+        }
+
+        public static int Agregar(Administrador admin)
         {
             throw new NotImplementedException();
         }
 
-        public static int Agregar(Cliente cliente)
-        {
-            throw new NotImplementedException();
-        }
-
-        public static int Modificar(Cliente cliente)
+        public static int Modificar(Administrador admin)
         {
             throw new NotImplementedException();
         }
@@ -29,9 +30,9 @@ namespace Logica
             throw new NotImplementedException();
         }
 
-        public static List<Cliente> Listar()
+        public static List<Administrador> Listar()
         {
-            throw new NotImplementedException();
+            return PersistenciaUsuario.Listar();
         }
     }
 }

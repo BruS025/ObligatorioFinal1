@@ -41,14 +41,97 @@ namespace ObligatorioFinal1
             }
         }
 
+        private void CargarGrilla()
+        {
+            try
+            {
+
+                List<Administrador> listadoUsuario = LogicaUsuario.Listar();
+
+                GridAdmins.DataSource = null;
+
+                if (listadoUsuario != null)
+                {
+                    if (listadoUsuario.Count > 0)
+                    {
+                        GridAdmins.Visible = true;
+                        GridAdmins.DataSource = listadoUsuario;
+                        GridAdmins.DataBind();
+                    }
+
+                    else
+                    {
+                        GridAdmins.Visible = false;
+                        lbError.Text = "No existen usuarios registrados";
+                    }
+
+                }
+
+                else
+                {
+                    GridAdmins.Visible = false;
+                    lbError.Text = "No existen usuarios registrados";
+                }
+            }
+            catch (Exception)
+            {
+                lbError.Text = "Ha ocurrido un error";
+            }
+        }
+
         protected void btVerificar_Click(object sender, EventArgs e)
         {
+            try
+            {
+                List<Administrador> listadoUsuario = new List<Administrador>();
 
+                if (id.Text != "")
+                {
+
+                    Administrador admin = LogicaUsuario.Buscar(Convert.ToInt32(id.Text));
+
+                    if (admin.Documento == 0)
+                    {
+                        CargarGrilla();
+                        throw new Exception("ERROR: No se encontraron coinciencias");
+                    }
+
+                    listadoUsuario.Add(admin);
+
+                    GridAdmins.DataSource = null;
+
+                    if (listadoUsuario != null)
+                    {
+                        if (listadoUsuario.Count > 0)
+                        {
+                            GridAdmins.Visible = true;
+                            GridAdmins.DataSource = listadoUsuario;
+                            GridAdmins.DataBind();
+                        }
+                    }
+
+                    else
+                    {
+                        GridAdmins.Visible = false;
+                        lbError.Text = "No existen Usuarios registrados.";
+                    }
+                }
+                else
+                {
+                    CargarGrilla();
+                }
+
+            }
+            catch (Exception ex)
+            {
+                lbError.Text = ex.Message;
+            }
         }
 
         protected void GridAdmins_PageIndexChanging(object sender, GridViewPageEventArgs e)
         {
-
+            GridAdmins.PageIndex = e.NewPageIndex;
+            CargarGrilla();
         }
 
         protected void btGuardarModal_Click(object sender, EventArgs e)
@@ -78,7 +161,52 @@ namespace ObligatorioFinal1
 
         protected void GridAdmins_RowDeleting(object sender, GridViewDeleteEventArgs e)
         {
+          /*  try
+            {
 
+                int resultado = 0;
+                int docEliminar = Convert.ToInt32(GridAdmins.Rows[e.RowIndex].Cells[1].Text);
+
+
+                resultado = LogicaUsuario.Eliminar(docEliminar);
+            
+               /  if (resultado == 1) // ok
+                {
+                    lbError.Text = "Se ha eliminado el usuario.";
+
+                   if (modRut.Text != null && modRut.Text != "")
+                    {
+                        if (rutEliminar == Convert.ToInt64(modRut.Text))
+                        {
+                            modRut.Text = "";
+                            modNombre.Text = "";
+                            modDdl.SelectedIndex = 0;
+                            lbError3.Text = "";
+                            btModificar.Visible = false;
+                        }
+                    }
+
+                    CargarGrilla();
+                }
+                
+                else if (resultado == -1)
+                {
+                    lbError.Text = "No es posible eliminar el usuario.";
+                }
+
+                else
+                {
+                    GridAdmins.Visible = false;
+                    lbError.Text = "No existen usuarios registrados.";
+                }
+
+            }
+
+            catch (Exception ex)
+            {
+                lbError.Text = ex.Message;
+            }
+    */
         }
 
         protected void GridAdmins_SelectedIndexChanging(object sender, GridViewSelectEventArgs e)
