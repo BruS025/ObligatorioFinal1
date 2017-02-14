@@ -16,7 +16,7 @@ namespace Persistencia
             List<Plato> lista = new List<Plato>();
 
             SqlConnection conexion = new SqlConnection(Conexion.CnnString);
-            SqlCommand comando = new SqlCommand("", conexion);
+            SqlCommand comando = new SqlCommand("ListarPlato", conexion);
             comando.CommandType = CommandType.StoredProcedure;
 
             SqlParameter parametroRut = new SqlParameter("@rut", rut);
@@ -37,7 +37,8 @@ namespace Persistencia
                     plato.Id = Convert.ToInt32(lector["IdPlatoCasa"].ToString());
                     plato.Nombre = lector["Nombre"].ToString();
                     plato.Precio = Convert.ToInt32(lector["Precio"].ToString());
-                    
+                    plato.Foto = lector["Foto"].ToString();
+
                     //VER COMO ES LO DE LA FOTO
 
                     lista.Add(plato);
@@ -55,22 +56,22 @@ namespace Persistencia
             }
         }
 
-        public static int Agregar(Plato plato)
+        public static int Agregar(Plato plato, long rut)
         {
             SqlConnection conexion = new SqlConnection(Conexion.CnnString);
-            SqlCommand comando = new SqlCommand("", conexion);
+            SqlCommand comando = new SqlCommand("SP_AgregarPlato", conexion);
             comando.CommandType = CommandType.StoredProcedure;
 
 
-            SqlParameter parametroId = new SqlParameter("@", plato.Id);
-            SqlParameter parametroNombre = new SqlParameter("@", plato.Nombre);
-            SqlParameter parametroPrecio = new SqlParameter("@", plato.Precio);
+            SqlParameter parametroRut = new SqlParameter("@rut", rut);
+            SqlParameter parametroNombre = new SqlParameter("@NombreA", plato.Nombre);
+            SqlParameter parametroPrecio = new SqlParameter("@PrecioA", plato.Precio);
+            SqlParameter parametroFoto = new SqlParameter("@FotoA", plato.Foto);
 
-            //VER LO DE LA FOTO
-
-            comando.Parameters.Add(parametroId);
+            comando.Parameters.Add(parametroRut);
             comando.Parameters.Add(parametroNombre);
             comando.Parameters.Add(parametroPrecio);
+            comando.Parameters.Add(parametroFoto);
 
             try
             {
@@ -138,14 +139,17 @@ namespace Persistencia
 
         }
 
-        public static int Eliminar(int id)
+        public static int Eliminar(int id, long rut)
         {
             SqlConnection conexion = new SqlConnection(Conexion.CnnString);
-            SqlCommand comando = new SqlCommand("", conexion);
+            SqlCommand comando = new SqlCommand("SP_BorrarPlato", conexion);
             comando.CommandType = CommandType.StoredProcedure;
 
-            SqlParameter parametroId = new SqlParameter("@", id);
+            SqlParameter parametroId = new SqlParameter("@IdPlatoB", id);
+            SqlParameter parametroRut = new SqlParameter("@rut", rut);
+
             comando.Parameters.Add(parametroId);
+            comando.Parameters.Add(parametroRut);
 
             try
             {
@@ -215,5 +219,41 @@ namespace Persistencia
             }
         }
 
+    
+
+    public static int Modificar(Plato plato, long rut)
+    {
+            SqlConnection conexion = new SqlConnection(Conexion.CnnString);
+            SqlCommand comando = new SqlCommand("SP_ModificarPlato", conexion);
+            comando.CommandType = CommandType.StoredProcedure;
+
+            SqlParameter parametroRut = new SqlParameter("@RutOriginal", rut);
+            SqlParameter parametroNombre = new SqlParameter("@NombreM", plato.Nombre);
+            SqlParameter parametroPrecio = new SqlParameter("@PrecioM", plato.Precio);
+            SqlParameter parametroFoto = new SqlParameter("@FotoM", plato.Foto);
+
+            comando.Parameters.Add(parametroRut);
+            comando.Parameters.Add(parametroNombre);
+            comando.Parameters.Add(parametroPrecio);
+            comando.Parameters.Add(parametroFoto);
+
+                try
+            {
+                conexion.Open();
+                int resultado = comando.ExecuteNonQuery();
+                return resultado;
+
+            }
+            catch (SqlException sqlex)
+            {
+
+                throw sqlex;
+            }
+
+            finally
+            {
+                conexion.Close();
+            }
+         }
     }
 }

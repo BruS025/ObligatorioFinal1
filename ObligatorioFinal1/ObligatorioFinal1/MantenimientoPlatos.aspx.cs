@@ -20,6 +20,7 @@ namespace ObligatorioFinal1
                 {
                     ActualizarCasas();
                     CargarGrilla();
+
                 }
 
                 catch (Exception ex)
@@ -31,7 +32,8 @@ namespace ObligatorioFinal1
 
         protected void GridPlatos_PageIndexChanging(object sender, GridViewPageEventArgs e)
         {
-
+            GridPlatos.PageIndex = e.NewPageIndex;
+            CargarGrilla();
         }
 
         // Actualizar DDL casas
@@ -82,9 +84,9 @@ namespace ObligatorioFinal1
                     lbError.Text = "No existen platos registrados";
                 }
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-                lbError.Text = "Ha ocurrido un error";
+                lbError.Text = ex.Message; //"Ha ocurrido un error";
             }
         }
 
@@ -138,8 +140,8 @@ namespace ObligatorioFinal1
             }
         }
 
-    // Boton seleccionar
-    protected void btnSeleccionar_Click(object sender, EventArgs e)
+        // Boton seleccionar
+        protected void btnSeleccionar_Click(object sender, GridViewSelectEventArgs e)
         {
             try
             {
@@ -160,13 +162,23 @@ namespace ObligatorioFinal1
         {
             try
             {
+                string nombreFoto = "";
+
+                if (id.Text == "")
+                {
+                    lbError.Text = ("ERROR: Ingrese un Rut.");
+                    ClientScript.RegisterStartupScript(this.GetType(), "myScript", "<script>javascript: vpi();</script>");
+
+                }
+
                 if ((FileUpload1.PostedFile != null) && (FileUpload1.PostedFile.ContentLength > 0))
                 {
                     String nombreOriginal = Path.GetFileName(FileUpload1.PostedFile.FileName);
                     String[] extensionFoto = nombreOriginal.Split('.');
-                    string nombreFoto = "1" + "." + extensionFoto[1]; // Sacar ultimo ID de foto en la bd para colocar como nombre del archivo
+                    nombreFoto = "1" + "." + extensionFoto[1]; // Sacar ultimo ID de foto en la bd para colocar como nombre del archivo
 
                     string SaveLocation = Server.MapPath("Imagenes") + "\\" + nombreFoto;
+
                     try
                     {
                         FileUpload1.PostedFile.SaveAs(SaveLocation);
@@ -181,13 +193,49 @@ namespace ObligatorioFinal1
                 {
                     lbError.Text = ("Seleccione una foto.");
                 }
+
+                Plato nuevoPlato = new Plato();
+
+                nuevoPlato.Id = 0;
+                nuevoPlato.Nombre = nombrePlato.Text;
+                nuevoPlato.Precio = Convert.ToDouble(precioPlato.Text);
+                nuevoPlato.Foto = nombreFoto;
+
+                int resultado = LogicaPlato.Agregar(nuevoPlato, Convert.ToInt64(ddlCasasPlato.SelectedValue));
+
+                if (resultado == 2)
+                {
+                    lbError.Text = "Plato agregado..";
+                    CargarGrilla();
+
+                    id.Text = "";
+                    nombrePlato.Text = "";
+                    precioPlato.Text = "";
+                    lbError.Text = "";
+
+                    ClientScript.RegisterStartupScript(this.GetType(), "myScript", "<script>javascript: vpi4();</script>");
+
+                }
+
+                else if (resultado == 1)
+                {
+                    lbError.Text = " El Plato ingresado ya se encuentra registrado.";
+                    ClientScript.RegisterStartupScript(this.GetType(), "myScript", "<script>javascript: vpi();</script>");
+                }
+
+                else
+                {
+                    lbError.Text = "No se ha agregado el Plato..";
+                    ClientScript.RegisterStartupScript(this.GetType(), "myScript", "<script>javascript: vpi();</script>");
+
+                }
             }
+
             catch (Exception ex)
             {
-
-                lbError.Text = (ex.Message);
+                lbError.Text = ex.Message;
+                ClientScript.RegisterStartupScript(this.GetType(), "myScript", "<script>javascript: vpi();</script>");
             }
-
         }
 
         // Editar un plato
@@ -224,29 +272,31 @@ namespace ObligatorioFinal1
             }
         }
 
-        protected void GridCasas_RowDeleting(object sender, GridViewDeleteEventArgs e)
+        // Eliminar un plato
+        protected void GridPlatos_RowDeleting(object sender, GridViewDeleteEventArgs e)
         {
             try
             {
 
                 int resultado = 0;
                 int IdEliminar = Convert.ToInt32(GridPlatos.Rows[e.RowIndex].Cells[1].Text);
+                long rut = Convert.ToInt64(ddlPlatoBuscar.SelectedValue);              
 
-
-                resultado = LogicaPlato.Eliminar(IdEliminar);
+                resultado = LogicaPlato.Eliminar(IdEliminar, rut);
 
                 if (resultado == 1) // ok
                 {
                     lbError.Text = "Se ha eliminado el plato.";
 
-                    if (modalNombrePlato.Text != null && modalNombrePlato.Text != "")
+                    /* Control para eliminar EDICION del plalto que se esta eliminando*/
+                    if (idModificar.Text != null && idModificar.Text != "")
                     {
-                        if (IdEliminar == Convert.ToInt32(modalNombrePlato.Text))
+                        if (Convert.ToInt32(idModificar.Text) == IdEliminar)
                         {
-                           // modId.Text = "";
-                            modalNombrePlato.Text = "";
-                           // modDdl.SelectedIndex = 0;
-                          //  lbError3.Text = "";
+                            idModificar.Text = "";
+                            nombreModificar.Text = "";
+                            ddlCasaModificar.SelectedIndex = 0;
+                            precioModificar.Text = "";
                             btModificar.Visible = false;
                         }
                     }
@@ -275,8 +325,9 @@ namespace ObligatorioFinal1
 
         protected void ddlPlatoBuscar_SelectedIndexChanged(object sender, EventArgs e)
         {
-
-        }
+            
+        
+    }
 
         protected void ddlCasasPlato_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -285,7 +336,81 @@ namespace ObligatorioFinal1
 
         protected void casaModificar_SelectedIndexChanged(object sender, EventArgs e)
         {
+            try
+            {
+                Plato plato = new Plato();
 
+                
+                plato.Id = Convert.ToInt32(idModificar.Text);
+                plato.Nombre = nombreModificar.Text;
+                plato.Precio = Convert.ToDouble(precioModificar.Text);
+                long rut = Convert.ToInt64(ddlPlatoBuscar.SelectedValue);
+                
+
+                if (nombreModificar.Text == "")
+                {
+                    lbError.Text = ("ERROR: Ingrese un Plato.");
+                    ClientScript.RegisterStartupScript(this.GetType(), "myScript", "<script>javascript: vpi2();</script>");
+                }
+
+                int resultado = LogicaPlato.Modificar(plato, rut);
+
+                if (resultado == 1)
+                {
+                    lbError.Text = "Plato Modificado";
+                    CargarGrilla();
+
+                    //btAgregarModal.Visible = true;
+                    //btGuardarModal.Visible = false;
+                    btVerificar.Visible = false;
+                    
+                    // Reseteamos campos
+                    id.Text = "";
+                    nombrePlato.Text = "";
+                    
+
+                }
+                else
+                {
+                    lbError.Text = "No se pudo modificar";
+                    ClientScript.RegisterStartupScript(this.GetType(), "myScript", "<script>javascript: vpi2();</script>");
+                }
+            }
+
+            catch (Exception ex)
+            {
+                lbError.Text = ex.Message;
+                ClientScript.RegisterStartupScript(this.GetType(), "myScript", "<script>javascript: vpi2();</script>");
+            }
+        }
+          
+        // Ver foto
+		protected void verFotoClick(object sender, EventArgs e)
+        {
+            string foto = "1.jpg";
+
+            fotoMostrar.Src = "/ImagenesPlato/" + foto; 
+            fotoMostrar.DataBind();
+            ClientScript.RegisterStartupScript(this.GetType(), "myScript", "<script>javascript: vpi3();</script>");
+        }
+
+        override protected void OnInit(EventArgs e)
+        {
+            InitializeComponent();
+            base.OnInit(e);
+        }
+
+        private void InitializeComponent()
+        {
+            this.foto.ServerClick += new System.EventHandler(this.verFotoClick);
+            this.Load += new System.EventHandler(this.Page_Load);
+
+        }
+
+        protected void GridPlatos_SelectedIndexChanging(object sender, GridViewSelectEventArgs e)
+        {
+            // Asignar att
+            // Crear session con ID foto
         }
     }
 }

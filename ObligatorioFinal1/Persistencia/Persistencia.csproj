@@ -46,7 +46,7 @@
     <Compile Include="PersistenciaEspecializacion.cs" />
     <Compile Include="PersistenciaPedidos.cs" />
     <Compile Include="PersistenciaPlato.cs" />
-    <Compile Include="PersistenciaUsuarios.cs" />
+    <Compile Include="PersistenciaUsuario.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

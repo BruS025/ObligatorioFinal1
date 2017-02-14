@@ -79,8 +79,7 @@ CREATE TABLE Tienen
 (
 	Rut BIGINT FOREIGN KEY REFERENCES Casa(Rut) ON DELETE CASCADE,
 	IdPlato INT FOREIGN KEY REFERENCES Plato(IdPlato) ON DELETE CASCADE UNIQUE,
-	IdPlatoCasa INT NOT NULL,
-	PRIMARY KEY(Rut,IdPlato)
+	IdPlatoCasa INT NOT NULL PRIMARY KEY(Rut,IdPlato)
 )
 GO
 
@@ -390,7 +389,7 @@ GO
 --SP Necesarios para Platos
 ----------------------------
 CREATE PROCEDURE SP_AgregarPlato
-@Rut INT,
+@Rut BIGINT,
 @NombreA VARCHAR(20),
 @PrecioA FLOAT,
 @FotoA VARCHAR(MAX)
@@ -484,13 +483,18 @@ ELSE
 	END
 END
 GO
+
 CREATE PROCEDURE SP_BorrarPlato
-@IdPlatoB INT
+@IdPlatoB INT,
+@Rut BIGINT
 AS
 BEGIN
 	BEGIN TRANSACTION
-		DELETE Plato
-		WHERE Plato.IdPlato=@IdPlatoB
+		DELETE Plato WHERE Plato.IdPlato = (SELECT pl.IdPlato FROM Casa ca
+											JOIN Tienen ti on Ca.Rut = ti.Rut
+											JOIN Plato pl on ti.IdPlato = pl.IdPlato
+											WHERE ti.IdPlatoCasa = @IdPlatoB and ti.Rut = @Rut)
+
 		IF @@ERROR <> 0
 			BEGIN
 				ROLLBACK TRANSACTION
@@ -572,7 +576,7 @@ BEGIN
 
 -- Listado de platos para casa
  CREATE PROCEDURE ListarPlato
-@rut INT
+@rut BIGINT
 AS
 BEGIN
 	SELECT ti.IdPlatoCasa, pl.Nombre, pl.Precio, pl.Foto FROM Plato pl
@@ -612,10 +616,10 @@ INSERT INTO Plato VALUES('PLATO4',4,'FOTO4')
 INSERT INTO Plato VALUES('PLATO5',5,'FOTO5')
 
 INSERT INTO Tienen VALUES(1234567890123452,1,1)
-INSERT INTO Tienen VALUES(1234567890123456,2,1)
-INSERT INTO Tienen VALUES(1234567890123455,3,1)
-INSERT INTO Tienen VALUES(1234567890123454,4,1)
-INSERT INTO Tienen VALUES(1234567890123453,5,1)
+INSERT INTO Tienen VALUES(1234567890123456,2,2)
+INSERT INTO Tienen VALUES(1234567890123455,3,3)
+INSERT INTO Tienen VALUES(1234567890123454,4,4)
+INSERT INTO Tienen VALUES(1234567890123453,5,5)
 
 
 insert into Usuario
@@ -663,4 +667,13 @@ INSERT INTO CASA (rut,IdEspe,Nombre) values (1234123412341231,1,'Comida2')
 
 DECLARE @RETORNO INT
 EXEC @RETORNO = ListarPlato 1,1234567890123452
+PRINT @retorno*/
+/*
+@Rut INT,
+@NombreA VARCHAR(20),
+@PrecioA FLOAT,
+@FotoA VARCHAR(MAX)
+
+DECLARE @RETORNO INT
+EXEC @RETORNO = AgreSP_AgregarPlato 1,1234567890123452
 PRINT @retorno*/

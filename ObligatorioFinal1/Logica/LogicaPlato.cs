@@ -15,19 +15,19 @@ namespace Logica
             return PersistenciaPlato.Buscar(id);
         }
 
-        public static int Agregar(Plato plato)
+        public static int Agregar(Plato plato, long rut)
         {
-            throw new NotImplementedException();
+            return PersistenciaPlato.Agregar(plato, rut);
         }
 
-        public static int Modificar(Plato plato)
+        public static int Modificar(Plato plato, long rut)
         {
-            throw new NotImplementedException();
+            return PersistenciaPlato.Modificar(plato, rut);
         }
 
-        public static int Eliminar(int id)
+        public static int Eliminar(int id, long rut)
         {
-            return PersistenciaPlato.Eliminar(id);
+            return PersistenciaPlato.Eliminar(id,rut);
         }
 
         public static List<Plato> Listar(long rut)
