@@ -81,7 +81,7 @@ namespace ObligatorioFinal1
             try
             {
 
-                List<Casa> listadoCasa = LogicaCasa.Listar();
+                List<Casa> listadoCasa = LogicaCasa.Listar(Convert.ToInt32(ddlBuscar.SelectedValue));
 
                 GridCasas.DataSource = null;
 
@@ -129,7 +129,7 @@ namespace ObligatorioFinal1
                     if (casa.RUT == 0)
                     {
                         CargarGrilla();
-                        throw new Exception("ERROR: No se encontraron coinciencias");
+                        lbError.Text = ("ERROR: No se encontraron coinciencias");
                     }
 
                     listadoCasa.Add(casa);
@@ -175,6 +175,9 @@ namespace ObligatorioFinal1
                     ClientScript.RegisterStartupScript(this.GetType(), "myScript", "<script>javascript: vpi();</script>");
 
                 }
+
+                else
+                {
                 
                 Casa nuevaCasa = new Casa();
 
@@ -208,14 +211,15 @@ namespace ObligatorioFinal1
                     ClientScript.RegisterStartupScript(this.GetType(), "myScript", "<script>javascript: vpi();</script>");
 
                 }
-
+              }
             }
 
             catch (Exception ex)
             {
-                lbError2.Text = ex.Message;
                 ClientScript.RegisterStartupScript(this.GetType(), "myScript", "<script>javascript: vpi();</script>");
+                lbError2.Text = "Ha ocurrido un error: " + ex.Message;
             }
+                
         }
 
         protected void btModificar_Click(object sender, EventArgs e)
@@ -299,7 +303,7 @@ namespace ObligatorioFinal1
         {
             try
             {
-                List<Casa> listadoCasa = LogicaCasa.Listar(); //ListarEspecializacion(Convert.ToInt32(ddlBuscar.SelectedIndex));
+                List<Casa> listadoCasa = LogicaCasa.Listar(Convert.ToInt32(ddlBuscar.SelectedValue)); //ListarEspecializacion(Convert.ToInt32(ddlBuscar.SelectedIndex));
 
                 GridCasas.DataSource = null;
 
@@ -310,6 +314,7 @@ namespace ObligatorioFinal1
                         GridCasas.Visible = true;
                         GridCasas.DataSource = listadoCasa;
                         GridCasas.DataBind();
+                        lbError.Text = "";
                     }
 
                 }
@@ -317,6 +322,7 @@ namespace ObligatorioFinal1
                 else
                 {
                     GridCasas.Visible = false;
+                    GridCasas.DataSource = listadoCasa;                  
                     GridCasas.DataBind();
                     lbError.Text = "No existen casas registradas";
                 }

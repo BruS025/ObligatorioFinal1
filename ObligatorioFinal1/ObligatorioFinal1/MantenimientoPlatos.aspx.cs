@@ -12,6 +12,7 @@ namespace ObligatorioFinal1
 {
     public partial class WebForm3 : System.Web.UI.Page
     {
+        // Page load plato
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!Page.IsPostBack)
@@ -30,6 +31,7 @@ namespace ObligatorioFinal1
             }
         }
 
+        // Paginado grilla platos
         protected void GridPlatos_PageIndexChanging(object sender, GridViewPageEventArgs e)
         {
             GridPlatos.PageIndex = e.NewPageIndex;
@@ -38,7 +40,7 @@ namespace ObligatorioFinal1
 
         // Actualizar DDL casas
         private void ActualizarCasas()
-        {
+        {/*
             List<Casa> listadoCasas = new List<Casa>(LogicaCasa.Listar());
 
             ddlPlatoBuscar.DataSource = listadoCasas;
@@ -48,7 +50,7 @@ namespace ObligatorioFinal1
             ddlCasaModificar.DataBind();
 
             ddlCasasPlato.DataSource = listadoCasas;
-            ddlCasasPlato.DataBind();
+            ddlCasasPlato.DataBind();*/
         }
 
         // Cargar Grilla
@@ -90,7 +92,7 @@ namespace ObligatorioFinal1
             }
         }
 
-
+        // Modificar plato
         protected void btVerificar_Click(object sender, EventArgs e)
         {
             try
@@ -166,7 +168,7 @@ namespace ObligatorioFinal1
 
                 if (id.Text == "")
                 {
-                    lbError.Text = ("ERROR: Ingrese un Rut.");
+                    lbError2.Text = ("ERROR: Ingrese un Rut.");
                     ClientScript.RegisterStartupScript(this.GetType(), "myScript", "<script>javascript: vpi();</script>");
 
                 }
@@ -179,19 +181,13 @@ namespace ObligatorioFinal1
 
                     string SaveLocation = Server.MapPath("Imagenes") + "\\" + nombreFoto;
 
-                    try
-                    {
-                        FileUpload1.PostedFile.SaveAs(SaveLocation);
-                        lbError.Text = ("Foto subida.");
-                    }
-                    catch (Exception ex)
-                    {
-                        lbError.Text = ("Error: " + ex.Message);
-                    }
+                    FileUpload1.PostedFile.SaveAs(SaveLocation);                    
                 }
+
                 else
                 {
-                    lbError.Text = ("Seleccione una foto.");
+                    lbError2.Text = ("Seleccione una foto.");
+                    ClientScript.RegisterStartupScript(this.GetType(), "myScript", "<script>javascript: vpi();</script>");
                 }
 
                 Plato nuevoPlato = new Plato();
@@ -211,7 +207,7 @@ namespace ObligatorioFinal1
                     id.Text = "";
                     nombrePlato.Text = "";
                     precioPlato.Text = "";
-                    lbError.Text = "";
+                    lbError2.Text = "";
 
                     ClientScript.RegisterStartupScript(this.GetType(), "myScript", "<script>javascript: vpi4();</script>");
 
@@ -219,13 +215,13 @@ namespace ObligatorioFinal1
 
                 else if (resultado == 1)
                 {
-                    lbError.Text = " El Plato ingresado ya se encuentra registrado.";
+                    lbError2.Text = " El Plato ingresado ya se encuentra registrado.";
                     ClientScript.RegisterStartupScript(this.GetType(), "myScript", "<script>javascript: vpi();</script>");
                 }
 
                 else
                 {
-                    lbError.Text = "No se ha agregado el Plato..";
+                    lbError2.Text = "No se ha agregado el Plato..";
                     ClientScript.RegisterStartupScript(this.GetType(), "myScript", "<script>javascript: vpi();</script>");
 
                 }
@@ -233,7 +229,7 @@ namespace ObligatorioFinal1
 
             catch (Exception ex)
             {
-                lbError.Text = ex.Message;
+                lbError2.Text = ex.Message;
                 ClientScript.RegisterStartupScript(this.GetType(), "myScript", "<script>javascript: vpi();</script>");
             }
         }

@@ -352,8 +352,7 @@ BEGIN
 END
 GO
 CREATE PROCEDURE SP_BuscarCasa
-@RutB BIGINT,
-@IdEspe INT
+@RutB BIGINT
 AS
 BEGIN
 	IF NOT EXISTS (SELECT C.Rut FROM Casa C WHERE C.Rut=@RutB)
@@ -363,10 +362,8 @@ BEGIN
 	ELSE
 		 SELECT C.Nombre,
 			    C.Rut,
-				E.Tipo
-		 FROM Casa C ,Especializacion E 
-		 WHERE
-			  C.Rut=@RutB AND E.IdEspe=@IdEspe
+				C.IdEspe
+		 FROM Casa C WHERE C.Rut = @RutB
 END
 GO	
 CREATE PROCEDURE SP_BorrarCasa
@@ -681,3 +678,7 @@ PRINT @retorno*/
 DECLARE @RETORNO INT
 EXEC @RETORNO = AgreSP_AgregarPlato 1,1234567890123452
 PRINT @retorno*/
+
+DECLARE @RETORNO INT
+EXEC @RETORNO = SP_BuscarCasa 1241241241241241
+PRINT @retorno

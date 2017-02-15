@@ -200,7 +200,14 @@
             </div>
 
               <br />
-            </div>      
+            </div>  
+          
+       <div class="col-md-12">
+           <br />
+           <br />
+           <p class="text-center"><asp:Label ID="lbError2" runat="server" Text="" ForeColor="Red"></asp:Label></p> 
+       </div>
+              
       </div>
       <div class="modal-footer">                       
               <asp:Button ID="btAgregar" runat="server" CssClass="btn-md btn-success" OnClick="btAgregar_Click" Text="Guardar" />   

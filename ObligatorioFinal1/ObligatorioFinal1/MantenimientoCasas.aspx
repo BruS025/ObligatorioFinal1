@@ -140,7 +140,7 @@
                     <label for="message-text" class="control-label">Rut de la casa:</label>
                 </div>
                 <div class="col-md-4">
-                    <asp:TextBox ID="rutCasa" MaxLength="16" runat="server" Height="34px" Placeholder=" Rut"></asp:TextBox>
+                    <asp:TextBox ID="rutCasa" MaxLength="16" runat="server" Height="34px" Placeholder=" Rut" TextMode="Number"></asp:TextBox>
                 </div>
             </div>
 
@@ -203,7 +203,7 @@
                     <label for="message-text" class="control-label">Rut de la casa:</label>
                 </div>
                 <div class="col-md-4">
-                    <asp:TextBox ID="modRut" MaxLength="16" runat="server" Height="34px" Placeholder=" Rut"></asp:TextBox>
+                    <asp:TextBox ID="modRut" MaxLength="16" runat="server" Height="34px" Placeholder=" Rut" TextMode="Number"></asp:TextBox>
                 </div>
             </div>
 
