@@ -225,5 +225,15 @@ namespace ObligatorioFinal1
         {
 
         }
+
+        protected void ddlListar_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        protected void ddlListar_SelectedIndexChanged1(object sender, EventArgs e)
+        {
+
+        }
     }
 }
