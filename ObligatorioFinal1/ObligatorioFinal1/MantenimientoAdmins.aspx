@@ -33,7 +33,11 @@
     <div class="col-md-12">
 
         <div class="col-md-3">
-            <asp:Label ID="idV" ForeColor="Black" runat="server" Height="34px" Text="Documento del administrador:" Font-Size="Large"></asp:Label>                      
+            <asp:Label ID="idV" ForeColor="Black" runat="server" Height="34px" Text="Filtro de cargos:" Font-Size="Large"></asp:Label>                      
+        </div>
+
+        <div class="col-md-3" runat="server">
+            <asp:DropDownList ID="ddlListar" runat="server" AutoPostBack="True" Width="100%" Height="34px" DataTextField="Tipo" DataValueField="Id" OnSelectedIndexChanged="ddlListar_SelectedIndexChanged"></asp:DropDownList>
         </div>
 
         <div class="col-md-2">
@@ -87,9 +91,8 @@
 
               <asp:BoundField HeaderStyle-BorderWidth="2px" ItemStyle-Font-Size="Medium" DataField="Documento" HeaderText="Documento"/>
               <asp:BoundField HeaderStyle-BorderWidth="2px" ItemStyle-Font-Size="Medium" DataField="UsuarioNombre" HeaderText="Usuario"/>
-              <asp:BoundField HeaderStyle-BorderWidth="2px" ItemStyle-Font-Size="Medium" DataField="NOMBRE" HeaderText="Nombre" />     
-              <asp:BoundField HeaderStyle-BorderWidth="2px" ItemStyle-Font-Size="Medium" DataField="APELLIDO" HeaderText="Apellido" />   
-              <asp:BoundField HeaderStyle-BorderWidth="2px" ItemStyle-Font-Size="Medium" DataField="CARGO" HeaderText="Cargo" />                                 
+              <asp:BoundField HeaderStyle-BorderWidth="2px" ItemStyle-Font-Size="Medium" DataField="Nombre" HeaderText="Nombre" />     
+              <asp:BoundField HeaderStyle-BorderWidth="2px" ItemStyle-Font-Size="Medium" DataField="Apellido" HeaderText="Apellido" />                                    
 
             <asp:TemplateField HeaderStyle-BorderWidth="2px" ItemStyle-HorizontalAlign="Center" ControlStyle-Font-Size="Medium" ControlStyle-CssClass="btn-danger btn-danger btn-md" HeaderText="Eliminar">
                 <ItemTemplate>
