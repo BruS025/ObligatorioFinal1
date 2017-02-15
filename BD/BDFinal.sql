@@ -275,7 +275,7 @@ BEGIN
 			END
 END
 GO
-ALTER PROCEDURE SP_ListarAdministradores
+CREATE PROCEDURE SP_ListarAdministradores
 @IdCargoB INT
 AS
 BEGIN
@@ -286,9 +286,6 @@ BEGIN
 	WHERE A.IdCargo=@IdCargoB
 END
 GO
-
-
-	--documento usuario nombre y apellido
 -- -1 documento existente -2 nombrelogueo existente 
 
 ---------------------
@@ -519,6 +516,18 @@ BEGIN
 				COMMIT TRANSACTION
 				RETURN 1	
 			END
+END
+GO
+CREATE PROCEDURE SP_BuscarPlato
+@Rut BIGINT,
+@IdPlatoCasa INT
+AS
+BEGIN
+	SELECT P.Nombre,
+		   P.Precio,
+		   P.Foto
+	FROM Plato P JOIN Tienen T ON P.IdPlato=T.IdPlato
+	WHERE T.Rut=@Rut AND T.IdPlatoCasa=@IdPlatoCasa
 END
 GO
 
