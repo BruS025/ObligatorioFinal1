@@ -57,7 +57,7 @@
                        
         <div class="col-md-12" runat="server">
             <div class="col-md-2" runat="server">
-                <button type="button" class="btn-md btn-primary" data-toggle="modal" data-target="#agregarModal" data-whatever="Agregar una casa"><span aria-hidden="true" class="glyphicon glyphicon-plus"></span> Agregar</button>
+                <button type="button" class="btn-md btn-primary" data-toggle="modal" data-target="#agregarModal" data-whatever="Agregar una casa" OnClick="btAgregar_Click" id="btAgregar"><span aria-hidden="true" class="glyphicon glyphicon-plus"></span> Agregar</button>
             </div>
 
             <div class="col-md-2" runat="server">
