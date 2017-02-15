@@ -275,6 +275,20 @@ BEGIN
 			END
 END
 GO
+ALTER PROCEDURE SP_ListarAdministradores
+@IdCargoB INT
+AS
+BEGIN
+	SELECT DISTINCT U.Nombre,
+		   U.Apellido,
+		   U.NroDoc
+    FROM Usuario U join Administrador A on U.IdLogueo=A.IdLogueo
+	WHERE A.IdCargo=@IdCargoB
+END
+GO
+
+
+	--documento usuario nombre y apellido
 -- -1 documento existente -2 nombrelogueo existente 
 
 ---------------------
@@ -484,7 +498,6 @@ ELSE
 	END
 END
 GO
-
 CREATE PROCEDURE SP_BorrarPlato
 @IdPlatoB INT,
 @Rut BIGINT
@@ -640,20 +653,12 @@ select * from Casa c join Especializacion e on c.IdEspe=e.IdEspe
 DELETE Especializacion
 
 -- TEST SP
-DECLARE @RETORNO INT
-EXEC @RETORNO = SP_BorrarAdministrador 12345
-PRINT @retorno
+  
 
 DECLARE @RETORNO INT
-EXEC @RETORNO = SP_AgregarAdministrador 'prueba2','prueba2','pass2',123456,'log2',1
+EXEC @RETORNO = SP_AgregarAdministrador 'prueba3','prueba3','pass3',123457,'log3',2
 PRINT @retorno
-CREATE PROCEDURE SP_AgregarAdministrador
-@NombreN VARCHAR(20) ,
-@ApellidoN VARCHAR (20),
-@ContraseniaN VARCHAR(20),
-@NroDocN INT,
-@NombreLogueoN VARCHAR(20),
-@CargoN INT
+
 =======
 EXEC @RETORNO = ListarPlato 1,1234567890123456
 PRINT @retorno
