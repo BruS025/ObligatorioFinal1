@@ -35,15 +35,14 @@ namespace ObligatorioFinal1
 
                         if (user is Administrador)
                         {
-                            
+                            Response.Redirect("BienvenidaAdministrador.aspx");
                         }              
                         
                         else if (user is Cliente)
                         {
-
+                            Response.Redirect("MantenimientoRealizarPedido.aspx");
                         }         
                     }              
-
 
                     List <Especializacion> listadoEspecializaciones = new List<Especializacion>(LogicaEspecializacion.Listar());
 
@@ -55,8 +54,6 @@ namespace ObligatorioFinal1
 
                     modDdl.DataSource = listadoEspecializaciones;
                     modDdl.DataBind();
-
-                    // TEST
 
                     CargarGrilla();
                 }
@@ -81,7 +78,7 @@ namespace ObligatorioFinal1
             try
             {
 
-                List<Casa> listadoCasa = LogicaCasa.Listar();
+                List<Casa> listadoCasa = LogicaCasa.Listar(Convert.ToInt32(ddlBuscar.SelectedValue));
 
                 GridCasas.DataSource = null;
 
@@ -127,29 +124,34 @@ namespace ObligatorioFinal1
                     Casa casa = LogicaCasa.Buscar(Convert.ToInt64(rutVerificar.Text));
 
                     if (casa.RUT == 0)
-                    {
-                        CargarGrilla();
-                        throw new Exception("ERROR: No se encontraron coinciencias");
-                    }
-
-                    listadoCasa.Add(casa);
-
-                    GridCasas.DataSource = null;
-
-                    if (listadoCasa != null)
-                    {
-                        if (listadoCasa.Count > 0)
                         {
-                            GridCasas.Visible = true;
-                            GridCasas.DataSource = listadoCasa;
-                            GridCasas.DataBind();
+                            CargarGrilla();
+                            lbError.Text = ("ERROR: No se encontraron coinciencias..");
                         }
-                    }
 
                     else
                     {
-                        GridCasas.Visible = false;
-                        lbError.Text = "No existen casas registradas.";
+                  
+                        listadoCasa.Add(casa);
+                        ddlBuscar.SelectedValue = Convert.ToString(casa.Especializacion);
+
+                        GridCasas.DataSource = null;
+
+                        if (listadoCasa != null)
+                        {
+                            if (listadoCasa.Count > 0)
+                            {
+                                GridCasas.Visible = true;
+                                GridCasas.DataSource = listadoCasa;
+                                GridCasas.DataBind();
+                            }
+                        }
+
+                        else
+                        {
+                            GridCasas.Visible = false;
+                            lbError.Text = "No existen casas registradas.";
+                        }
                     }
                 }
                 else
@@ -175,6 +177,9 @@ namespace ObligatorioFinal1
                     ClientScript.RegisterStartupScript(this.GetType(), "myScript", "<script>javascript: vpi();</script>");
 
                 }
+
+                else
+                {
                 
                 Casa nuevaCasa = new Casa();
 
@@ -186,7 +191,7 @@ namespace ObligatorioFinal1
 
                 if (resultado == 1)
                 {
-                    lbError.Text = "Casa agregada..";
+                    lbError.Text = "Se ha agregado casa satisfactoriamente..";
                     CargarGrilla();
 
                     rutCasa.Text = "";
@@ -208,16 +213,18 @@ namespace ObligatorioFinal1
                     ClientScript.RegisterStartupScript(this.GetType(), "myScript", "<script>javascript: vpi();</script>");
 
                 }
-
+              }
             }
 
             catch (Exception ex)
             {
-                lbError2.Text = ex.Message;
                 ClientScript.RegisterStartupScript(this.GetType(), "myScript", "<script>javascript: vpi();</script>");
+                lbError2.Text = "Ha ocurrido un error: " + ex.Message;
             }
+                
         }
 
+        // Editar
         protected void btModificar_Click(object sender, EventArgs e)
         {
             try
@@ -226,7 +233,7 @@ namespace ObligatorioFinal1
                 Casa casa = new Casa();
                 casa.RUT = Convert.ToInt64(modRut.Text);
                 casa.Nombre = modNombre.Text;
-                casa.Especializacion = (modDdl.SelectedIndex + 1);
+                casa.Especializacion = Convert.ToInt32(modDdl.SelectedValue);
 
 
                 if (modRut.Text == "")
@@ -239,17 +246,8 @@ namespace ObligatorioFinal1
 
                 if (resultado == 1)
                 {
-                    lbError.Text = "Casa Modificada";
+                    lbError.Text = "Se ha modificado casa satisfactoriamente..";
                     CargarGrilla();
-
-                    btAgregarModal.Visible = true;
-                    btGuardarModal.Visible = false;
-                    btVerificar.Visible = false;
-
-                    // Reseteamos campos
-                    modRut.Text = "";
-                    modNombre.Text = "";
-                    modDdl.SelectedIndex = 0;
                     
                 }
                 else
@@ -299,7 +297,7 @@ namespace ObligatorioFinal1
         {
             try
             {
-                List<Casa> listadoCasa = LogicaCasa.Listar(); //ListarEspecializacion(Convert.ToInt32(ddlBuscar.SelectedIndex));
+                List<Casa> listadoCasa = LogicaCasa.Listar(Convert.ToInt32(ddlBuscar.SelectedValue)); //ListarEspecializacion(Convert.ToInt32(ddlBuscar.SelectedIndex));
 
                 GridCasas.DataSource = null;
 
@@ -310,6 +308,15 @@ namespace ObligatorioFinal1
                         GridCasas.Visible = true;
                         GridCasas.DataSource = listadoCasa;
                         GridCasas.DataBind();
+                        lbError.Text = "";
+                    }
+
+                    else
+                    {
+                        GridCasas.Visible = false;
+                        GridCasas.DataSource = listadoCasa;
+                        GridCasas.DataBind();
+                        lbError.Text = "No existen casas registradas";
                     }
 
                 }
@@ -317,6 +324,7 @@ namespace ObligatorioFinal1
                 else
                 {
                     GridCasas.Visible = false;
+                    GridCasas.DataSource = listadoCasa;                  
                     GridCasas.DataBind();
                     lbError.Text = "No existen casas registradas";
                 }

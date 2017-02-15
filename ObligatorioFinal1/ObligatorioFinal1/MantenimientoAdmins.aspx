@@ -33,7 +33,11 @@
     <div class="col-md-12">
 
         <div class="col-md-3">
-            <asp:Label ID="idV" ForeColor="Black" runat="server" Height="34px" Text="Documento del administrador:" Font-Size="Large"></asp:Label>                      
+            <asp:Label ID="idV" ForeColor="Black" runat="server" Height="34px" Text="Filtro de cargos:" Font-Size="Large"></asp:Label>                      
+        </div>
+
+        <div class="col-md-3" runat="server">
+            <asp:DropDownList ID="ddlListar" runat="server" AutoPostBack="True" Width="100%" Height="34px" DataTextField="Tipo" DataValueField="Id" OnSelectedIndexChanged="ddlListar_SelectedIndexChanged"></asp:DropDownList>
         </div>
 
         <div class="col-md-2">
@@ -53,7 +57,7 @@
                        
         <div class="col-md-12" runat="server">
             <div class="col-md-2" runat="server">
-                <button type="button" class="btn-md btn-primary" data-toggle="modal" data-target="#agregarModal" data-whatever="Agregar una casa"><span aria-hidden="true" class="glyphicon glyphicon-plus"></span> Agregar</button>
+                <button type="button" class="btn-md btn-primary" data-toggle="modal" data-target="#agregarModal" data-whatever="Agregar una casa" OnClick="btAgregar_Click" id="btAgregar"><span aria-hidden="true" class="glyphicon glyphicon-plus"></span> Agregar</button>
             </div>
 
             <div class="col-md-2" runat="server">
@@ -74,7 +78,7 @@
 
           <Columns>
 
-           <asp:TemplateField HeaderStyle-BorderWidth="2px" ItemStyle-HorizontalAlign="Center" ControlStyle-Font-Size="Medium" ControlStyle-CssClass="btn-primary btn-md" HeaderText="Editar">
+           <asp:TemplateField HeaderStyle-BorderWidth="2px" HeaderStyle-Width="10%" ItemStyle-HorizontalAlign="Center" ControlStyle-Font-Size="Medium" ControlStyle-CssClass="btn-primary btn-md" HeaderText="Editar">
                 <ItemTemplate>
 
                 <asp:LinkButton ID="btnSeleccionar" runat="server" OnClick="btnSeleccionar_Click" CommandName="select" CssClass="btn btn-md btn-danger" ForeColor="Black" BackColor="Transparent">
@@ -87,9 +91,8 @@
 
               <asp:BoundField HeaderStyle-BorderWidth="2px" ItemStyle-Font-Size="Medium" DataField="Documento" HeaderText="Documento"/>
               <asp:BoundField HeaderStyle-BorderWidth="2px" ItemStyle-Font-Size="Medium" DataField="UsuarioNombre" HeaderText="Usuario"/>
-              <asp:BoundField HeaderStyle-BorderWidth="2px" ItemStyle-Font-Size="Medium" DataField="NOMBRE" HeaderText="Nombre" />     
-              <asp:BoundField HeaderStyle-BorderWidth="2px" ItemStyle-Font-Size="Medium" DataField="APELLIDO" HeaderText="Apellido" />   
-              <asp:BoundField HeaderStyle-BorderWidth="2px" ItemStyle-Font-Size="Medium" DataField="CARGO" HeaderText="Cargo" />                                 
+              <asp:BoundField HeaderStyle-BorderWidth="2px" ItemStyle-Font-Size="Medium" DataField="Nombre" HeaderText="Nombre" />     
+              <asp:BoundField HeaderStyle-BorderWidth="2px" ItemStyle-Font-Size="Medium" DataField="Apellido" HeaderText="Apellido" />                                    
 
             <asp:TemplateField HeaderStyle-BorderWidth="2px" ItemStyle-HorizontalAlign="Center" ControlStyle-Font-Size="Medium" ControlStyle-CssClass="btn-danger btn-danger btn-md" HeaderText="Eliminar">
                 <ItemTemplate>

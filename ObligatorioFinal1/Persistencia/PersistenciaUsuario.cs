@@ -16,13 +16,9 @@ namespace Persistencia
             List<Administrador> lista = new List<Administrador>();
 
             SqlConnection conexion = new SqlConnection(Conexion.CnnString);
-            SqlCommand comando = new SqlCommand("", conexion);
+            SqlCommand comando = new SqlCommand("SP_ListarAdministradores", conexion);
             comando.CommandType = CommandType.StoredProcedure;
-
-          //  SqlParameter parametroId = new SqlParameter("@", );
-
-          //  comando.Parameters.Add(parametroId);
-
+                        
             try
             {
                 conexion.Open();

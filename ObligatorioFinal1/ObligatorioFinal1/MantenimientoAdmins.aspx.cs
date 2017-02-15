@@ -225,5 +225,63 @@ namespace ObligatorioFinal1
         {
 
         }
+
+        protected void ddlListar_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        protected void btAgregar_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (id.Text == "")
+                {
+                    lbError.Text = ("ERROR: Ingrese un Documento.");
+                    ClientScript.RegisterStartupScript(this.GetType(), "myScript", "<script>javascript: vpi();</script>");
+
+                }
+
+                Administrador nuevoAdmin = new Administrador();
+
+                nuevoAdmin.Documento = Convert.ToInt32(id.Text);
+                nuevoAdmin.Cargo = ddlListar.SelectedValue;
+
+                int resultado = LogicaUsuario.Agregar(nuevoAdmin);
+
+                if (resultado == 1)
+                {
+                    lbError.Text = "Administrador agregado..";
+                    CargarGrilla();
+
+                    id.Text = "";
+                    ddlListar.SelectedIndex = 0;
+                    
+                    lbError.Text = "";
+
+                }
+
+                else if (resultado == 1)
+                {
+                    lbError.Text = " El Documento ingresado ya se encuentra registrado.";
+                    ClientScript.RegisterStartupScript(this.GetType(), "myScript", "<script>javascript: vpi();</script>");
+                }
+
+                else
+                {
+                    lbError.Text = "No se ha agregado el Usuario..";
+                    ClientScript.RegisterStartupScript(this.GetType(), "myScript", "<script>javascript: vpi();</script>");
+
+                }
+
+            }
+
+            catch (Exception ex)
+            {
+                lbError.Text = ex.Message;
+                ClientScript.RegisterStartupScript(this.GetType(), "myScript", "<script>javascript: vpi();</script>");
+            }
+        }
+
     }
 }

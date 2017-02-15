@@ -31,9 +31,9 @@ namespace Logica
             return PersistenciaCasa.Eliminar(rut);
         }
 
-        public static List<Casa> Listar()
+        public static List<Casa> Listar(int id)
         {
-            return PersistenciaCasa.Listar();
+            return PersistenciaCasa.Listar(id);
         }
 
         public static List<Casa> ListarPedido(int id)

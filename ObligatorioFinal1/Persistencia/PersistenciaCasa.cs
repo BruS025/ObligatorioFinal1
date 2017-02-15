@@ -12,14 +12,17 @@ namespace Persistencia
 {
     public class PersistenciaCasa
     {
-        public static List<Casa> Listar()
+        public static List<Casa> Listar(int id)
         {
             List<Casa> lista = new List<Casa>();
             
             SqlConnection conexion = new SqlConnection(Conexion.CnnString);
-            SqlCommand comando = new SqlCommand("SP_ListarTodasLasCasas", conexion);
+            SqlCommand comando = new SqlCommand("SP_ListarCasa", conexion);
             comando.CommandType = CommandType.StoredProcedure;
 
+            SqlParameter parametroId = new SqlParameter("@IdEspeMostrar", id);
+
+            comando.Parameters.Add(parametroId);
             
             try
             {
@@ -107,8 +110,8 @@ namespace Persistencia
 
                 while (lector.Read())
                 {
-                    casa.RUT = Convert.ToInt32(lector["Rut"].ToString());
-                    casa.Nombre = lector["nombre"].ToString();
+                    casa.RUT = Convert.ToInt64(lector["Rut"].ToString());
+                    casa.Nombre = lector["Nombre"].ToString();
                     casa.Especializacion= Convert.ToInt32(lector["IdEspe"].ToString());
 
                 }

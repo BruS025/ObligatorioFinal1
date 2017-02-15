@@ -114,7 +114,7 @@
     <Content Include="MantenimientoCasas.aspx" />
     <Content Include="MantenimientoPlatos.aspx" />
     <Content Include="MantenimientoEntrega.aspx" />
-    <Content Include="MantenimientoCrearPedido.aspx" />
+    <Content Include="MantenimientoRealizarPedido.aspx" />
     <Content Include="MantenimientoPedidosPendientes.aspx" />
     <Content Include="MantenimientoAdmins.aspx" />
     <Content Include="BienvenidaAdministrador.aspx" />
@@ -200,12 +200,12 @@
     <Compile Include="MantenimientoEntrega.aspx.designer.cs">
       <DependentUpon>MantenimientoEntrega.aspx</DependentUpon>
     </Compile>
-    <Compile Include="MantenimientoCrearPedido.aspx.cs">
-      <DependentUpon>MantenimientoCrearPedido.aspx</DependentUpon>
+    <Compile Include="MantenimientoRealizarPedido.aspx.cs">
+      <DependentUpon>MantenimientoRealizarPedido.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="MantenimientoCrearPedido.aspx.designer.cs">
-      <DependentUpon>MantenimientoCrearPedido.aspx</DependentUpon>
+    <Compile Include="MantenimientoRealizarPedido.aspx.designer.cs">
+      <DependentUpon>MantenimientoRealizarPedido.aspx</DependentUpon>
     </Compile>
     <Compile Include="MantenimientoPedidosPendientes.aspx.cs">
       <DependentUpon>MantenimientoPedidosPendientes.aspx</DependentUpon>
