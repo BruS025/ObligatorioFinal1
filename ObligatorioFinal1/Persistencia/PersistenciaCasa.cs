@@ -110,7 +110,7 @@ namespace Persistencia
 
                 while (lector.Read())
                 {
-                    casa.RUT = Convert.ToInt32(lector["Rut"].ToString());
+                    casa.RUT = Convert.ToInt64(lector["Rut"].ToString());
                     casa.Nombre = lector["Nombre"].ToString();
                     casa.Especializacion= Convert.ToInt32(lector["IdEspe"].ToString());
 

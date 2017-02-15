@@ -1,11 +1,11 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/MasterPage.Master" AutoEventWireup="true" CodeBehind="MantenimientoCrearPedido.aspx.cs" Inherits="ObligatorioFinal1.WebForm5" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/MasterPage.Master" AutoEventWireup="true" CodeBehind="MantenimientoRealizarPedido.aspx.cs" Inherits="ObligatorioFinal1.WebForm5" %>
 
 <%@ Register Src="~/verPlato.ascx" TagPrefix="uc1" TagName="verPlato" %>
 
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
         
-    <title>Creacion de pedidos</title>
+    <title>Realizar pedidos</title>
 
     <link rel="stylesheet" href = "css/bootstrap.min.css"/>
     <link rel="stylesheet" href="css/login.css"/>
@@ -25,7 +25,7 @@
 
 <header>
     <div class="container">
-        <h2><strong>Creacion de pedidos</strong></h2>
+        <h2><strong>Realizar pedidos</strong></h2>
     </div>  
 </header>
 
