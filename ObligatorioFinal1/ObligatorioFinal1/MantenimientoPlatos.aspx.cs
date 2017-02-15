@@ -141,7 +141,7 @@ namespace ObligatorioFinal1
         }
 
         // Boton seleccionar
-        protected void btnSeleccionar_Click(object sender, GridViewSelectEventArgs e)
+        protected void btnSeleccionar_Click(object sender, EventArgs e)
         {
             try
             {
