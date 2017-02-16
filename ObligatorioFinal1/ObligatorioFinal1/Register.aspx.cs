@@ -69,6 +69,8 @@ namespace ObligatorioFinal1
                     //-2 nomlog usado
                     // 2 se agrego
 
+                    //Problema al devolver errores de la bd (agrega bien de bien)
+
 
                     lbError.Text = resultado.ToString();
                 }
