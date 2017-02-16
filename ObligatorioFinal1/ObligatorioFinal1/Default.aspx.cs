@@ -59,8 +59,8 @@ namespace ObligatorioFinal1
                 Usuario cliente = new Usuario();
                 cliente = (Usuario)Session["Usuario"];
 
-                string UsuarioNombre = inputEmail.Value;
-                string PassUsuario = inputPassword.Value;
+                string UsuarioNombre = inputEmail.Value.ToString();
+                string PassUsuario = inputPassword.Value.ToString();
 
                 int resultado = LogicaUsuario.Redireccionar(UsuarioNombre, PassUsuario);
 

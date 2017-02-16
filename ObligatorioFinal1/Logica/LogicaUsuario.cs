@@ -15,9 +15,9 @@ namespace Logica
             return PersistenciaUsuario.Buscar(documento);
         }
 
-        public static int Agregar(Administrador admin)
+        public static int Agregar(Cliente user)
         {
-            throw new NotImplementedException();
+            return PersistenciaUsuario.Agregar(user);
         }
 
         public static int Modificar(Administrador admin)

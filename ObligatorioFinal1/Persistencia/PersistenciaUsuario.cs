@@ -51,6 +51,49 @@ namespace Persistencia
             }
         }
 
+       public static int Agregar(Cliente user)
+        {
+            SqlConnection conexion = new SqlConnection(Conexion.CnnString);
+            SqlCommand comando = new SqlCommand("SP_AgregarCliente", conexion);
+            comando.CommandType = CommandType.StoredProcedure;
+
+            SqlParameter PNombre = new SqlParameter("@NombreN", user.Nombre);
+            SqlParameter PApellido = new SqlParameter("@ApellidoN", user.Apellido);
+            SqlParameter PContrasenia = new SqlParameter("@ContraseniaN", user.Contrasenia);
+            SqlParameter PNroDoc = new SqlParameter("@NroDocN", user.Documento);
+            SqlParameter PNomLogueo = new SqlParameter("@NombreLogueoN", user.UsuarioNombre);
+            SqlParameter PNroTarjeta = new SqlParameter("@NroTarjetaN", user.Tarjeta);
+            SqlParameter PCalle = new SqlParameter("@CalleN", user.Calle);
+            SqlParameter PNroPuerta = new SqlParameter("@NroPuertaN", user.Puerta);
+            
+            comando.Parameters.Add(PNombre);
+            comando.Parameters.Add(PApellido);
+            comando.Parameters.Add(PContrasenia);
+            comando.Parameters.Add(PNroDoc);
+            comando.Parameters.Add(PNomLogueo);
+            comando.Parameters.Add(PNroTarjeta);
+            comando.Parameters.Add(PCalle);
+            comando.Parameters.Add(PNroPuerta);
+
+            try
+            {
+                conexion.Open();
+                int resultado = comando.ExecuteNonQuery();
+                return resultado;
+
+            }
+            catch (SqlException sqlex)
+            {
+
+                throw sqlex;
+            }
+
+            finally
+            {
+                conexion.Close();
+            }
+        }
+
        public static Administrador Buscar(int documento)
         {
             Administrador admin = new Administrador();
@@ -134,8 +177,8 @@ namespace Persistencia
             SqlCommand comando = new SqlCommand("Redireccionar", conexion);
             comando.CommandType = CommandType.StoredProcedure;
 
-            SqlParameter parametroNomLog = new SqlParameter ("@NombreLogueo", username);
-            SqlParameter parametroPassword = new SqlParameter("@Contrasenia", pass);
+            SqlParameter parametroNomLog = new SqlParameter ("'"+"@NombreLogueo"+"'", username);
+            SqlParameter parametroPassword = new SqlParameter("'" + "@Contrasenia" + "'", pass);
 
             comando.Parameters.Add(parametroNomLog);
             comando.Parameters.Add(parametroPassword);

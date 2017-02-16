@@ -48,10 +48,39 @@ namespace ObligatorioFinal1
         {
             try
             {
+                Cliente registrar = new Cliente();
+
+                if (inputPassword.Value == inputPasswordRepeat.Value)//Verificamos error en la contraseña
+                {
+                    registrar.Nombre = inputEmail.Value;
+                    registrar.Apellido = "AgregarPrueba2";
+                    byte[] stringAByte = System.Text.ASCIIEncoding.ASCII.GetBytes(inputPassword.Value);
+                    string contrasenia = Convert.ToBase64String(stringAByte);
+
+                    registrar.Contrasenia = contrasenia;
+                    registrar.Documento = Convert.ToInt32(inputDocumento.Value);
+                    registrar.UsuarioNombre = inputUsername.Value;
+                    registrar.Tarjeta = Convert.ToInt64(inputTarjeta.Value);
+                    registrar.Calle = "AgregarPrueba2";
+                    registrar.Puerta = "14142";
+
+                    int resultado = LogicaUsuario.Agregar(registrar);
+                    //-1 doc usado
+                    //-2 nomlog usado
+                    // 2 se agrego
+
+
+                    lbError.Text = resultado.ToString();
+                }
+                else
+                {
+                    lbError.Text = "La contraseña debe coicidir".ToString();
+                }
+
                 // Excepciones verificar
                 // Agregar nuevo cliente (verificaciones bd) , si ya existe error
 
-                Response.Redirect("MantenimientoCrearPedido.aspx");
+                //Response.Redirect("MantenimientoCrearPedido.aspx");
             }
             catch (Exception ex)
             {
