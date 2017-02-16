@@ -20,7 +20,6 @@
     <script src="js/jquery.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
     
-
 <header>
     <div class="container">
         <h2><strong>Mantenimiento de casas</strong></h2>
@@ -123,8 +122,6 @@
 </div>    
 </div>
 
-
-
 <div class="modal fade" id="agregarModal" tabindex="-1" role="dialog">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
@@ -203,7 +200,7 @@
                     <label for="message-text" class="control-label">Rut de la casa:</label>
                 </div>
                 <div class="col-md-4">
-                    <asp:TextBox ID="modRut" MaxLength="16" runat="server" Height="34px" Placeholder=" Rut" TextMode="Number"></asp:TextBox>
+                    <asp:TextBox ID="modRut" MaxLength="16" Enabled="false" runat="server" Height="34px" Placeholder=" Rut" TextMode="Number"></asp:TextBox>
                 </div>
             </div>
 
@@ -267,8 +264,7 @@
          var recipient = button.data('whatever')
          var modal = $(this)
      })
-         
-   
+          
  </script>
 
 </asp:Content>

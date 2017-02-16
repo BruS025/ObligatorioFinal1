@@ -345,10 +345,9 @@ namespace ObligatorioFinal1
                  int resultado = 0;
                  long rutEliminar = Convert.ToInt64(GridCasas.Rows[e.RowIndex].Cells[1].Text);
 
-
                 resultado = LogicaCasa.Eliminar(rutEliminar);
  
-                if (resultado == 1) // ok
+                if (resultado == 1) // Ok
                 {
                      lbError.Text = "Se ha eliminado casa.";
 

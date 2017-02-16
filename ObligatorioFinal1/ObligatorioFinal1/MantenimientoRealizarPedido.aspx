@@ -130,7 +130,7 @@
  <script>
 
      $('#detallesPlato').on('show.bs.modal', function (event) {
-         var button = $(event.relatedTarget) // Button that triggered the modal
+         var button = $(event.relatedTarget)
          var recipient = button.data('whatever')
          var modal = $(this)
      })       
