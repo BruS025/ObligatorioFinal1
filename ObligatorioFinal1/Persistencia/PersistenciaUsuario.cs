@@ -11,7 +11,7 @@ namespace Persistencia
 {
     public class PersistenciaUsuario
     {
-        public static List<Administrador> Listar()
+       public static List<Administrador> Listar()
         {
             List<Administrador> lista = new List<Administrador>();
 
@@ -51,8 +51,7 @@ namespace Persistencia
             }
         }
 
-
-        public static Administrador Buscar(int documento)
+       public static Administrador Buscar(int documento)
         {
             Administrador admin = new Administrador();
 
@@ -98,9 +97,8 @@ namespace Persistencia
             }
 
         }
-    
 
-    public static int Eliminar(int documento)
+       public static int Eliminar(int documento)
     {
         SqlConnection conexion = new SqlConnection(Conexion.CnnString);
         SqlCommand comando = new SqlCommand("", conexion);
@@ -129,5 +127,36 @@ namespace Persistencia
             conexion.Close();
         }
     }
+
+       public static int Redireccionar (string username,string pass)
+        {
+            SqlConnection conexion = new SqlConnection(Conexion.CnnString);
+            SqlCommand comando = new SqlCommand("Redireccionar", conexion);
+            comando.CommandType = CommandType.StoredProcedure;
+
+            SqlParameter parametroNomLog = new SqlParameter ("@NombreLogueo", username);
+            SqlParameter parametroPassword = new SqlParameter("@Contrasenia", pass);
+
+            comando.Parameters.Add(parametroNomLog);
+            comando.Parameters.Add(parametroPassword);
+
+            try
+            {
+                conexion.Open();
+                int resultado =comando.ExecuteNonQuery();
+                return resultado;
+
+            }
+            catch (SqlException sqlex)
+            {
+
+                throw sqlex;
+            }
+
+            finally
+            {
+                conexion.Close();
+            }
+        }
 }
 }

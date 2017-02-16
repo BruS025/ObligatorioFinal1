@@ -59,7 +59,15 @@ namespace ObligatorioFinal1
                 Usuario cliente = new Usuario();
                 cliente = (Usuario)Session["Usuario"];
 
-                if (cliente is Usuario)
+                string UsuarioNombre = inputEmail.Value;
+                string PassUsuario = inputPassword.Value;
+
+                int resultado = LogicaUsuario.Redireccionar(UsuarioNombre, PassUsuario);
+
+                lbError.Text = resultado.ToString();
+
+
+               /* if (cliente is Usuario)
                     {
                         Response.Redirect("MantenimientoCrearPedido.aspx");
                     }
@@ -67,7 +75,7 @@ namespace ObligatorioFinal1
                 else if (cliente is Administrador)
                     {
                         Response.Redirect("BienvenidaAdministrador.aspx");
-                    }               
+                    }   */            
             }
 
             catch (Exception ex)

@@ -34,5 +34,10 @@ namespace Logica
         {
             return PersistenciaUsuario.Listar();
         }
+
+        public static int Redireccionar(string username, string pass)
+        {
+            return PersistenciaUsuario.Redireccionar(username,pass);
+        }
     }
 }
