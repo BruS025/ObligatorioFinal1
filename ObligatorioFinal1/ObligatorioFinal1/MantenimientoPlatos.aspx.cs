@@ -19,6 +19,29 @@ namespace ObligatorioFinal1
             {
                 try
                 {
+                    Usuario user = new Usuario();
+
+                    if (Session["Usuario"] == null)
+                    {
+                        //Response.Redirect("Default.aspx");
+                    }
+
+                    else
+                    {
+                        user = (Usuario)Session["Usuario"];
+
+                        if (user is Cliente)
+                        {
+                            Response.Redirect("MantenimientoRealizarPedido.aspx");
+                        }
+
+                        else if (user is Administrador)
+                        {
+                            string foto = "";
+                            Session["Foto"] = foto;
+                        }
+                    }
+
                     ActualizarCasas();
                     CargarGrilla();
 
@@ -40,8 +63,8 @@ namespace ObligatorioFinal1
 
         // Actualizar DDL casas
         private void ActualizarCasas()
-        {/*
-            List<Casa> listadoCasas = new List<Casa>(LogicaCasa.Listar());
+        {
+            List<Casa> listadoCasas = new List<Casa>(LogicaCasa.ListarTodas());
 
             ddlPlatoBuscar.DataSource = listadoCasas;
             ddlPlatoBuscar.DataBind();
@@ -50,7 +73,7 @@ namespace ObligatorioFinal1
             ddlCasaModificar.DataBind();
 
             ddlCasasPlato.DataSource = listadoCasas;
-            ddlCasasPlato.DataBind();*/
+            ddlCasasPlato.DataBind();
         }
 
         // Cargar Grilla
@@ -177,7 +200,7 @@ namespace ObligatorioFinal1
                 {
                     String nombreOriginal = Path.GetFileName(FileUpload1.PostedFile.FileName);
                     String[] extensionFoto = nombreOriginal.Split('.');
-                    nombreFoto = "1" + "." + extensionFoto[1]; // Sacar ultimo ID de foto en la bd para colocar como nombre del archivo
+                    nombreFoto = "1" + "." + extensionFoto[1]; // Sacar ultimo ID de foto en la bd para colocar como nombre del archivo. Hacer HasH
 
                     string SaveLocation = Server.MapPath("Imagenes") + "\\" + nombreFoto;
 
@@ -186,7 +209,7 @@ namespace ObligatorioFinal1
 
                 else
                 {
-                    lbError2.Text = ("Seleccione una foto.");
+                    lbError2.Text = ("Seleccione una foto..");
                     ClientScript.RegisterStartupScript(this.GetType(), "myScript", "<script>javascript: vpi();</script>");
                 }
 
@@ -201,7 +224,7 @@ namespace ObligatorioFinal1
 
                 if (resultado == 2)
                 {
-                    lbError.Text = "Plato agregado..";
+                    lbError.Text = "Se ha agregado plato satisfactoriamente..";
                     CargarGrilla();
 
                     id.Text = "";
@@ -319,15 +342,55 @@ namespace ObligatorioFinal1
             }
         }
 
+        // DDL Buscar
         protected void ddlPlatoBuscar_SelectedIndexChanged(object sender, EventArgs e)
         {
-            
-        
-    }
+            try
+            {
+                List<Plato> listadoCasa = LogicaPlato.Listar(Convert.ToInt64(ddlPlatoBuscar.SelectedValue));
 
+                GridPlatos.DataSource = null;
+
+                if (listadoCasa != null)
+                {
+                    if (listadoCasa.Count > 0)
+                    {
+                        GridPlatos.Visible = true;
+                        GridPlatos.DataSource = listadoCasa;
+                        GridPlatos.DataBind();
+                        lbError.Text = "";
+                    }
+
+                    else
+                    {
+                        GridPlatos.Visible = false;
+                        GridPlatos.DataSource = listadoCasa;
+                        GridPlatos.DataBind();
+                        lbError.Text = "No existen platos registrados";
+                    }
+
+                }
+
+                else
+                {
+                    GridPlatos.Visible = false;
+                    GridPlatos.DataSource = listadoCasa;
+                    GridPlatos.DataBind();
+                    lbError.Text = "No existen platos registrados";
+                }
+            }
+
+            catch (Exception ex)
+            {
+                lbError.Text = "Error :" + ex.Message;
+            }
+        }
+
+        // DDL agregar
         protected void ddlCasasPlato_SelectedIndexChanged(object sender, EventArgs e)
         {
-
+            // Error en js
+            ClientScript.RegisterStartupScript(this.GetType(), "myScript", "<script>javascript: vpi();</script>");
         }
 
         protected void casaModificar_SelectedIndexChanged(object sender, EventArgs e)
@@ -383,7 +446,8 @@ namespace ObligatorioFinal1
         // Ver foto
 		protected void verFotoClick(object sender, EventArgs e)
         {
-            string foto = "1.jpg";
+            string foto = "";
+            foto = (string)(Session["Foto"]);
 
             fotoMostrar.Src = "/ImagenesPlato/" + foto; 
             fotoMostrar.DataBind();
@@ -403,10 +467,22 @@ namespace ObligatorioFinal1
 
         }
 
+        // Seleccionar item
         protected void GridPlatos_SelectedIndexChanging(object sender, GridViewSelectEventArgs e)
         {
-            // Asignar att
-            // Crear session con ID foto
+
+            idModificar.Text = this.GridPlatos.Rows[e.NewSelectedIndex].Cells[1].Text;
+            nombreModificar.Text = this.GridPlatos.Rows[e.NewSelectedIndex].Cells[2].Text;
+            precioModificar.Text = this.GridPlatos.Rows[e.NewSelectedIndex].Cells[3].Text;
+            Session["Foto"] = this.GridPlatos.Rows[e.NewSelectedIndex].Cells[4].Text;
+
         }
+
+        // DDL modificar
+        protected void ddlCasaModificar_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            ClientScript.RegisterStartupScript(this.GetType(), "myScript", "<script>javascript: vpi2();</script>");
+        }
+
     }
 }

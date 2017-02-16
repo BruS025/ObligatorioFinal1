@@ -62,7 +62,7 @@
             </div>
 
             <div class="col-md-2" runat="server">
-                <button type="button" visible="false" id="foto" runat="server" class="btn-md btn-primary" data-toggle="modal" data-target="#myModal"><span aria-hidden="true" class="glyphicon glyphicon-camera"></span> Foto</button>
+                <button type="button" visible="false" id="foto" runat="server" class="btn-md btn-primary"><span aria-hidden="true" class="glyphicon glyphicon-camera"></span> Foto</button>
             </div>
         </div>
 
@@ -149,7 +149,7 @@
     <div class="modal-content">
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-label="Cerrar"><span aria-hidden="true">&times;</span></button>
-        <h4 class="modal-title" runat="server"><asp:Label ID="Label1" runat="server" Text="PlatoNombre"></asp:Label></h4>
+        <h4 class="modal-title" runat="server"><asp:Label ID="Label1" runat="server" Text="Agregar nuevo plato"></asp:Label></h4>
       </div>
       <div class="modal-body">      
           <div class="form-group" >
@@ -221,7 +221,7 @@
     <div class="modal-content">
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-label="Cerrar"><span aria-hidden="true">&times;</span></button>
-        <h4 class="modal-title" id="H1" runat="server"><asp:Label ID="Label2" runat="server" Text="PlatoNombre"></asp:Label></h4>
+        <h4 class="modal-title" id="H1" runat="server"><asp:Label ID="Label2" runat="server" Text="Modificar plato"></asp:Label></h4>
       </div>
       <div class="modal-body">      
           <div class="form-group" >
@@ -244,7 +244,7 @@
                     <label for="message-text" class="control-label">Casa del plato:</label>
                 </div>
                 <div class="col-md-4">
-                    <asp:DropDownList ID="ddlCasaModificar" AutoPostBack="true" runat="server" Height="34px" DataTextField="Nombre" DataValueField="RUT" OnSelectedIndexChanged="casaModificar_SelectedIndexChanged"></asp:DropDownList>
+                    <asp:DropDownList Enabled="false" ID="ddlCasaModificar" AutoPostBack="true" runat="server" Height="34px" DataTextField="Nombre" DataValueField="RUT" OnSelectedIndexChanged="ddlCasaModificar_SelectedIndexChanged"></asp:DropDownList>
                 </div>
                </div>
 
@@ -301,7 +301,7 @@
      function vpi2() { $('#editarModal').modal('show') }
      function vpi3() { $('#myModal').modal('show') }
 
-     function vpi() { $('#agregarModal').modal('hide') }
+     function vpi4() { $('#agregarModal').modal('hide') }
 
      $('#agregarModal').on('show.bs.modal', function (event) {
          var button = $(event.relatedTarget) // Button that triggered the modal

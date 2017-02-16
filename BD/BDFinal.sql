@@ -537,7 +537,7 @@ BEGIN
 	SELECT C.Nombre,
 		   C.Rut, 
 		   C.IdEspe
-    FROM Casa C JOIN Especializacion E ON C.IdEspe=E.IdEspe
+    FROM Casa C
 END
 GO
 
