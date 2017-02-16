@@ -26,22 +26,17 @@ namespace ObligatorioFinal1
 
                     if (Session["Usuario"] == null)
                     {
-                        Response.Redirect("Default.aspx");
+                        //Response.Redirect("Default.aspx");
                     }
 
                     else
                     {
                         user = (Usuario)Session["Usuario"];
 
-                        if (user is Administrador)
-                        {
-                            Response.Redirect("BienvenidaAdministrador.aspx");
-                        }              
-                        
-                        else if (user is Cliente)
+                        if (user is Cliente)
                         {
                             Response.Redirect("MantenimientoRealizarPedido.aspx");
-                        }         
+                        }                                           
                     }              
 
                     List <Especializacion> listadoEspecializaciones = new List<Especializacion>(LogicaEspecializacion.Listar());
@@ -297,7 +292,7 @@ namespace ObligatorioFinal1
         {
             try
             {
-                List<Casa> listadoCasa = LogicaCasa.Listar(Convert.ToInt32(ddlBuscar.SelectedValue)); //ListarEspecializacion(Convert.ToInt32(ddlBuscar.SelectedIndex));
+                List<Casa> listadoCasa = LogicaCasa.Listar(Convert.ToInt32(ddlBuscar.SelectedValue));
 
                 GridCasas.DataSource = null;
 

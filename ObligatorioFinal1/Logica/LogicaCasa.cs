@@ -40,6 +40,11 @@ namespace Logica
         {
             return PersistenciaCasa.ListarPedido(id);
         }
-        
+
+        public static List<Casa> ListarTodas()
+        {
+            return PersistenciaCasa.ListarTodas();
+        }      
+
     }
 }
